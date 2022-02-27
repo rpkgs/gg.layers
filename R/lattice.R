@@ -8,5 +8,5 @@ draw.colorkey <- function(key, draw = FALSE, vp = NULL) {
 }
 
 #' @export
-#' @rdname draw.colorkey
+#' @rdname make_colorbar
 draw.colorkey2 <- draw.colorkey
