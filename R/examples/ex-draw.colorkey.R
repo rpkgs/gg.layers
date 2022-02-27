@@ -1,3 +1,5 @@
+library(grid)
+
 brks_SOS  <- c(-Inf, seq(110, 150, 5), Inf)
 key <- list(
     at = brks_SOS, 
@@ -7,7 +9,7 @@ key <- list(
     rect = list(col = "black", lwd = 0.2)
 )
 
-g <- draw.colorkey(key)
+g <- draw.colorkey2(key)
 grid.newpage()
 grid.draw(g)
 

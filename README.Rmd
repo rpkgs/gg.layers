@@ -1,10 +1,22 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dev = 'svg',
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # gg.layers
 
 <!-- badges: start -->
-
 [![R-CMD-check](https://github.com/rpkgs/gg.layers/workflows/R-CMD-check/badge.svg)](https://github.com/rpkgs/gg.layers/actions)
 [![codecov](https://codecov.io/gh/rpkgs/gg.layers/branch/master/graph/badge.svg)](https://codecov.io/gh/rpkgs/gg.layers)
 [![CRAN](http://www.r-pkg.org/badges/version/gg.layers)](https://cran.r-project.org/package=gg.layers)
@@ -12,8 +24,7 @@
 
 ## Installation
 
-You can install the development version of gg.layers from
-[GitHub](https://github.com/) with:
+You can install the development version of gg.layers from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -24,7 +35,7 @@ devtools::install_github("rpkgs/gg.layers")
 
 This is a basic example which shows you how to solve a common problem:
 
-``` r
+```{r example}
 library(gg.layers)
 library(ggplot2)
 library(rcolors)
@@ -46,5 +57,3 @@ g <- make_colorbar(
 p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 p + g
 ```
-
-<img src="man/figures/README-example-1.svg" width="100%" />

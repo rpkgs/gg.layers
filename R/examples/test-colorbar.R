@@ -14,7 +14,17 @@ g <- make_colorbar(
     legend.text = list(fontfamily = "Times", cex = 1.1),
     hjust = 0.05
 )
+
 write_fig({
     grid.rect()
     grid.draw(g)
 }, "a.pdf", 2.7, 4)
+
+
+##
+library(gtable)
+p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+p2 = p + g
+p2 = add_colorbar(p, g, width = 1)
+write_fig(p2, "a.pdf", 7, 4)
+#

@@ -9,6 +9,8 @@ make_colorbar(
   at,
   col = .regions$col,
   alpha = .regions$alpha,
+  labels = NULL,
+  lab = NULL,
   labeller = format,
   pretty = FALSE,
   equispaced = TRUE,
@@ -85,17 +87,13 @@ these should also be defined in the \verb{element tree} argument.}
     should be produced.}
 
 \item{vp}{A Grid viewport object (or NULL).}
-
-\item{key}{
-    A list determining the key. See documentation for \code{\link[lattice]{levelplot}},
-    in particular the section describing the \code{colorkey} argument,
-    for details.
-  }
 }
 \description{
 make_colorbar
 }
 \examples{
+library(grid)
+
 brks_SOS  <- c(-Inf, seq(110, 150, 5), Inf)
 key <- list(
     at = brks_SOS, 
@@ -105,7 +103,7 @@ key <- list(
     rect = list(col = "black", lwd = 0.2)
 )
 
-g <- draw.colorkey(key)
+g <- draw.colorkey2(key)
 grid.newpage()
 grid.draw(g)
 

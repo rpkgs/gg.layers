@@ -6,7 +6,9 @@
 \alias{key_label}
 \alias{key_border}
 \alias{key_triangle}
-\title{draw lattice colorkey}
+\title{\itemize{
+\item \code{colorkey_pos}: The position of colorkey
+}}
 \usage{
 colorkey_pos(space, ncol = 3)
 
@@ -52,6 +54,10 @@ future extension.}
 \itemize{
 \item \code{colorkey_pos}: The position of colorkey
 }
+
+key_gf_nonraster
+
+key_label
 }
 \examples{
 \dontrun{

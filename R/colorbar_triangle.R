@@ -15,8 +15,6 @@ wrap <- function(x, y){
     # eval(y <- temp, envir = parent.frame())
 }
 
-#' draw lattice colorkey
-#' 
 #' - `colorkey_pos`: The position of colorkey
 #' 
 #' @param space One of `c('top', 'bottom', 'right', 'left')`

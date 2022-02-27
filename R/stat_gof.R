@@ -120,7 +120,7 @@ stat_gof <- function(
 #' @importFrom broom tidy glance
 #' @import glue
 #' @export
-stat_reg_gof <- function(mapping = NULL, data = NULL,
+stat_reg <- function(mapping = NULL, data = NULL,
     formula = y ~ x, digits = 2, unit = "",
     format = 'slope = {str_num(b[2, "estimate"], digits)}{unit}, pvalue = {str_num(b[2, "p.value"], digits)} \n R^2 = {str_num(s$r.squared, digits)}',
     x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.02, height.factor = 1.2,

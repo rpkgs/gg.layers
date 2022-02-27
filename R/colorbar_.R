@@ -23,16 +23,16 @@
 #' For numeric values, 0 means left (bottom) alignment and 1 means right (top)
 #' alignment.
 
-#' @inheritParams lattice::draw.colorkey
-#'
 #' @example R/examples/ex-draw.colorkey.R
 #' @importFrom ggplot2 margin
-#' @import lattice
 #' @export
 make_colorbar <- function(
   at,
   col = .regions$col,
   alpha = .regions$alpha,
+  
+  labels = NULL, 
+  lab = NULL,
   labeller  = format,
   # format = "%f",
   pretty = FALSE, equispaced = TRUE,
@@ -241,6 +241,8 @@ make_colorbar <- function(
     grid.newpage()
     grid.draw(key.gf)
   }
+  
+  class(key.gf) %<>% c(., "colorbar")
   key.gf
 }
 
