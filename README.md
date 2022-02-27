@@ -22,7 +22,7 @@ devtools::install_github("rpkgs/gg.layers")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+<https://stackoverflow.com/questions/68440366/how-can-i-add-triangles-to-a-ggplot2-colorbar-in-r-to-indicate-out-of-bound-valu>
 
 ``` r
 library(gg.layers)
