@@ -26,5 +26,6 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0), 
     data.table, 
+    rcolors,
     gridExtra
 Config/testthat/edition: 3

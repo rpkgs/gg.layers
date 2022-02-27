@@ -92,27 +92,32 @@ these should also be defined in the \verb{element tree} argument.}
 make_colorbar
 }
 \examples{
-library(grid)
+library(rcolors)
+library(ggplot2)
 
-brks_SOS  <- c(-Inf, seq(110, 150, 5), Inf)
-key <- list(
-    at = brks_SOS, 
-    space = 'right', height = 1,
-    tri.upper = 0.05,  tri.lower = 0.05, 
-    labels=list(cex=1.2, fontface='bold'), 
-    rect = list(col = "black", lwd = 0.2)
+brk = c(-Inf, -1, 0, 1, 3, 6, 9, Inf)
+nbrk = length(brk) - 1
+cols = get_color(rcolors$amwg256, nbrk)
+
+g <- make_colorbar(
+    at = brk, col = cols, height = 1,
+    tck = 0.4,
+    space = "right",
+    legend.text.location = c(0.3, 0.5),
+    legend.text.just = c(0.5, 0.5),
+    # legend.text = list(fontfamily = "Times", cex = 1.1),
+    hjust = 0.05
 )
 
-g <- draw.colorkey2(key)
-grid.newpage()
-grid.draw(g)
+# Ipaper::write_fig({
+#     grid.rect()
+#     grid.draw(g)
+# }, "a.pdf", 2.7, 4)
 
-## sp
-\dontrun{
-library(sp)
-demo(meuse, ask = FALSE, echo = FALSE)
-spplot(meuse, c("ffreq"), col.regions= "black", 
-       pch=c(1,2,3), key.space=list(x=0.1,y=.95,corner=c(0,1)))
-spplot(meuse.grid)
-}
+##
+p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+p + g
+
+# p2 = add_colorbar(p, g, width = 1)
+# write_fig(p2, "a.pdf", 7, 4)
 }

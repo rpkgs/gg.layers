@@ -26,6 +26,9 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(gg.layers)
+#> Registered S3 method overwritten by 'gg.layers':
+#>   method       from  
+#>   print.gtable gtable
 library(ggplot2)
 library(rcolors)
 
@@ -48,3 +51,15 @@ p + g
 ```
 
 <img src="man/figures/README-example-1.svg" width="100%" />
+
+``` r
+p + g + g
+```
+
+<img src="man/figures/README-example-2.svg" width="100%" />
+
+``` r
+p + g + g + g
+```
+
+<img src="man/figures/README-example-3.svg" width="100%" />

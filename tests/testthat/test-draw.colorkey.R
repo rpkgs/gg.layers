@@ -1,8 +1,5 @@
 test_that("draw.colorkey works", {
     expect_true({
-        # library(testthat)
-        # library(Ipaper)
-        # library(lattice)
         library(grid)
         library(gridExtra)
         brks_SOS  <- c(-Inf, seq(110, 150, 5), Inf)
@@ -19,9 +16,7 @@ test_that("draw.colorkey works", {
                 unit.adj = 0.3
             )
             g <- draw.colorkey2(key, draw = TRUE)
-            grid.newpage()
-            grid.draw(g)
-            g
+            print(g)
         }
 
         p11 <- test_legend('right')

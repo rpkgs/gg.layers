@@ -23,7 +23,7 @@
 #' For numeric values, 0 means left (bottom) alignment and 1 means right (top)
 #' alignment.
 
-#' @example R/examples/ex-draw.colorkey.R
+#' @example R/examples/ex-make_colorbar.R
 #' @importFrom ggplot2 margin
 #' @export
 make_colorbar <- function(
@@ -242,7 +242,7 @@ make_colorbar <- function(
     grid.draw(key.gf)
   }
   
-  class(key.gf) %<>% c(., "colorbar")
+  class(key.gf) %<>% c("colorbar", "cbar", .)
   key.gf
 }
 
@@ -275,3 +275,8 @@ null_default <- function(x, default = 0) {
   if (is.null(x)) default else x
 }
 
+#' @import ggplotify 
+#' @export 
+print.colorbar <- function(x, ...) {
+  print(as.ggplot(x))
+}

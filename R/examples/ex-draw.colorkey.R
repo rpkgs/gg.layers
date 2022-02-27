@@ -1,8 +1,8 @@
 library(grid)
 
-brks_SOS  <- c(-Inf, seq(110, 150, 5), Inf)
+brks  <- c(-Inf, seq(110, 150, 5), Inf)
 key <- list(
-    at = brks_SOS, 
+    at = brks, 
     space = 'right', height = 1,
     tri.upper = 0.05,  tri.lower = 0.05, 
     labels=list(cex=1.2, fontface='bold'), 
@@ -10,8 +10,7 @@ key <- list(
 )
 
 g <- draw.colorkey2(key)
-grid.newpage()
-grid.draw(g)
+g
 
 ## sp
 \dontrun{
