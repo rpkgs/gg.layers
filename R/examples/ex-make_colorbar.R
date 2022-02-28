@@ -5,12 +5,14 @@ brks = c(-Inf, -1, 0, 1, 3, 6, 9, Inf)
 nbrk = length(brks) - 1
 cols = get_color(rcolors$amwg256, nbrk)
 
+spaces = c("right", "left", "top", "bottom") #%>% set_names(., .)
+
 g <- make_colorbar(
     at = brks, col = cols, height = 1,
     tck = 0.4,
     # padding.left = unit(2, "points"),
     # padding.right = unit(2, "points"),
-    # space = "right",
+    space = spaces[1],
     # legend.line = element_line(size = 0.1, linetype = 1, color = "black"),
     # legend.text = element_text(hjust = 0.5),
     legend.text.location = c(0.2, 0.5),
@@ -23,6 +25,9 @@ g <- make_colorbar(
     # legend.text = list(fontfamily = "Times", cex = 1.1),
     # hjust = 0.5
 )
+
+# cowplot::plot_grid(plotlist = lst)
+
 # Ipaper::write_fig({
 #     grid.rect()
 #     grid.draw(g)

@@ -184,20 +184,18 @@ make_colorbar <- function(
     0.5 * (1 - key$height) + key$legend.margin$b
   )
   lgd_height <- unit(heights.x, rep("null", 5))
-
+  
   if (space %in% c("right", "left")) {
-    key.layout <- grid.layout(
-      nrow = 5, ncol = 5, respect = TRUE,
-      heights = lgd_height,
-      widths = lgd_width, just = hjust
-    )
+    just = hjust
   } else if (space %in% c("top", "bottom")) {
-    key.layout <- grid.layout(
-      nrow = 5, ncol = 5, respect = TRUE,
-      heights = lgd_width,
-      widths = lgd_height, just = vjust
-    )
+    wrap(lgd_width, lgd_height)
+    just = vjust
   }
+  key.layout <- grid.layout(
+    nrow = 5, ncol = 5, respect = TRUE,
+    heights = lgd_height,
+    widths = lgd_width, just = just
+  )
 
   pos <- colorkey_pos(space)
   key.gf <- key_box(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)
