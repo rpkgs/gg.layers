@@ -70,7 +70,6 @@ make_colorbar <- function(
   legend.title$family = legend.title$family %||% family
 
   # theme = theme_get()
-  #  theme$text
   .regions <- trellis.par.get("regions")
   key <- mget(ls()) # return all parameters
   # change labeller slightly
@@ -78,13 +77,7 @@ make_colorbar <- function(
     if (is.numeric(x)) labeller(x) else x
   }
   key %<>% equispaced_colorkey()
-  # key$axis.line <- axis.line # in `key_triangle`
 
-  # legend.text <- updateList(trellis.par.get("axis.text"), legend.text)
-  # layout_name <- ifelse(space %in% c("top", "bottom"), "layout.heights", "layout.widths")
-  # colorkey.title.padding   <- lattice.options()[[layout_name]]$colorkey.title.padding
-  # colorkey.title.padding$x <- colorkey.title.padding$x *
-  #     trellis.par.get(layout_name)$colorkey.title.padding
   ## made FALSE later if labels explicitly specified
   check.overlap <- TRUE
 
@@ -106,7 +99,6 @@ make_colorbar <- function(
     warning("'at' values are not equispaced; output may be wrong")
   }
 
-  ## recnum <- length(scat)-1
   reccentre <- (scat[-1] + scat[-length(scat)]) / 2
   recdim <- diff(scat)
 
@@ -147,14 +139,15 @@ make_colorbar <- function(
     y_lab <- rep(ypos, length(labscat))
     x_lab <- labscat
   }
-
+  
   # add unit label, 20190924
   if (!(is.null(key$unit) || key$unit == "")) {
+    ## DEPRECATED
     # title <- textGrob(title)
-     nlab <- length(labels)
-     delta <- labscat[nlab] - labscat[nlab - 1]
-     labscat[nlab + 1] <- labscat[nlab] + delta * key$unit.adj
-     labels[nlab + 1] <- sprintf("%s", key$unit)
+    nlab <- length(labels)
+    delta <- labscat[nlab] - labscat[nlab - 1]
+    labscat[nlab + 1] <- labscat[nlab] + delta * key$unit.adj
+    labels[nlab + 1] <- sprintf("%s", key$unit)
   }
 
   grob_label = element_grob_text(legend.text, labels,
@@ -184,7 +177,7 @@ make_colorbar <- function(
     0.5 * (1 - key$height) + key$legend.margin$b
   )
   lgd_height <- unit(heights.x, rep("null", 5))
-  
+
   if (space %in% c("right", "left")) {
     just = hjust
   } else if (space %in% c("top", "bottom")) {
@@ -199,14 +192,14 @@ make_colorbar <- function(
 
   pos <- colorkey_pos(space)
   key.gf <- key_box(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)
-  key.gf <- key_triangle(key.gf, key, open.lower, open.upper)
-  key.gf <- key_border(key.gf, key, open.lower, open.upper)
-  key.gf <- key_tick(key.gf, key, labscat, vp_label)
-  # add
-  key.gf <- placeGrob(key.gf, grob_label, row = pos$label[1], col = pos$label[2])
+  key.gf %<>% key_triangle(key, open.lower, open.upper)
+  key.gf %<>% key_border(key, open.lower, open.upper)
+  key.gf %<>% key_tick(key, labscat, vp_label)
+  # add grob_label
+  key.gf %<>% placeGrob(grob_label, row = pos$label[1], col = pos$label[2])
 
   pos = colorkey_pos(space)
-  key.gf %<>% placeGrob(., grob_title, row = pos$title[1], col = pos$title[2])
+  key.gf %<>% placeGrob(grob_title, row = pos$title[1], col = pos$title[2])
 
   if (draw) {
     grid.newpage()
