@@ -82,7 +82,7 @@ richtextGrob <- function(label, x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.02,
     )
 }
 
-#' `stat` of good-of-fitting
+#' `stat` of regression coefficient and good-of-fitting information
 #'
 #' @inheritParams gridtext::richtext_grob
 #' @param ... other parameters to [gggrid::grid_panel()]
@@ -106,9 +106,6 @@ stat_gof <- function(
          geom_abline(slope = 1, color = "red"))
 }
 
-#' `stat` of regression coefficient and good-of-fitting information
-#'
-#' @inheritParams stat_gof
 #' @inheritParams stats::lm
 #' @param position "dodge" or "identity"
 #' 
@@ -119,6 +116,7 @@ stat_gof <- function(
 #' @example R/examples/ex-stat_reg_gof.R
 #' @importFrom broom tidy glance
 #' @import glue
+#' @rdname stat_gof
 #' @export
 stat_reg <- function(mapping = NULL, data = NULL,
     formula = y ~ x, digits = 2, unit = "",

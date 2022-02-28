@@ -15,7 +15,8 @@
 #' - `fontfamily`: The font family
 #' - `fontface`: The font face (bold, italic, ...)
 #' - `lineheight`:
-
+#' @param padding.left,padding.right padding in the left and right of the legend
+#' 
 #' @param legend.text.just The justification of the text relative to its (x, y)
 #' location. If there are two values, the first value specifies horizontal
 #' justification and the second value specifies vertical justification. Possible
@@ -24,14 +25,15 @@
 #' alignment.
 
 #' @example R/examples/ex-make_colorbar.R
+#' @importFrom grid unit
 #' @importFrom ggplot2 margin
 #' @export
 make_colorbar <- function(
   at,
   col = .regions$col,
   alpha = .regions$alpha,
-  
-  labels = NULL, 
+
+  labels = NULL,
   lab = NULL,
   labeller  = format,
   # format = "%f",
@@ -51,18 +53,24 @@ make_colorbar <- function(
 
   tri.upper = NA,
   tri.lower = NA,
+
   title = NULL,
-
-  unit = NULL,
-  unit.adj = 0.3,
-
+  # unit = NULL,
+  # unit.adj = 0.3,
+  
   cex.title = 1,
   axis.line = trellis.par.get("axis.line"),
+  padding.left = unit(0, "points"),
+  padding.right = unit(0, "points"),
+
   legend.text = trellis.par.get("axis.text"),
   legend.text.location = c(0.5, 0.5),
   legend.text.just = NULL,
-
   legend.margin = bb_margin(),
+
+  theme = NULL,
+  theme.default = theme_get(),
+  
   rect = list(col = "black", lwd = 0.3),
   hjust = 0, vjust = 0.5,
   ...,
@@ -91,12 +99,12 @@ make_colorbar <- function(
   # Getting the locations/dimensions/centers of the rectangles
   key$at <- sort(key$at) ## should check if ordered
   numcol <- length(key$at)-1
-  
+
   key$col <- level.colors(x = seq_len(numcol) - 0.5,
                           at = seq_len(numcol + 1) - 1,
                           col.regions = key$col,
                           colors = TRUE)
-  
+
   ## FIXME: need to handle DateTime classes properly
   atrange <- range(key$at, finite = TRUE)
   scat <- as.numeric(key$at) ## problems otherwise with DateTime objects (?)
@@ -172,15 +180,6 @@ make_colorbar <- function(
     )
   }
 
-  # add unit label, 20190924
-  if (!(is.null(key$unit) || key$unit == "")){
-    nlab <- length(labels)
-    delta <- labscat[nlab] - labscat[nlab - 1]
-    labscat[nlab+1] <- labscat[nlab] + delta*key$unit.adj
-    labels[nlab+1]  <- sprintf("%s", key$unit)
-  }
-  
-  width_lab = stringWidth(labels) %>% max() %>% multiply_by(cex)
   if (space %in% c('right', 'left')) {
     xpos = legend.text.location[1]
     vp_label <- viewport(yscale = atrange)
@@ -193,26 +192,41 @@ make_colorbar <- function(
     x_lab = labscat
   }
   
+ # add unit label, 20190924
+ if (!(is.null(key$unit) || key$unit == "")) {
+   title = textGrob(title, )
+  #  nlab <- length(labels)
+  #  delta <- labscat[nlab] - labscat[nlab - 1]
+  #  labscat[nlab + 1] <- labscat[nlab] + delta * key$unit.adj
+  #  labels[nlab + 1] <- sprintf("%s", key$unit)
+ }
+  
+  label.theme = calc_element("legend.text", theme)  
+  # legend.text.
+  # use ggplot theme at here
   grob_labs <- textGrob(
       label = labels,
       x = x_lab, y = y_lab, vp = vp_label,
       default.units = "native",
-      # check.overlap = check.overlap,
-      just = legend.text.just,
-      rot = rot,
       name = trellis.grobname("labels", type = "colorkey"),
+      # check.overlap = check.overlap,
+      just = c(label.theme$hjust, label.theme$vjust),
+      rot = label.theme$angle,
       gp = gpar(
-          col = col, cex = cex,
-          fontfamily = fontfamily,
-          fontface = chooseFace(fontface, font),
-          lineheight = lineheight
+          col = label.theme$colour, cex = cex,
+          fontfamily = label.theme$family,
+          fontface = label.theme$face,
+          lineheight = label.theme$lineheight
       )
   )
 
+  width_lab = stringWidth(labels) %>% max() %>% multiply_by(cex)
   lgd_width = unit.c(
+    padding.left, 
     0.6 * key$width * unit(1, "lines"),
     (key$tck + tck.padding) * unit(1, "lines"),
-    width_lab)
+    width_lab, 
+    padding.right)
   if (space %in% c('left', 'top')) lgd_width <- rev(lgd_width)
 
   heights.x <- c(0.5*(1 - key$height) + key$legend.margin$t,
@@ -222,18 +236,18 @@ make_colorbar <- function(
   lgd_height <- unit(heights.x, rep("null", 5))
 
   if (space %in% c("right", "left")) {
-    key.layout <- grid.layout(nrow = 5, ncol = 3, respect = TRUE,
+    key.layout <- grid.layout(nrow = 5, ncol = 5, respect = TRUE,
                               heights = lgd_height,
-                              widths = lgd_width, just = hjust) 
+                              widths = lgd_width, just = hjust)
   } else if (space %in% c("top", "bottom")) {
-    key.layout <- grid.layout(nrow = 3, ncol = 5, respect = TRUE,
+    key.layout <- grid.layout(nrow = 5, ncol = 5, respect = TRUE,
                               heights = lgd_width,
                               widths  = lgd_height, just = vjust)
   }
 
-  key.gf <- key_gf(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)
-  key.gf <- key_triangle(key.gf, key, open.lower, open.upper)
+  key.gf <- key_box(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)
 
+  key.gf <- key_triangle(key.gf, key, open.lower, open.upper)
   key.gf <- key_border(key.gf, key, open.lower, open.upper)
   key.gf <- key_label(key.gf, key, labscat, grob_labs, vp_label)
 
@@ -241,11 +255,22 @@ make_colorbar <- function(
     grid.newpage()
     grid.draw(key.gf)
   }
-  
+
+  # add gtabel to hold legend
   class(key.gf) %<>% c("colorbar", "cbar", .)
   key.gf
 }
 
+# if (space %in% c("right", "left")) {
+#   vp = viewport(x = 0, y = 0, just = c(0, 0))
+#   tab <- gtable(unit.c(padding.left, grobWidth(key.gf), padding.right), unit(1, "null"),
+#     vp = vp)
+#   tab <- gtable_add_grob(tab, key.gf, t = 1, l = 2)
+#   class(tab) %<>% c("colorbar", .)
+#   return(tab)
+# }
+
+#' @importFrom gtable gtable gtable_add_grob
 #' @export
 bb_margin <- function(t = 0, r = 0, b = 0, l = 0, unit = "pt") {
   # unit
@@ -275,8 +300,8 @@ null_default <- function(x, default = 0) {
   if (is.null(x)) default else x
 }
 
-#' @import ggplotify 
-#' @export 
+#' @import ggplotify
+#' @export
 print.colorbar <- function(x, ...) {
   print(as.ggplot(x))
 }

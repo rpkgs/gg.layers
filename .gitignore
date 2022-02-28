@@ -3,3 +3,7 @@
 .Rdata
 .httr-oauth
 .DS_Store
+
+R/backup
+
+*.pdf

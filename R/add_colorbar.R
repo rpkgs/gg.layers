@@ -9,8 +9,9 @@ add_colorbar <- function(p, g, width = 1) {
 
     width = grid::grobWidth(g) * width
     p2 = p %>% gtable_add_cols(width)
-
-    ans = gtable_add_grob(p2, g, l = dim[2] + 1, t = loc$t, b = loc$b)
+    # p2$layout$clip <- "on"
+    # g = as.grob(g)
+    ans = gtable_add_grob(p2, g, l = dim[2] + 1, t = loc$t, b = loc$b, clip = "off")
     ans
     # as.ggplot(ans)
 }
@@ -24,11 +25,11 @@ grobs <- function(..., options = list(nrow = 1)) {
 }
 
 
-#' @export
-`+.gtable` <- function(e1, e2) {
-    if (is.null(e2)) { return(e1) }
-    gtable_add(e2, e1)
-}
+# #' @export
+# `+.gtable` <- function(e1, e2) {
+#     if (is.null(e2)) { return(e1) }
+#     gtable_add(e2, e1)
+# }
 
 #' @export
 gtable_add <- function(object, plot, object_name) UseMethod("gtable_add", object)
