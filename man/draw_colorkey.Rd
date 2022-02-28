@@ -2,14 +2,14 @@
 % Please edit documentation in R/colorbar_triangle.R
 \name{key_box}
 \alias{key_box}
-\alias{key_label}
+\alias{key_tick}
 \alias{key_border}
 \alias{key_triangle}
 \title{key_gf_nonraster}
 \usage{
 key_box(key, key.layout, vp, vp_label, reccentre, recdim, border = TRUE, ...)
 
-key_label(key.gf, key, labscat, labelsGrob, vp_label, ...)
+key_tick(key.gf, key, labscat, vp_label, ...)
 
 key_border(key.gf, key, open.lower, open.upper)
 
@@ -36,9 +36,9 @@ key_triangle(key.gf, key, open.lower, open.upper)
 
 \item{labscat}{at which to draw labels}
 
-\item{labelsGrob}{labels grobs}
-
 \item{open.lower, open.upper}{The width of lower and upper triangle}
+
+\item{labelsGrob}{labels grobs}
 }
 \description{
 key_gf_nonraster
@@ -47,10 +47,10 @@ key_label
 }
 \examples{
 \dontrun{
-key.gf <- key_gf(key, key.layout, vp, vp_label, axis.line, reccentre, recdim)
+key.gf <- key_gf(key, key.layout, vp, vp_label, legend.line, reccentre, recdim)
 }
 
 \dontrun{
-key.gf <- key_label(key.gf, key, labscat, vp_label, axis.line)
+key.gf <- key_label(key.gf, key, labscat, vp_label, legend.line)
 }
 }

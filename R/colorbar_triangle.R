@@ -58,16 +58,16 @@ colorkey_pos <- function(space = "right"){
 #'
 #' @examples
 #' \dontrun{
-#' key.gf <- key_gf(key, key.layout, vp, vp_label, axis.line, reccentre, recdim)
+#' key.gf <- key_gf(key, key.layout, vp, vp_label, legend.line, reccentre, recdim)
 #' }
-#' 
+#'
 #' @rdname draw_colorkey
 #' @export
 key_box <- function(key, key.layout, vp, vp_label,
     reccentre, recdim, border = TRUE, ...)
 {
     space     <- key$space
-    axis.line <- key$axis.line
+    legend.line <- key$legend.line
 
     height = recdim; width = 1 # for image
     # default param for: right and left
@@ -84,6 +84,8 @@ key_box <- function(key, key.layout, vp, vp_label,
     pos <- colorkey_pos(space)
     key.gf <- frameGrob(layout = key.layout, vp = vp,
         name = trellis.grobname("frame", type="colorkey"))
+    
+    
     if (key$raster) {
         # raster
         grob = rasterGrob(mat,
@@ -98,7 +100,10 @@ key_box <- function(key, key.layout, vp, vp_label,
             default.units = "native",
             height = height, width = width,
             name = trellis.grobname("image", type = "colorkey"),
-            gp = gpar(fill = key$col, col = key$rect$col, lwd = key$rect$lwd, alpha = key$alpha)
+            gp = gpar(fill = key$col, 
+                col = key$legend.box$colour, 
+                lwd = key$legend.box$size, 
+                alpha = key$legend.box$alpha)
         )
     }
     key.gf <- placeGrob(key.gf, grob, row = pos$box[1], col = pos$box[2])
@@ -113,15 +118,15 @@ key_box <- function(key, key.layout, vp, vp_label,
 #'
 #' @examples
 #' \dontrun{
-#' key.gf <- key_label(key.gf, key, labscat, vp_label, axis.line)
+#' key.gf <- key_label(key.gf, key, labscat, vp_label, legend.line)
 #' }
 #' @rdname draw_colorkey
 #' @export
-key_label <- function(key.gf, key, labscat, labelsGrob, vp_label, ...)
+key_tick <- function(key.gf, key, labscat, vp_label, ...)
 {
     do.labels <- (length(labscat) > 0)
     space     <- key$space
-    axis.line <- key$axis.line
+    legend.line <- key$legend.line
 
     if (!(is.null(key$unit) || key$unit == ""))
         labscat <- labscat[1:(length(labscat)-1)]
@@ -144,18 +149,18 @@ key_label <- function(key.gf, key, labscat, labelsGrob, vp_label, ...)
     }
 
     pos <- colorkey_pos(space)
-    if (do.labels) {
-        if (key$tck != 0)
-        key.gf <- placeGrob(frame = key.gf,
-            segmentsGrob(x0, y0, x1, y1,
-                         vp = vp_label,
-                         default.units = "native",
-                         name = trellis.grobname("ticks", type="colorkey"),
-                         gp = gpar(col = axis.line$col,
-                                  lty = axis.line$lty,
-                                  lwd = axis.line$lwd)),
-            row = pos$tick[1], col = pos$tick[2])
-        key.gf <- placeGrob(key.gf, labelsGrob, row = pos$label[1], col = pos$label[2])
+    if (do.labels && key$tck != 0) {
+        grob_tck = segmentsGrob(x0, y0, x1, y1,
+            vp = vp_label,
+            default.units = "native",
+            name = trellis.grobname("ticks", type = "colorkey"),
+            gp = gpar(
+                col = legend.line$colour,
+                lty = legend.line$linetype,
+                lwd = legend.line$size
+            )
+        )
+        key.gf %<>% placeGrob(., grob_tck, row = pos$tick[1], col = pos$tick[2])
     }
     return(key.gf)
 }
@@ -166,8 +171,9 @@ key_label <- function(key.gf, key, labscat, labelsGrob, vp_label, ...)
 #' @rdname draw_colorkey
 #' @export
 key_border <- function(key.gf, key, open.lower, open.upper){
-    gp.border <- with(key$axis.line,
-        gpar(col = col, lty = lty, lwd = lwd, alpha = alpha, fill = "transparent"))
+    # alpha = alpha,
+    gp.border <- with(key$legend.line,
+        gpar(col = colour, lty = linetype, lwd = size, fill = "transparent"))
 
     segment_bolder <- function(x0, y0, x1, y1, rot = 0, name) {
         segmentsGrob2(x0, y0, x1, y1, rot,
@@ -199,8 +205,8 @@ key_border <- function(key.gf, key, open.lower, open.upper){
     param_lower <- c(param, list(rot = rot_lower, name = 'lower'))
     param_upper <- c(param, list(rot = rot_upper, name = 'upper'))
 
-    l_lower <- do.call(segmentsGrob2, param_lower)
-    l_upper <- do.call(segmentsGrob2, param_upper)
+    l_lower <- do.call(segment_bolder, param_lower)
+    l_upper <- do.call(segment_bolder, param_upper)
 
     pos <- colorkey_pos(space)
     if (open.upper > 0)
@@ -209,7 +215,6 @@ key_border <- function(key.gf, key, open.lower, open.upper){
         key.gf <- placeGrob(frame = key.gf, l_lower, row = pos$lower[1], col = pos$lower[2])
 
     key.gf <- placeGrob(frame = key.gf, line_box, row = pos$box[1], col = pos$box[2])
-
     return(key.gf)
 }
 
@@ -218,10 +223,12 @@ key_border <- function(key.gf, key, open.lower, open.upper){
 #' @export
 key_triangle <- function(key.gf, key, open.lower, open.upper){
     space = key$space
-    lwd = key$axis.line$lwd
+    # lwd = key$legend.line$lwd
+    lwd = key$legend.line$size
+    col = "transparent" # key$legend.line$colour
 
-    gp_lower = gpar(fill = key$col[1], col = "transparent", alpha = key$alpha, lwd = lwd)
-    gp_upper = gpar(fill = key$col[length(key$col)], col = "transparent", alpha = key$alpha, lwd = lwd)
+    gp_lower = gpar(fill = key$col[1], col = col, alpha = key$alpha, lwd = lwd)
+    gp_upper = gpar(fill = key$col[length(key$col)], col = col, alpha = key$alpha, lwd = lwd)
 
     # right upper
     pnts0 <- cbind(x = c(0, 1, 0.5),
@@ -279,4 +286,34 @@ segmentsGrob2 <- function(x0, y0, x1, y1, rot = 90, ...) {
     P1 <- rotate(x1, y1, rot)
     g <- segmentsGrob(P0[, 1], P0[, 2], P1[, 1], P1[, 2], ...)
     g
+}
+
+#' @importFrom gtable gtable gtable_add_grob
+#' @export
+bb_margin <- function(t = 0, r = 0, b = 0, l = 0, unit = "pt") {
+    # unit
+    listk(t, r, b, l)
+}
+
+updateList <- function(x, val) {
+    if (is.null(x)) x <- list()
+    modifyList(x, val)
+}
+
+is.characterOrExpression <- function(x) {
+    is.character(x) || is.expression(x) || is.call(x) || is.symbol(x)
+}
+
+lpretty <- function(x, ...) {
+    eps <- 1e-10
+    at <- pretty(x[is.finite(x)], ...)
+    ifelse(abs(at - round(at, 3)) < eps, round(at, 3), at)
+}
+
+chooseFace <- function(fontface = NULL, font = 1) {
+    if (is.null(fontface)) font else fontface
+}
+
+null_default <- function(x, default = 0) {
+    if (is.null(x)) default else x
 }

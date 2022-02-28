@@ -16,79 +16,71 @@
 #' - `fontface`: The font face (bold, italic, ...)
 #' - `lineheight`:
 #' @param padding.left,padding.right padding in the left and right of the legend
-#' 
-#' @param legend.text.just The justification of the text relative to its (x, y)
-#' location. If there are two values, the first value specifies horizontal
-#' justification and the second value specifies vertical justification. Possible
-#' string values are: "left", "right", "centre", "center", "bottom", and "top".
-#' For numeric values, 0 means left (bottom) alignment and 1 means right (top)
-#' alignment.
-
+#'
+#' @param hjust,vjust used in [grid::grid.layout()]
+#'
 #' @example R/examples/ex-make_colorbar.R
 #' @importFrom grid unit
-#' @importFrom ggplot2 margin
+#' @importFrom ggplot2 margin element_grob element_text element_rect element_line
 #' @export
 make_colorbar <- function(
   at,
-  col = .regions$col,
-  alpha = .regions$alpha,
-
   labels = NULL,
-  lab = NULL,
-  labeller  = format,
-  # format = "%f",
-  pretty = FALSE, equispaced = TRUE,
-  tick.number = 7,
+  labeller = format,
 
-  tck = 0.2,
-  tck.padding = 0, #lines
-
+  space = "right",
   width = 2,
   height = 1,
 
-  space = "right",
+  col = .regions$col,
+  alpha = .regions$alpha,
 
+  pretty = FALSE, equispaced = TRUE,
+  tick.number = 7,
+  tck = 0.3,
+  tck.padding = 0, # lines
   raster = FALSE,
   interpolate = FALSE,
-
   tri.upper = NA,
   tri.lower = NA,
 
-  title = NULL,
-  # unit = NULL,
-  # unit.adj = 0.3,
-  
-  cex.title = 1,
-  axis.line = trellis.par.get("axis.line"),
-  padding.left = unit(0, "points"),
-  padding.right = unit(0, "points"),
+  legend.line = element_line(size = 0.8),
+  legend.box = element_rect(size = 0.5),
 
-  legend.text = trellis.par.get("axis.text"),
+  hjust = 0.5, vjust = 0.5,
+
+  size = 12,
+  family = "Times",
+
   legend.text.location = c(0.5, 0.5),
-  legend.text.just = NULL,
-  legend.margin = bb_margin(),
+  legend.margin = bb_margin(),  #?
 
-  theme = NULL,
-  theme.default = theme_get(),
-  
-  rect = list(col = "black", lwd = 0.3),
-  hjust = 0, vjust = 0.5,
+  title = NULL,
+  legend.text = element_text(hjust = 0.5),
+  legend.title = element_text(),
+
+  padding.left = unit(2, "points"),
+  padding.right = unit(2, "points"),
   ...,
   draw = FALSE, vp = NULL)
 {
+  legend.text$size = legend.text$size %||% size
+  legend.text$family = legend.text$family %||% family
+  legend.title$size = legend.title$size %||% (size+1)
+  legend.title$family = legend.title$family %||% family
+
+  # theme = theme_get()
+  #  theme$text
   .regions <- trellis.par.get("regions")
-  key = mget(ls()) # return all parameters
+  key <- mget(ls()) # return all parameters
   # change labeller slightly
-  key$labeller = function(x) {
-    if (is.numeric(x)) labeller(x)  else x
+  key$labeller <- function(x) {
+    if (is.numeric(x)) labeller(x) else x
   }
   key %<>% equispaced_colorkey()
+  # key$axis.line <- axis.line # in `key_triangle`
 
-  axis.line <- updateList(trellis.par.get("axis.line"), axis.line)
-  legend.text <- updateList(trellis.par.get("axis.text"), legend.text)
-
-  key$axis.line <- axis.line # in `key_triangle`
-
+  # legend.text <- updateList(trellis.par.get("axis.text"), legend.text)
   # layout_name <- ifelse(space %in% c("top", "bottom"), "layout.heights", "layout.widths")
   # colorkey.title.padding   <- lattice.options()[[layout_name]]$colorkey.title.padding
   # colorkey.title.padding$x <- colorkey.title.padding$x *
@@ -98,23 +90,152 @@ make_colorbar <- function(
 
   # Getting the locations/dimensions/centers of the rectangles
   key$at <- sort(key$at) ## should check if ordered
-  numcol <- length(key$at)-1
+  numcol <- length(key$at) - 1
 
-  key$col <- level.colors(x = seq_len(numcol) - 0.5,
-                          at = seq_len(numcol + 1) - 1,
-                          col.regions = key$col,
-                          colors = TRUE)
+  key$col <- level.colors(
+    x = seq_len(numcol) - 0.5,
+    at = seq_len(numcol + 1) - 1,
+    col.regions = key$col,
+    colors = TRUE
+  )
 
-  ## FIXME: need to handle DateTime classes properly
   atrange <- range(key$at, finite = TRUE)
   scat <- as.numeric(key$at) ## problems otherwise with DateTime objects (?)
 
-  if (key$raster && !isTRUE(all.equal(diff(range(diff(scat))), 0)))
+  if (key$raster && !isTRUE(all.equal(diff(range(diff(scat))), 0))) {
     warning("'at' values are not equispaced; output may be wrong")
+  }
 
   ## recnum <- length(scat)-1
   reccentre <- (scat[-1] + scat[-length(scat)]) / 2
   recdim <- diff(scat)
+
+  lab = guess_at_labels(key)
+  labscat = at = lab$at
+  labels = lab$labels
+
+  ## Tri
+  height.Tri <- key$height / numcol
+  open.lower <- convertTri(key$tri.lower, scat[1] == -Inf, height = height.Tri)
+  open.upper <- convertTri(key$tri.upper, scat[length(scat)] == Inf, height.Tri)
+  key.rect <- 1 - open.lower - open.upper
+
+  # if (is.null(legend.text$hjust)) {
+    # rot <- null_default(legend.text$rot, 0)
+    # rot = 0
+    # temp <- switch(space,
+    #   # right  = if (rot == -90) c("center", "bottom") else c("left", "center"),
+    #   # left   = if (rot == 90) c("center", "bottom") else c("right", "center"),
+    #   # top    = if (rot == 0) c("center", "bottom") else c("left", "center"),
+    #   # bottom = if (rot == 0) c("center", "top") else c("right", "center")
+    #   right  = if (rot == -90) c(0.5, 0) else c(0, 0.5),
+    #   left   = if (rot == 90) c(0.5, 0) else c(1, 0.5),
+    #   top    = if (rot == 0) c(0.5, 0) else c(0, 0.5),
+    #   bottom = if (rot == 0) c(0.5, 1) else c(1, 0.5)
+    # )
+    # legend.text$hjust %<>% null_default(temp[1])
+    # legend.text$vjust %<>% null_default(temp[2])
+  # }
+  if (space %in% c("right", "left")) {
+    xpos <- legend.text.location[1]
+    vp_label <- viewport(yscale = atrange)
+    x_lab <- rep(xpos, length(labscat))
+    y_lab <- labscat
+  } else {
+    ypos <- legend.text.location[2]
+    vp_label <- viewport(xscale = atrange)
+    y_lab <- rep(ypos, length(labscat))
+    x_lab <- labscat
+  }
+
+  # add unit label, 20190924
+  if (!(is.null(key$unit) || key$unit == "")) {
+    # title <- textGrob(title)
+     nlab <- length(labels)
+     delta <- labscat[nlab] - labscat[nlab - 1]
+     labscat[nlab + 1] <- labscat[nlab] + delta * key$unit.adj
+     labels[nlab + 1] <- sprintf("%s", key$unit)
+  }
+
+  grob_label = element_grob_text(legend.text, labels,
+    x = x_lab, y = y_lab, vp = vp_label, default.units = "native")
+
+  width_lab <- max(stringWidth(labels)) # %>% multiply_by(cex)
+
+  if (!is.null(title)) {
+    grob_title = element_grob(legend.title, title, x = 0, y = 0.5)
+    width_lab = max(width_lab, grobWidth(grob_title))
+  } else {
+    grob_title = nullGrob()
+  }
+
+  lgd_width <- unit.c(
+    padding.left,
+    0.6 * key$width * unit(1, "lines"),
+    (key$tck + tck.padding) * unit(1, "lines"),
+    width_lab,
+    padding.right
+  )
+  if (space %in% c("left", "top")) lgd_width <- rev(lgd_width)
+
+  heights.x <- c(
+    0.5 * (1 - key$height) + key$legend.margin$t,
+    key$height * c(open.upper, key.rect, open.lower),
+    0.5 * (1 - key$height) + key$legend.margin$b
+  )
+  lgd_height <- unit(heights.x, rep("null", 5))
+
+  if (space %in% c("right", "left")) {
+    key.layout <- grid.layout(
+      nrow = 5, ncol = 5, respect = TRUE,
+      heights = lgd_height,
+      widths = lgd_width, just = hjust
+    )
+  } else if (space %in% c("top", "bottom")) {
+    key.layout <- grid.layout(
+      nrow = 5, ncol = 5, respect = TRUE,
+      heights = lgd_width,
+      widths = lgd_height, just = vjust
+    )
+  }
+
+  pos <- colorkey_pos(space)
+  key.gf <- key_box(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)
+  key.gf <- key_triangle(key.gf, key, open.lower, open.upper)
+  key.gf <- key_border(key.gf, key, open.lower, open.upper)
+  key.gf <- key_tick(key.gf, key, labscat, vp_label)
+  # add
+  key.gf <- placeGrob(key.gf, grob_label, row = pos$label[1], col = pos$label[2])
+
+  pos = colorkey_pos(space)
+  key.gf %<>% placeGrob(., grob_title, row = pos$title[1], col = pos$title[2])
+
+  if (draw) {
+    grid.newpage()
+    grid.draw(key.gf)
+  }
+  class(key.gf) %<>% c("colorbar", "cbar", .)
+  key.gf
+}
+
+## add gtabel to hold legend
+# if (space %in% c("right", "left")) {
+#   vp = viewport(x = 0, y = 0, just = c(0, 0))
+#   tab <- gtable(unit.c(padding.left, grobWidth(key.gf), padding.right), unit(1, "null"),
+#     vp = vp)
+#   tab <- gtable_add_grob(tab, key.gf, t = 1, l = 2)
+#   class(tab) %<>% c("colorbar", .)
+#   return(tab)
+# }
+
+#' @import ggplotify
+#' @export
+print.colorbar <- function(x, ...) {
+  print(as.ggplot(x))
+}
+
+guess_at_labels <- function(key) {
+  atrange <- range(key$at, finite = TRUE)
 
   # The following code assumes names `key$lab` and `key$lab$lab` (which may have
   # been used in user code), whereas documentation says key$labels and
@@ -129,7 +250,7 @@ make_colorbar <- function(
     }
   }
 
-  lab = key$lab
+  lab <- key$lab
   if (is.null(lab)) {
     if (key$pretty) {
       at <- lpretty(atrange, key$tick.number)
@@ -139,169 +260,23 @@ make_colorbar <- function(
       at <- as.numeric(key$at)
     }
     labels <- key$labeller(at) # , trim = TRUE
-  } else if (is.characterOrExpression(lab) && length(lab)==length(key$at)) {
-    check.overlap <- FALSE
+  } else if (is.characterOrExpression(lab) && length(lab) == length(key$at)) {
+    # check.overlap <- FALSE
     at <- key$at
     labels <- key$lab
   } else if (is.list(key$lab)) {
     at <- if (!is.null(key$lab$at)) key$lab$at else lpretty(atrange, key$tick.number)
     at <- at[at >= atrange[1] & at <= atrange[2]]
     labels <- if (!is.null(key$lab$lab)) {
-      check.overlap <- FALSE
+      # check.overlap <- FALSE
       key$labeller(key$lab$lab)
-    } else key$labeller(at) # trim = TRUE
+    } else {
+      key$labeller(at)
+    }
     # cex, col, rot, font, fontfamily, lineheight
-    legend.text = modifyList(legend.text, key$lab)
-  } else stop("malformed colorkey")
-
-  rot  <- null_default(legend.text$rot, 0)
-  cex  <- legend.text$cex
-  col  <- legend.text$col
-  font <- legend.text$font
-  fontfamily <- legend.text$fontfamily
-  fontface   <- legend.text$fontface
-  lineheight <- legend.text$lineheight
-
-  labscat <- at
-
-  ## Tri
-  height.Tri <- key$height/numcol
-  open.lower <- convertTri(key$tri.lower, scat[1] == -Inf, height = height.Tri)
-  open.upper <- convertTri(key$tri.upper, scat[length(scat)] == Inf, height.Tri)
-  key.rect   <- 1 - open.lower - open.upper
-
-  # legend
-  if (is.null(legend.text.just)) {
-    legend.text.just = switch(space,
-        right  = if (rot == -90) c("center", "bottom") else c("left", "center"),
-        left   = if (rot == 90) c("center", "bottom") else c("right", "center"),
-        top    = if (rot == 0) c("center", "bottom") else c("left", "center"),
-        bottom = if (rot == 0) c("center", "top") else c("right", "center")
-    )
-  }
-
-  if (space %in% c('right', 'left')) {
-    xpos = legend.text.location[1]
-    vp_label <- viewport(yscale = atrange)
-    x_lab = rep(xpos, length(labscat))
-    y_lab = labscat
+    # legend.text <- modifyList(legend.text, key$lab)
   } else {
-    ypos = legend.text.location[2]
-    vp_label <- viewport(xscale = atrange)
-    y_lab = rep(ypos, length(labscat))
-    x_lab = labscat
+    stop("malformed colorkey")
   }
-  
- # add unit label, 20190924
- if (!(is.null(key$unit) || key$unit == "")) {
-   title = textGrob(title, )
-  #  nlab <- length(labels)
-  #  delta <- labscat[nlab] - labscat[nlab - 1]
-  #  labscat[nlab + 1] <- labscat[nlab] + delta * key$unit.adj
-  #  labels[nlab + 1] <- sprintf("%s", key$unit)
- }
-  
-  label.theme = calc_element("legend.text", theme)  
-  # legend.text.
-  # use ggplot theme at here
-  grob_labs <- textGrob(
-      label = labels,
-      x = x_lab, y = y_lab, vp = vp_label,
-      default.units = "native",
-      name = trellis.grobname("labels", type = "colorkey"),
-      # check.overlap = check.overlap,
-      just = c(label.theme$hjust, label.theme$vjust),
-      rot = label.theme$angle,
-      gp = gpar(
-          col = label.theme$colour, cex = cex,
-          fontfamily = label.theme$family,
-          fontface = label.theme$face,
-          lineheight = label.theme$lineheight
-      )
-  )
-
-  width_lab = stringWidth(labels) %>% max() %>% multiply_by(cex)
-  lgd_width = unit.c(
-    padding.left, 
-    0.6 * key$width * unit(1, "lines"),
-    (key$tck + tck.padding) * unit(1, "lines"),
-    width_lab, 
-    padding.right)
-  if (space %in% c('left', 'top')) lgd_width <- rev(lgd_width)
-
-  heights.x <- c(0.5*(1 - key$height) + key$legend.margin$t,
-                 key$height*c(open.upper, key.rect, open.lower),
-                 0.5*(1 - key$height) + key$legend.margin$b)
-
-  lgd_height <- unit(heights.x, rep("null", 5))
-
-  if (space %in% c("right", "left")) {
-    key.layout <- grid.layout(nrow = 5, ncol = 5, respect = TRUE,
-                              heights = lgd_height,
-                              widths = lgd_width, just = hjust)
-  } else if (space %in% c("top", "bottom")) {
-    key.layout <- grid.layout(nrow = 5, ncol = 5, respect = TRUE,
-                              heights = lgd_width,
-                              widths  = lgd_height, just = vjust)
-  }
-
-  key.gf <- key_box(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)
-
-  key.gf <- key_triangle(key.gf, key, open.lower, open.upper)
-  key.gf <- key_border(key.gf, key, open.lower, open.upper)
-  key.gf <- key_label(key.gf, key, labscat, grob_labs, vp_label)
-
-  if (draw) {
-    grid.newpage()
-    grid.draw(key.gf)
-  }
-
-  # add gtabel to hold legend
-  class(key.gf) %<>% c("colorbar", "cbar", .)
-  key.gf
-}
-
-# if (space %in% c("right", "left")) {
-#   vp = viewport(x = 0, y = 0, just = c(0, 0))
-#   tab <- gtable(unit.c(padding.left, grobWidth(key.gf), padding.right), unit(1, "null"),
-#     vp = vp)
-#   tab <- gtable_add_grob(tab, key.gf, t = 1, l = 2)
-#   class(tab) %<>% c("colorbar", .)
-#   return(tab)
-# }
-
-#' @importFrom gtable gtable gtable_add_grob
-#' @export
-bb_margin <- function(t = 0, r = 0, b = 0, l = 0, unit = "pt") {
-  # unit
-  listk(t, r, b, l)
-}
-
-updateList <- function(x, val) {
-  if (is.null(x)) x <- list()
-  modifyList(x, val)
-}
-
-is.characterOrExpression <- function(x){
-  is.character(x) || is.expression(x) || is.call(x) || is.symbol(x)
-}
-
-lpretty <- function(x, ...){
-  eps <- 1e-10
-  at <- pretty(x[is.finite(x)], ...)
-  ifelse(abs(at-round(at, 3))<eps, round(at, 3), at)
-}
-
-chooseFace <- function(fontface = NULL, font = 1) {
-  if (is.null(fontface)) font else fontface
-}
-
-null_default <- function(x, default = 0) {
-  if (is.null(x)) default else x
-}
-
-#' @import ggplotify
-#' @export
-print.colorbar <- function(x, ...) {
-  print(as.ggplot(x))
+  listk(at, labels)
 }

@@ -8,37 +8,35 @@
 \usage{
 make_colorbar(
   at,
+  labels = NULL,
+  labeller = format,
+  space = "right",
+  width = 2,
+  height = 1,
   col = .regions$col,
   alpha = .regions$alpha,
-  labels = NULL,
-  lab = NULL,
-  labeller = format,
   pretty = FALSE,
   equispaced = TRUE,
   tick.number = 7,
-  tck = 0.2,
+  tck = 0.3,
   tck.padding = 0,
-  width = 2,
-  height = 1,
-  space = "right",
   raster = FALSE,
   interpolate = FALSE,
   tri.upper = NA,
   tri.lower = NA,
-  title = NULL,
-  cex.title = 1,
-  axis.line = trellis.par.get("axis.line"),
-  padding.left = unit(0, "points"),
-  padding.right = unit(0, "points"),
-  legend.text = trellis.par.get("axis.text"),
-  legend.text.location = c(0.5, 0.5),
-  legend.text.just = NULL,
-  legend.margin = bb_margin(),
-  theme = NULL,
-  theme.default = theme_get(),
-  rect = list(col = "black", lwd = 0.3),
-  hjust = 0,
+  legend.line = element_line(size = 0.8),
+  legend.box = element_rect(size = 0.5),
+  hjust = 0.5,
   vjust = 0.5,
+  size = 12,
+  family = "Times",
+  legend.text.location = c(0.5, 0.5),
+  legend.margin = bb_margin(),
+  title = NULL,
+  legend.text = element_text(hjust = 0.5),
+  legend.title = element_text(),
+  padding.left = unit(2, "points"),
+  padding.right = unit(2, "points"),
   ...,
   draw = FALSE,
   vp = NULL
@@ -51,17 +49,15 @@ draw.colorkey2(key, draw = FALSE, vp = NULL)
 \arguments{
 \item{space}{One of \code{c('top', 'bottom', 'right', 'left')}}
 
+\item{legend.box}{arrangement of multiple legends ("horizontal" or
+"vertical")}
+
+\item{hjust, vjust}{used in \code{\link[grid:grid.layout]{grid::grid.layout()}}}
+
+\item{legend.margin}{the margin around each legend (\code{\link[ggplot2:element]{margin()}})}
+
 \item{title}{all title elements: plot, axes, legends (\code{\link[ggplot2:element]{element_text()}};
 inherits from \code{text})}
-
-\item{axis.line}{lines along axes (\code{\link[ggplot2:element]{element_line()}}). Specify lines along all axes (\code{axis.line}),
-lines for each plane (using \code{axis.line.x} or \code{axis.line.y}), or individually
-for each axis (using \code{axis.line.x.bottom}, \code{axis.line.x.top},
-\code{axis.line.y.left}, \code{axis.line.y.right}). \verb{axis.line.*.*} inherits from
-\verb{axis.line.*} which inherits from \code{axis.line}, which in turn inherits
-from \code{line}}
-
-\item{padding.left, padding.right}{padding in the left and right of the legend}
 
 \item{legend.text}{\itemize{
 \item \code{cex}:
@@ -72,22 +68,10 @@ from \code{line}}
 \item \code{lineheight}:
 }}
 
-\item{legend.text.just}{The justification of the text relative to its (x, y)
-location. If there are two values, the first value specifies horizontal
-justification and the second value specifies vertical justification. Possible
-string values are: "left", "right", "centre", "center", "bottom", and "top".
-For numeric values, 0 means left (bottom) alignment and 1 means right (top)
-alignment.}
+\item{legend.title}{title of legend (\code{\link[ggplot2:element]{element_text()}}; inherits from
+\code{title})}
 
-\item{legend.margin}{the margin around each legend (\code{\link[ggplot2:element]{margin()}})}
-
-\item{rect}{all rectangular elements (\code{\link[ggplot2:element]{element_rect()}})}
-
-\item{hjust}{A numeric vector specifying horizontal justification.
-    If specified, overrides the \code{just} setting.}
-
-\item{vjust}{A numeric vector specifying vertical justification.
-    If specified, overrides the \code{just} setting.}
+\item{padding.left, padding.right}{padding in the left and right of the legend}
 
 \item{...}{additional element specifications not part of base ggplot2. In general,
 these should also be defined in the \verb{element tree} argument.}
@@ -111,29 +95,29 @@ cols = get_color(rcolors$amwg256, nbrk)
 g <- make_colorbar(
     at = brks, col = cols, height = 1,
     tck = 0.4,
-    padding.left = unit(10, "points"),
-    padding.right = unit(0, "points"),
-    space = "right",
-    legend.text.location = c(0.3, 0.5),
-    legend.text.just = c(0.5, 0.5),
-    # legend.text = list(fontfamily = "Times", cex = 1.1),
-    hjust = 0.5
-)
+    # padding.left = unit(2, "points"),
+    # padding.right = unit(2, "points"),
+    # space = "right",
+    # legend.line = element_line(size = 0.1, linetype = 1, color = "black"),
+    # legend.text = element_text(hjust = 0.5),
+    legend.text.location = c(0.2, 0.5),
+    # legend.text.just = c(0.5, 0.5),
 
-Ipaper::write_fig({
-    grid.rect()
-    grid.draw(g)
-}, "a.pdf", 0.7, 4)
+    title = "Title",
+    legend.title = element_text(hjust = 0, vjust = 1),
+    # legend.box = element_rect(size = 0.5),
+    # legend.line = element_line(size = 1),
+    # legend.text = list(fontfamily = "Times", cex = 1.1),
+    # hjust = 0.5
+)
+# Ipaper::write_fig({
+#     grid.rect()
+#     grid.draw(g)
+# }, "a.pdf", 0.7, 4)
 
 ##
 p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 p + g
-
-theme_set(theme_grey())
-
-theme = theme_grey()
-calc_element("legend.text", theme)
-
 # p2 = add_colorbar(p, g, width = 1)
 # write_fig(p2, "a.pdf", 7, 4)
 }
