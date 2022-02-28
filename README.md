@@ -46,7 +46,9 @@ g <- make_colorbar(
   hjust = 0.05
 )
 
-p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+p <- ggplot(mtcars %>% subset(cyl == 4), aes(mpg, disp)) + geom_point() + 
+    facet_wrap(~cyl) + 
+    theme(legend.position = "none")
 p + g
 ```
 
@@ -63,3 +65,12 @@ p + g + g + g
 ```
 
 <img src="man/figures/README-example-3.svg" width="100%" />
+
+``` r
+p <- ggplot(mtcars %>% subset(cyl == 4), aes(mpg, disp, color = cyl)) + geom_point() + 
+    facet_wrap(~cyl) + 
+    theme(legend.position = "none")
+p + g
+```
+
+<img src="man/figures/README-unnamed-chunk-2-1.svg" width="100%" />

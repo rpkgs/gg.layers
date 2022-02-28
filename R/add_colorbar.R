@@ -5,7 +5,7 @@ add_colorbar <- function(p, g, width = 1) {
     if (!("gtable" %in% class(p))) p <- ggplotGrob(p)
     dim = dim(p)
 
-    loc = p$layout %>% subset(name == "panel")
+    loc = p$layout %>% subset(grepl("panel", name)) %>% .[nrow(.), ]
 
     width = grid::grobWidth(g) * width
     p2 = p %>% gtable_add_cols(width)
