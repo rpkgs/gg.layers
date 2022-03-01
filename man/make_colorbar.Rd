@@ -89,6 +89,7 @@ library(rcolors)
 library(ggplot2)
 
 brks = c(-Inf, -1, 0, 1, 3, 6, 9, Inf)
+brks = 1:10
 nbrk = length(brks) - 1
 cols = get_color(rcolors$amwg256, nbrk)
 
