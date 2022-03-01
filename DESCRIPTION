@@ -21,7 +21,7 @@ Imports:
     hydroGOF,
     broom,
     magrittr,
-    stringr,
+    stringr, ggh4x,
     ggplotify, rlang
 Suggests: 
     testthat (>= 3.0.0), 
