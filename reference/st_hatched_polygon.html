@@ -46,7 +46,7 @@
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">st_hatched_polygon</span><span class="op">(</span>
   <span class="va">x</span>,
-  density <span class="op">=</span> <span class="fl">10</span>,
+  density <span class="op">=</span> <span class="fl">2</span>,
   angle <span class="op">=</span> <span class="fl">45</span>,
   fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,
   type <span class="op">=</span> <span class="st">"sf"</span>
@@ -85,6 +85,21 @@ means no shading nor filling whereas negative values and NA suppress shading
 <li><p><a href="https://statnmap.github.io/HatchedPolygons/articles/leaflet_shading_polygon.html" class="external-link">https://statnmap.github.io/HatchedPolygons/articles/leaflet_shading_polygon.html</a></p></li>
 </ol></div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gg.layers</span><span class="op">)</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"d_trendPerc"</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">d</span> <span class="op">=</span> <span class="va">d_trendPerc</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">perc</span> <span class="op">&gt;=</span> <span class="fl">0.99</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">.</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
+<span class="r-in"><span class="va">poly</span> <span class="op">=</span> <span class="fu"><a href="st_point2poly.html">st_point2poly</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘raster’</span>
+<span class="r-in"><span class="va">hatches</span> <span class="op">=</span> <span class="fu">st_hatched_polygon</span><span class="op">(</span><span class="va">poly</span><span class="op">)</span> <span class="co">#</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in UseMethod("st_is"):</span> no applicable method for 'st_is' applied to an object of class "function"</span>
+<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">hatches</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ggplot(hatches):</span> object 'hatches' not found</span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
