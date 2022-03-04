@@ -8,3 +8,6 @@ R/backup
 test/
 
 *.pdf
+inst/doc
+vignettes/
+notes/

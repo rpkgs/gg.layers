@@ -54,3 +54,4 @@ key.gf <- key_gf(key, key.layout, vp, vp_label, legend.line, reccentre, recdim)
 key.gf <- key_label(key.gf, key, labscat, vp_label, legend.line)
 }
 }
+\keyword{internal}

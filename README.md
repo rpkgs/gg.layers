@@ -16,8 +16,8 @@ You can install the development version of gg.layers from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("rpkgs/gg.layers")
+# install.packages("remotes")
+remotes::install_github("rpkgs/gg.layers")
 ```
 
 ## Example
@@ -55,22 +55,7 @@ p + g
 <img src="man/figures/README-example-1.svg" width="100%" />
 
 ``` r
-p + g + g
-```
-
-<img src="man/figures/README-example-2.svg" width="100%" />
-
-``` r
 p + g + g + g
 ```
 
 <img src="man/figures/README-example-3.svg" width="100%" />
-
-``` r
-p <- ggplot(mtcars %>% subset(cyl == 4), aes(mpg, disp, color = cyl)) + geom_point() + 
-    facet_wrap(~cyl) + 
-    theme(legend.position = "none")
-p + g
-```
-
-<img src="man/figures/README-unnamed-chunk-2-1.svg" width="100%" />

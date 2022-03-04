@@ -1,3 +1,16 @@
+.cols_lattice = c(
+    "#FF80FF", "#FF82FF", "#FF85FF", "#FF87FF", "#FF8AFF", "#FF8CFF", "#FF8FFF", "#FF91FF", "#FF94FF", 
+    "#FF96FF", "#FF99FF", "#FF9CFF", "#FF9EFF", "#FFA1FF", "#FFA3FF", "#FFA6FF", "#FFA8FF", "#FFABFF", 
+    "#FFADFF", "#FFB0FF", "#FFB3FF", "#FFB5FF", "#FFB8FF", "#FFBAFF", "#FFBDFF", "#FFBFFF", "#FFC2FF", 
+    "#FFC4FF", "#FFC7FF", "#FFC9FF", "#FFCCFF", "#FFCFFF", "#FFD1FF", "#FFD4FF", "#FFD6FF", "#FFD9FF", 
+    "#FFDBFF", "#FFDEFF", "#FFE0FF", "#FFE3FF", "#FFE6FF", "#FFE8FF", "#FFEBFF", "#FFEDFF", "#FFF0FF", 
+    "#FFF2FF", "#FFF5FF", "#FFF7FF", "#FFFAFF", "#FFFCFF", "#FCFFFF", "#FAFFFF", "#F7FFFF", "#F5FFFF", 
+    "#F2FFFF", "#F0FFFF", "#EDFFFF", "#EBFFFF", "#E8FFFF", "#E6FFFF", "#E3FFFF", "#E0FFFF", "#DEFFFF", 
+    "#DBFFFF", "#D9FFFF", "#D6FFFF", "#D4FFFF", "#D1FFFF", "#CFFFFF", "#CCFFFF", "#C9FFFF", "#C7FFFF", 
+    "#C4FFFF", "#C2FFFF", "#BFFFFF", "#BDFFFF", "#BAFFFF", "#B8FFFF", "#B5FFFF", "#B3FFFF", "#B0FFFF", 
+    "#ADFFFF", "#ABFFFF", "#A8FFFF", "#A6FFFF", "#A3FFFF", "#A1FFFF", "#9EFFFF", "#9CFFFF", "#99FFFF", 
+    "#96FFFF", "#94FFFF", "#91FFFF", "#8FFFFF", "#8CFFFF", "#8AFFFF", "#87FFFF", "#85FFFF", "#82FFFF", "#80FFFF")
+
 #' @param space One of `c('top', 'bottom', 'right', 'left')`
 #' @rdname make_colorbar
 #' @export
@@ -133,6 +146,7 @@ wrap <- function(x, y){
 #' }
 #'
 #' @rdname draw_colorkey
+#' @keywords internal
 #' @export
 key_box <- function(key, key.layout, vp, vp_label,
     reccentre, recdim, border = TRUE, ...)
@@ -154,14 +168,14 @@ key_box <- function(key, key.layout, vp, vp_label,
 
     pos <- colorkey_pos(space)
     key.gf <- frameGrob(layout = key.layout, vp = vp,
-        name = trellis.grobname("frame", type="colorkey"))
+        name = lattice::trellis.grobname("frame", type="colorkey"))
 
 
     if (key$raster) {
         # raster
         grob = rasterGrob(mat,
             width = 1, height = 1, vp = viewport(clip = "on"),
-            name = trellis.grobname("raster", type = "colorkey"),
+            name = lattice::trellis.grobname("raster", type = "colorkey"),
             interpolate = key$interpolate
         )
     } else {
@@ -170,7 +184,7 @@ key_box <- function(key, key.layout, vp, vp_label,
             x = x, y = y, vp = vp_label,
             default.units = "native",
             height = height, width = width,
-            name = trellis.grobname("image", type = "colorkey"),
+            name = lattice::trellis.grobname("image", type = "colorkey"),
             gp = gpar(fill = key$col,
                 col = key$legend.box$colour,
                 lwd = key$legend.box$size,
@@ -224,7 +238,7 @@ key_tick <- function(key.gf, key, labscat, vp_label, ...)
         grob_tck = segmentsGrob(x0, y0, x1, y1,
             vp = vp_label,
             default.units = "native",
-            name = trellis.grobname("ticks", type = "colorkey"),
+            name = lattice::trellis.grobname("ticks", type = "colorkey"),
             gp = gpar(
                 col = legend.line$colour,
                 lty = legend.line$linetype,
@@ -249,7 +263,7 @@ key_border <- function(key.gf, key, open.lower, open.upper){
     segment_bolder <- function(x0, y0, x1, y1, rot = 0, name) {
         segmentsGrob2(x0, y0, x1, y1, rot,
             default.units = "npc",
-            name = trellis.grobname(sprintf("border.%s", name), type="colorkey"),
+            name = lattice::trellis.grobname(sprintf("border.%s", name), type="colorkey"),
             gp = gp.border)
     }
     space = key$space
@@ -307,7 +321,7 @@ key_triangle <- function(key.gf, key, open.lower, open.upper){
 
     pos <- colorkey_pos(space)
     if (open.lower > 0) {
-        name <- trellis.grobname("lower.arrow", type="colorkey")
+        name <- lattice::trellis.grobname("lower.arrow", type="colorkey")
         rot <- ifelse(space %in% c("right", "left"), 180, 90)
         pnts <- rotate(pnts0[, 1], pnts0[, 2], rot = rot)
         ## vp = viewport(yscale = atrange),
@@ -317,7 +331,7 @@ key_triangle <- function(key.gf, key, open.lower, open.upper){
     }
 
     if (open.upper > 0) {
-        name <- trellis.grobname("upper.arrow", type="colorkey")
+        name <- lattice::trellis.grobname("upper.arrow", type="colorkey")
         rot = ifelse(space %in% c("right", "left"), 0, -90)
         pnts <- rotate(pnts0[, 1], pnts0[, 2], rot = rot)
         ## vp = viewport(yscale = atrange),

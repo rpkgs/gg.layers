@@ -32,8 +32,8 @@ make_colorbar <- function(
   width = 2,
   height = 1,
 
-  col = .regions$col,
-  alpha = .regions$alpha,
+  col = NULL,
+  alpha = 1,
 
   pretty = FALSE, equispaced = TRUE,
   tick.number = 7,
@@ -64,13 +64,13 @@ make_colorbar <- function(
   ...,
   draw = FALSE, vp = NULL)
 {
+  if (is.null(col)) col = .cols_lattice
   legend.text$size = legend.text$size %||% size
   legend.text$family = legend.text$family %||% family
   legend.title$size = legend.title$size %||% (size+1)
   legend.title$family = legend.title$family %||% family
 
   # theme = theme_get()
-  .regions <- trellis.par.get("regions")
   key <- mget(ls()) # return all parameters
   # change labeller slightly
   key$labeller <- function(x) {
@@ -85,7 +85,7 @@ make_colorbar <- function(
   key$at <- sort(key$at) ## should check if ordered
   numcol <- length(key$at) - 1
 
-  key$col <- level.colors(
+  key$col <- lattice::level.colors(
     x = seq_len(numcol) - 0.5,
     at = seq_len(numcol + 1) - 1,
     col.regions = key$col,

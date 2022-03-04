@@ -10,22 +10,26 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
-    dplyr,
-    gggrid,
-    ggplot2,
+    dplyr, magrittr, stringr, 
     grid,
-    gridtext,
-    gtable,
-    glue,
-    lattice,
-    hydroGOF,
-    broom,
-    magrittr,
-    stringr, ggh4x,
-    ggplotify, rlang
+    ggplot2, gtable,
+    gggrid, gridtext, glue, hydroGOF, broom,
+    ggh4x,
+    ggpattern,
+    ggplotify,
+    sp, methods
 Suggests: 
-    testthat (>= 3.0.0), 
-    data.table, 
+    testthat (>= 3.0.0),
+    data.table,
     rcolors,
-    gridExtra
+    sf, stars, rgeos, raster,
+    lattice,
+    cowplot,
+    gridExtra,
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
+LazyData: true

@@ -27,9 +27,15 @@ knitr::opts_chunk$set(
 You can install the development version of gg.layers from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("rpkgs/gg.layers")
+# install.packages("remotes")
+remotes::install_github("rpkgs/gg.layers")
 ```
+
+## Document
+
+<https://ggplot2-book.org/programming.html>
+<https://ggplot2-book.org/extensions.html>
+
 
 ## Example
 
@@ -58,13 +64,5 @@ p <- ggplot(mtcars %>% subset(cyl == 4), aes(mpg, disp)) + geom_point() +
     facet_wrap(~cyl) + 
     theme(legend.position = "none")
 p + g
-p + g + g
 p + g + g + g
 ```
-```{r}
-p <- ggplot(mtcars %>% subset(cyl == 4), aes(mpg, disp, color = cyl)) + geom_point() + 
-    facet_wrap(~cyl) + 
-    theme(legend.position = "none")
-p + g
-```
-

@@ -4,3 +4,6 @@
 ^data-raw$
 ^\.github$
 ^README\.Rmd$
+^_pkgdown\.yml$
+^vignettes$
+^notes$

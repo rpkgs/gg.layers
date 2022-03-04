@@ -1,4 +1,3 @@
-#' @importFrom rlang %||%
 element_grob_text <- function (element,
     label = "", x = NULL, y = NULL, family = NULL,
     face = NULL, colour = NULL, size = NULL, hjust = NULL, vjust = NULL,
@@ -75,4 +74,8 @@ title_spec <- function (label, x, y, hjust, vjust, angle, gp = gpar(), debug = F
 modify_list <- function(old, new) {
     for (i in names(new)) old[[i]] <- new[[i]]
     old
+}
+
+`%||%` <- function(x, y) {
+    if(is.null(x)) y else x
 }

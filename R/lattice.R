@@ -1,4 +1,7 @@
 ## OVERWRITE colorkey in lattice
+#' draw.colorkey
+#' @inheritParams lattice::draw.colorkey
+#' @seealso [make_colorbar()]
 draw.colorkey <- function(key, draw = FALSE, vp = NULL) {
     if (!is.list(key)) stop("key must be a list")
     key$draw <- draw
@@ -8,5 +11,6 @@ draw.colorkey <- function(key, draw = FALSE, vp = NULL) {
 }
 
 #' @export
-#' @rdname make_colorbar
+#' @rdname draw.colorkey
+#' @keywords internal
 draw.colorkey2 <- draw.colorkey
