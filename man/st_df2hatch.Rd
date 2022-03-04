@@ -4,7 +4,7 @@
 \alias{st_df2hatch}
 \title{st_df2hatch}
 \usage{
-st_df2hatch(data, density = 1, angle = 45)
+st_df2hatch(data, density = 1, angle = 45, hatch = TRUE)
 }
 \arguments{
 \item{data}{A data.frame, with the columns of "x", "y", "mask"(optional), and
@@ -17,6 +17,9 @@ means no shading nor filling whereas negative values and NA suppress shading
 
 \item{angle}{the slope of shading lines, given as an angle
      in degrees (counter-clockwise).}
+
+\item{hatch}{boolean. If \code{FALSE}, a polygon will be returned, other than lines.
+Meanwhile, the parameters \code{density} and \code{angle} will be ignored.}
 }
 \value{
 A multi-line sf object

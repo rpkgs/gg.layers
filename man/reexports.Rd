@@ -6,6 +6,8 @@
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{mutate}
+\alias{GeomSfPattern}
+\alias{geom_sf_pattern}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -14,6 +16,8 @@ below to see their documentation.
 
 \describe{
   \item{dplyr}{\code{\link[dplyr]{mutate}}}
+
+  \item{ggpattern}{\code{\link[ggpattern:ggpattern-ggproto]{GeomSfPattern}}, \code{\link[ggpattern:geom-docs]{geom_sf_pattern}}}
 
   \item{magrittr}{\code{\link[magrittr:compound]{\%<>\%}}, \code{\link[magrittr:pipe]{\%>\%}}}
 }}

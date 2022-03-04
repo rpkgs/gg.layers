@@ -5,27 +5,31 @@ NULL
 
 #' st_df2hatch
 #' 
+#' @inheritParams st_hatched_polygon
 #' @param data A data.frame, with the columns of "x", "y", "mask"(optional), and 
 #' "PANEL"(optional), "group"(optional).
-#' @inheritParams st_hatched_polygon
+#' @param hatch boolean. If `FALSE`, a polygon will be returned, other than lines.
+#' Meanwhile, the parameters `density` and `angle` will be ignored.
 #' 
 #' @return A multi-line sf object 
 #' @keywords internal
 #' @export
-st_df2hatch <- function(data, density = 1, angle = 45){
+st_df2hatch <- function(data, density = 1, angle = 45, hatch = TRUE){
     if (!is.null(data$mask)) {
         ind = which(data$mask)
         if (length(ind) == 0) return(data.frame())
         data = data[ind, ]
     }
     d = data[, c("x", "y")]
-    poly = st_point2poly(d) # sf_poly
 
-    patch <- st_hatched_polygon(poly, density = density, angle = angle)
+    st = st_point2poly(d) # sf_poly
+    # convert poly to hatch
+    if (hatch) st <- st_hatched_polygon(st, density = density, angle = angle)
+    
     if (!is.null(data$PANEL) && !is.null(data$group)) {
-        data.frame(geometry = patch$geometry, PANEL = data$PANEL[1], group = data$group[1])
+        data.frame(geometry = st$geometry, PANEL = data$PANEL[1], group = data$group[1])
     } else {
-        data.frame(geometry = patch$geometry)
+        data.frame(geometry = st$geometry)
     }
 }
 

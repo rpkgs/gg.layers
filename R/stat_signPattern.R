@@ -4,29 +4,28 @@
 #' @export
 StatSignPattern <- ggproto("StatSignPattern", StatSf,
     compute_panel = function(self, data, scales, coord) {
-        # print(params)
-        # print(params$level)
-        ind = which(data$mask)
-        if (length(ind) == 0) {
-            data.frame()
-        } else {
-            d = data[ind, c("x", "y")] %>% cbind(z = 1)
-            st = st_point2poly(d) # sf_poly
-
-            data = data.frame(geometry = st$geometry, PANEL = data$PANEL[1], group = data$group[1])
-            ans = ggproto_parent(StatSf, self)$compute_group(data, scales, coord)
-            ans
-        }
-    }, required_aes = c("x", "y", "mask")
+        st = st_df2hatch(data, hatch = FALSE) # st polygon
+        ggproto_parent(StatSf, self)$compute_group(st, scales, coord)
+    }, 
+    required_aes = c("x", "y", "mask"), 
+    default_aes = aes(mask = TRUE)
 )
 
-# ' @importFrom ggpattern geom_sf_pattern
-#' @import ggplot2 ggpattern
+#' stat_signPattern
+#' 
+#' @inheritParams ggpattern::geom_sf_pattern
+#' @param ... other parameters to [ggpattern::geom_sf_pattern()]
+#' 
+#' @seealso [ggpattern::geom_sf_pattern()]
+#' 
+#' @example R/examples/ex-geom_signPattern.R
+#' @import ggplot2
+#' @importFrom ggpattern geom_sf_pattern GeomSfPattern
 #' @importFrom ggplot2 ggproto
 #' @export
 stat_signPattern <- function(
     mapping = NULL, data = NULL,
-    geom = "sf",
+    geom = "sf_pattern",
     position = "identity",
     show.legend = NA, inherit.aes = TRUE,
     ...)
