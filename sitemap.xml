@@ -37,9 +37,6 @@
     <loc>/reference/equispaced_colorkey.html</loc>
   </url>
   <url>
-    <loc>/reference/geom_signHatch.html</loc>
-  </url>
-  <url>
     <loc>/reference/gg.layers-package.html</loc>
   </url>
   <url>
@@ -86,6 +83,9 @@
   </url>
   <url>
     <loc>/reference/stat_signHatch.html</loc>
+  </url>
+  <url>
+    <loc>/reference/stat_signPoint.html</loc>
   </url>
   <url>
     <loc>/reference/str_mk.html</loc>
