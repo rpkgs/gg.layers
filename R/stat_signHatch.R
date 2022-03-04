@@ -25,21 +25,21 @@ StatSignHatch <- ggproto("StatSignHatch", StatSf,
     required_aes = c("x", "y", "mask")
 )
 
-#' stat_signHatch
-#'
+#' geom_signHatch
+#' 
 #' @inheritParams st_hatched_polygon
 #' @inheritParams ggplot2::geom_sf
-#'
+#' 
 #' @example R/examples/ex-geom_signHatch.R
+#' @seealso [geom_signHatch()]
 #' @export
 stat_signHatch <- function(
     mapping = NULL, data = NULL,
     geom = "sf",
     position = "identity",
     show.legend = NA, inherit.aes = TRUE,
-
-    density = 1, angle = 45,
-    ...)
+    ...,
+    density = 1, angle = 45)
 {
     c(layer_sf(
         data = data,
@@ -55,10 +55,17 @@ stat_signHatch <- function(
         )), coord_sf(default = TRUE))
 }
 
-#' @rdname stat_signHatch
+
+#' geom_signHatch
+#' 
+#' @inheritParams st_hatched_polygon
+#' @inheritParams ggplot2::geom_sf
+#' 
+#' @example R/examples/ex-geom_signHatch.R
+#' @seealso [stat_signHatch()]
 #' @export
 geom_signHatch <- function(mapping = aes(), data = NULL, stat = "signHatch",
-    position = "identity", na.rm = FALSE, show.legend = NA,
+    position = "identity", show.legend = NA,
     inherit.aes = TRUE,
     ...,
     density = 1, angle = 45)

@@ -11,8 +11,8 @@
     "#ADFFFF", "#ABFFFF", "#A8FFFF", "#A6FFFF", "#A3FFFF", "#A1FFFF", "#9EFFFF", "#9CFFFF", "#99FFFF", 
     "#96FFFF", "#94FFFF", "#91FFFF", "#8FFFFF", "#8CFFFF", "#8AFFFF", "#87FFFF", "#85FFFF", "#82FFFF", "#80FFFF")
 
-#' @param space One of `c('top', 'bottom', 'right', 'left')`
-#' @rdname make_colorbar
+# ' @param space One of `c('top', 'bottom', 'right', 'left')`
+
 #' @export
 colorkey_pos <- function(space = "right"){
     # default is right
