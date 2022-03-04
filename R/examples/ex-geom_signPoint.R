@@ -12,4 +12,10 @@ ggplot(data = d_mask, aes(x, y)) +
 # significant
 ggplot(data = d_mask, aes(x, y)) +
   geom_raster(aes(fill = perc)) +
-  geom_signPoint(aes(mask = mask), fact = 1)
+  geom_signPoint(aes(mask = mask), fact = 2)
+
+## Another option
+fact = 2
+ggplot(data = d_mask, aes(x, y)) +
+  geom_raster(aes(fill = perc)) +
+  geom_point(data = ~ resample_points(.x, fact))

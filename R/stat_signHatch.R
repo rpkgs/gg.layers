@@ -3,26 +3,43 @@
 #' @keywords internal
 NULL
 
+#' st_df2hatch
+#' 
+#' @param data A data.frame, with the columns of "x", "y", "mask"(optional), and 
+#' "PANEL"(optional), "group"(optional).
+#' @inheritParams st_hatched_polygon
+#' 
+#' @return A multi-line sf object 
+#' @keywords internal
+#' @export
+st_df2hatch <- function(data, density = 1, angle = 45){
+    if (!is.null(data$mask)) {
+        ind = which(data$mask)
+        if (length(ind) == 0) return(data.frame())
+        data = data[ind, ]
+    }
+    d = data[, c("x", "y")]
+    poly = st_point2poly(d) # sf_poly
+
+    patch <- st_hatched_polygon(poly, density = density, angle = angle)
+    if (!is.null(data$PANEL) && !is.null(data$group)) {
+        data.frame(geometry = patch$geometry, PANEL = data$PANEL[1], group = data$group[1])
+    } else {
+        data.frame(geometry = patch$geometry)
+    }
+}
+
 #' @rdname ggplot2-ggproto
 #' @format NULL
 #' @usage NULL
 #' @export
 StatSignHatch <- ggproto("StatSignHatch", StatSf,
     compute_panel = function(self, data, scales, coord, density = 1, angle = 45) {
-        ind = which(data$mask)
-        if (length(ind) == 0) {
-            data.frame()
-        } else {
-            d = data[ind, c("x", "y")] %>% cbind(z = 1)
-            poly = st_point2poly(d) # sf_poly
-
-            patch <- st_hatched_polygon(poly, density = density, angle = angle)
-            dat = data.frame(geometry = patch$geometry, PANEL = data$PANEL[1], group = data$group[1])
-            ans = ggproto_parent(StatSf, self)$compute_group(dat, scales, coord)
-            ans
-        }
+        dat = st_df2hatch(data, density, angle)
+        ggproto_parent(StatSf, self)$compute_group(dat, scales, coord)
     },
-    required_aes = c("x", "y", "mask")
+    required_aes = c("x", "y", "mask"), 
+    default_aes = aes(mask = TRUE)
 )
 
 #' geom_signHatch
@@ -35,7 +52,6 @@ StatSignHatch <- ggproto("StatSignHatch", StatSf,
 #' - `x`:
 #' - `y`:
 #' - `mask`: 
-#' 
 #' @example R/examples/ex-geom_signHatch.R
 #' @export
 stat_signHatch <- function(
@@ -59,7 +75,6 @@ stat_signHatch <- function(
             ...
         )), coord_sf(default = TRUE))
 }
-
 
 #' @rdname stat_signHatch
 #' @export
