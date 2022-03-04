@@ -2,12 +2,25 @@
 % Please edit documentation in R/stat_signHatch.R
 \name{stat_signHatch}
 \alias{stat_signHatch}
+\alias{geom_signHatch}
 \title{geom_signHatch}
 \usage{
 stat_signHatch(
   mapping = NULL,
   data = NULL,
   geom = "sf",
+  position = "identity",
+  show.legend = NA,
+  inherit.aes = TRUE,
+  ...,
+  density = 1,
+  angle = 45
+)
+
+geom_signHatch(
+  mapping = aes(),
+  data = NULL,
+  stat = "signHatch",
   position = "identity",
   show.legend = NA,
   inherit.aes = TRUE,
@@ -66,22 +79,32 @@ means no shading nor filling whereas negative values and NA suppress shading
 
 \item{angle}{the slope of shading lines, given as an angle
      in degrees (counter-clockwise).}
+
+\item{stat}{The statistical transformation to use on the data for this
+layer, as a string.}
 }
 \description{
 geom_signHatch
 }
+\section{Aesthetics}{
+
+\code{\link[=geom_signHatch]{geom_signHatch()}} requires the following aesthetics:
+\itemize{
+\item \code{x}:
+\item \code{y}:
+\item \code{mask}:
+}
+}
+
 \examples{
 library(gg.layers)
 library(ggplot2)
 data("d_trendPerc")
 
-d_mask <- mutate(d_trendPerc, mask = perc <= 0.99) \%>\% as.data.frame()
+d_mask <- mutate(d_trendPerc, mask = perc <= 0.99) #\%>\% as.data.frame()
 
 ggplot() +
     geom_raster(data = d_trendPerc, aes(x, y, fill = perc)) +
     # geom_sf(data = shp) +
     geom_signHatch(data = d_mask, aes(x, y, mask = mask), color = "red")
-}
-\seealso{
-\code{\link[=geom_signHatch]{geom_signHatch()}}
 }

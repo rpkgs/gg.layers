@@ -30,8 +30,13 @@ StatSignHatch <- ggproto("StatSignHatch", StatSf,
 #' @inheritParams st_hatched_polygon
 #' @inheritParams ggplot2::geom_sf
 #' 
+#' @section Aesthetics:
+#' [geom_signHatch()] requires the following aesthetics:
+#' - `x`:
+#' - `y`:
+#' - `mask`: 
+#' 
 #' @example R/examples/ex-geom_signHatch.R
-#' @seealso [geom_signHatch()]
 #' @export
 stat_signHatch <- function(
     mapping = NULL, data = NULL,
@@ -56,13 +61,7 @@ stat_signHatch <- function(
 }
 
 
-#' geom_signHatch
-#' 
-#' @inheritParams st_hatched_polygon
-#' @inheritParams ggplot2::geom_sf
-#' 
-#' @example R/examples/ex-geom_signHatch.R
-#' @seealso [stat_signHatch()]
+#' @rdname stat_signHatch
 #' @export
 geom_signHatch <- function(mapping = aes(), data = NULL, stat = "signHatch",
     position = "identity", show.legend = NA,

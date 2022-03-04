@@ -2,7 +2,7 @@ library(gg.layers)
 library(ggplot2)
 data("d_trendPerc")
 
-d_mask <- mutate(d_trendPerc, mask = perc <= 0.99) %>% as.data.frame()
+d_mask <- mutate(d_trendPerc, mask = perc <= 0.99) #%>% as.data.frame()
 
 ggplot() +
     geom_raster(data = d_trendPerc, aes(x, y, fill = perc)) +

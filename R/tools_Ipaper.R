@@ -46,3 +46,8 @@ rm_empty <- function(x) {
         x[!is.na(x)]
     }
 }
+
+getmode <- function(v) {
+    uniqv <- unique(v)
+    uniqv[which.max(tabulate(match(v, uniqv)))]
+}
