@@ -64,6 +64,9 @@
     <loc>/reference/reexports.html</loc>
   </url>
   <url>
+    <loc>/reference/resample_points.html</loc>
+  </url>
+  <url>
     <loc>/reference/richtextGrob.html</loc>
   </url>
   <url>
@@ -71,6 +74,9 @@
   </url>
   <url>
     <loc>/reference/segmentsGrob2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/st_df2hatch.html</loc>
   </url>
   <url>
     <loc>/reference/st_hatched_polygon.html</loc>
