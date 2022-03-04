@@ -51,8 +51,8 @@
   space <span class="op">=</span> <span class="st">"right"</span>,
   width <span class="op">=</span> <span class="fl">2</span>,
   height <span class="op">=</span> <span class="fl">1</span>,
-  col <span class="op">=</span> <span class="va">.regions</span><span class="op">$</span><span class="va">col</span>,
-  alpha <span class="op">=</span> <span class="va">.regions</span><span class="op">$</span><span class="va">alpha</span>,
+  col <span class="op">=</span> <span class="cn">NULL</span>,
+  alpha <span class="op">=</span> <span class="fl">1</span>,
   pretty <span class="op">=</span> <span class="cn">FALSE</span>,
   equispaced <span class="op">=</span> <span class="cn">TRUE</span>,
   tick.number <span class="op">=</span> <span class="fl">7</span>,
@@ -80,9 +80,7 @@
   vp <span class="op">=</span> <span class="cn">NULL</span>
 <span class="op">)</span>
 
-<span class="fu">colorkey_pos</span><span class="op">(</span>space <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span>
-
-<span class="fu">draw.colorkey2</span><span class="op">(</span><span class="va">key</span>, draw <span class="op">=</span> <span class="cn">FALSE</span>, vp <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+<span class="fu">colorkey_pos</span><span class="op">(</span>space <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -152,6 +150,7 @@ these should also be defined in the <code>element tree</code> argument.</p></dd>
 <span class="r-in">    <span class="co"># legend.text = list(fontfamily = "Times", cex = 1.1),</span></span>
 <span class="r-in">    <span class="co"># hjust = 0.5</span></span>
 <span class="r-in"><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in make_colorbar(at = brks, col = cols, height = 1, tck = 0.4, space = spaces[1],     legend.text.location = c(0.2, 0.5), title = "Title", legend.title = element_text(hjust = 0,         vjust = 1), ):</span> object 'cols' not found</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># cowplot::plot_grid(plotlist = lst)</span></span>
 <span class="r-in"></span>
@@ -163,7 +162,7 @@ these should also be defined in the <code>element tree</code> argument.</p></dd>
 <span class="r-in"><span class="co">##</span></span>
 <span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="va">g</span></span>
-<span class="r-plt img"><img src="make_colorbar-1.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'g' not found</span>
 <span class="r-in"><span class="co"># p2 = add_colorbar(p, g, width = 1)</span></span>
 <span class="r-in"><span class="co"># write_fig(p2, "a.pdf", 7, 4)</span></span>
 </code></pre></div>
