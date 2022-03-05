@@ -14,3 +14,4 @@ resample_points(data, fact = 1)
 \description{
 resample_points
 }
+\keyword{internal}

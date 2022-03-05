@@ -17,6 +17,7 @@ margin_adj <- function(x, margin) {
 #'     "*x*<sup>2</sup> + 5*x* + *C*<sub>*i*</sub>",
 #'     "Some <span style='color:blue'>blue text **in bold.**</span><br>And *italics text.*<br>And some <span style='font-size:18pt; color:black'>large</span> text."
 #' )
+#' @keywords internal
 #' @export
 richtextGrob <- function(label, x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.02,
                          padding = unit(c(1, 1, 1, 1) * 0, "pt"),

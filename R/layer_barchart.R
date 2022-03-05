@@ -51,8 +51,9 @@ add_barchart <- function(value, brks, cols,
     p
 }
 
-#' gg_barchart
+#' layer_barchart
 #' 
+#' @inheritParams ggplot2::geom_bar
 #' @inheritParams grid::viewport
 #' 
 #' @export 

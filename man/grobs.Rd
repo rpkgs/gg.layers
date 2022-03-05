@@ -12,3 +12,4 @@ grobs(..., options = list(nrow = 1))
 \description{
 grobs
 }
+\keyword{internal}

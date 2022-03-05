@@ -70,12 +70,3 @@ title_spec <- function (label, x, y, hjust, vjust, angle, gp = gpar(), debug = F
     }
     list(text_grob = children, text_height = text_height, text_width = text_width)
 }
-
-modify_list <- function(old, new) {
-    for (i in names(new)) old[[i]] <- new[[i]]
-    old
-}
-
-`%||%` <- function(x, y) {
-    if(is.null(x)) y else x
-}

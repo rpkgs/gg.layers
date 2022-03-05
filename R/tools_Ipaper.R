@@ -51,3 +51,12 @@ getmode <- function(v) {
     uniqv <- unique(v)
     uniqv[which.max(tabulate(match(v, uniqv)))]
 }
+
+modify_list <- function(old, new) {
+    for (i in names(new)) old[[i]] <- new[[i]]
+    old
+}
+
+`%||%` <- function(x, y) {
+    if (is.null(x)) y else x
+}

@@ -1,4 +1,3 @@
-
 #' Create hatch area of one polygon
 #'
 #' @inheritParams graphics::polygon

@@ -6,6 +6,7 @@ NULL
 #' resample_points
 #' @param data A data.frame, with the columns of "x", "y", and "mask"(optional).
 #' @param fact postive integer. Plot one point in `fact` steps.
+#' @keywords internal
 #' @export
 resample_points <- function(data, fact = 1) {
     if (!is.null(data$mask)) {

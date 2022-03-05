@@ -54,3 +54,4 @@ text <- c(
     "Some <span style='color:blue'>blue text **in bold.**</span><br>And *italics text.*<br>And some <span style='font-size:18pt; color:black'>large</span> text."
 )
 }
+\keyword{internal}
