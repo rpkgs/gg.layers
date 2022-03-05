@@ -22,6 +22,9 @@
     <loc>/reference/add_colorbar.html</loc>
   </url>
   <url>
+    <loc>/reference/compute_npcx.html</loc>
+  </url>
+  <url>
     <loc>/reference/convertTri.html</loc>
   </url>
   <url>
@@ -37,10 +40,13 @@
     <loc>/reference/equispaced_colorkey.html</loc>
   </url>
   <url>
-    <loc>/reference/gg.layers-package.html</loc>
+    <loc>/reference/geom_richtext2.html</loc>
   </url>
   <url>
-    <loc>/reference/gg_barchart.html</loc>
+    <loc>/reference/geom_text_npc.html</loc>
+  </url>
+  <url>
+    <loc>/reference/gg.layers-package.html</loc>
   </url>
   <url>
     <loc>/reference/ggplot2-ggproto.html</loc>
@@ -50,6 +56,9 @@
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/layer_barchart.html</loc>
   </url>
   <url>
     <loc>/reference/make_colorbar.html</loc>
