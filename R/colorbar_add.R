@@ -1,5 +1,6 @@
 #' add_colorbar
 #' 
+#' @inheritParams make_colorbar
 #' @param width 
 #' 
 #' @import gtable ggplotify

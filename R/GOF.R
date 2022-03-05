@@ -1,29 +1,3 @@
-#' @rdname GOF
-#' @export
-NSE <- function(yobs, ysim, w, ...) {
-    if (missing(w)) w <- rep(1, length(yobs))
-
-    ind <- valindex(yobs, ysim)
-    w <- w[ind]
-
-    y_mean <- sum(yobs[ind] * w) / sum(w)
-    # R2: the portion of regression explained variance, also known as
-    # coefficient of determination
-
-    # SSR <- sum((ysim - y_mean)^2 * w)
-    SST <- sum((yobs[ind] - y_mean)^2 * w)
-    # R2     <- SSR / SST
-
-    RE <- ysim[ind] - yobs[ind]
-    # Bias <- sum(w * RE) / sum(w) # bias
-    # Bias_perc <- Bias / y_mean # bias percentage
-    # MAE <- sum(w * abs(RE)) / sum(w) # mean absolute error
-    RMSE <- sqrt(sum(w * (RE)^2) / sum(w)) # root mean sqrt error
-
-    NSE <- 1 - sum((RE)^2 * w) / SST # NSE coefficient
-    NSE
-}
-
 #' GOF
 #'
 #' Good of fitting
@@ -145,6 +119,31 @@ GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
              Bias, Bias_perc, AI = AI, n_sim = n_sim)
     if (include.cv) out <- cbind(out, CV_obs, CV_sim)
     return(out)
+}
+
+#' @rdname GOF
+#' @export
+NSE <- function(yobs, ysim, w, ...) {
+    if (missing(w)) w <- rep(1, length(yobs))
+
+    ind <- valindex(yobs, ysim)
+    w <- w[ind]
+
+    y_mean <- sum(yobs[ind] * w) / sum(w)
+    # R2: the portion of regression explained variance, also known as
+    # coefficient of determination
+
+    # SSR <- sum((ysim - y_mean)^2 * w)
+    SST <- sum((yobs[ind] - y_mean)^2 * w)
+    # R2     <- SSR / SST
+    RE <- ysim[ind] - yobs[ind]
+    # Bias <- sum(w * RE) / sum(w) # bias
+    # Bias_perc <- Bias / y_mean # bias percentage
+    # MAE <- sum(w * abs(RE)) / sum(w) # mean absolute error
+    RMSE <- sqrt(sum(w * (RE)^2) / sum(w)) # root mean sqrt error
+
+    NSE <- 1 - sum((RE)^2 * w) / SST # NSE coefficient
+    NSE
 }
 
 #' weighted CV

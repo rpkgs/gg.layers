@@ -1,13 +1,16 @@
 #' @importFrom ggh4x guide_axis_minor
-#' @export 
+#' @export
 ggh4x::guide_axis_minor
 
 #' @importFrom dplyr mutate
-add_barchart <- function(value, brks, cols, 
-    fontsize = 12, tck = 0.3, theme = NULL, ...) 
+add_barchart <- function(value, brks, cols,
+    fontsize = 12, 
+    tck_size = 0.3, 
+    tck_length = unit(0.05*2, "cm"), 
+    theme = NULL, ...)
 {
     x <- cut(value, brks)
-    dat = as.data.frame(table(x)) %>% 
+    dat = as.data.frame(table(x)) %>%
         # as.data.table(table(x)) %>%
         cbind(I = 1:nrow(.)) %>%
         mutate(perc = Freq/sum(Freq))
@@ -18,7 +21,7 @@ add_barchart <- function(value, brks, cols,
     at_minor = seq(1, n, 2)
     labels_major = brks[at_major]
     labels_major[is.infinite(labels_major)] = ""
-    
+
     p = ggplot(dat, aes(I + 0.5, perc*100))  +
         # geom_bar(aes(y=..density..), position = "dodge", width = 1)
         geom_bar(stat = "identity", fill = cols, na.rm = F) +
@@ -36,27 +39,26 @@ add_barchart <- function(value, brks, cols,
             #     arrow = grid::arrow(length = unit(0.4, "cm"), type = "closed"),
             #     colour = "black",
             #     size = 0.5, linetype = "solid"),
-            axis.ticks = element_line(size = tck),
-            axis.ticks.length = unit(0.05, "cm")) + 
+            axis.ticks = element_line(size = tck_size),
+            axis.ticks.length = tck_length) +
             scale_x_continuous(
                 # expand = c(-1, 1)*0.1,
                 guide = "axis_minor",
                 breaks = at_major,
-                labels = brks[at_major], minor_breaks = at_minor
-            ) 
-        # scale_x_continuous(breaks = brks[at_major], minor_breaks = brks[at_minor]) +
-        # scale_x_continuous(guide = "axis_minor", minor_breaks = 1:n, breaks = brks[at_major]) + 
+                labels = labels_major, minor_breaks = at_minor
+            )
         # scale_y_continuous(labels = scales::percent_format(accuracy = 1))
-    if (is.null(theme)) p = p + theme
+    if (!is.null(theme)) p = p + theme
     p
 }
 
 #' layer_barchart
-#' 
+#'
 #' @inheritParams ggplot2::geom_bar
 #' @inheritParams grid::viewport
+#' @inheritParams make_colorbar
 #' 
-#' @export 
+#' @export
 layer_barchart <- function(mapping = NULL, data = NULL,
     brks, cols,
     x = 0, y = 0, width = unit(0.5, "npc"), height = unit(0.5, "npc"), just = c(0, 0),
