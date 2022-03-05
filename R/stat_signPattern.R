@@ -44,8 +44,6 @@ stat_signPattern <- function(
         )), coord_sf(default = TRUE))
 }
 
-
-
 ## rewrite this function for significant level
 
 #' @import ggpattern
@@ -58,20 +56,4 @@ stat_signPattern <- function(
 #     pattern_density = 0.02 / 2, # this could change to width
 #     color = "transparent",
 #     size = 0.2
-# )
-
-
-# #' @import ggplot2
-# StatSpatialSignDist <- ggproto("StatLm", Stat,
-#     required_aes = c("x", "y"),
-#     compute_group = function(data, scales, ...) {
-#         rng <- range(data$x, na.rm = TRUE)
-#         grid <- data.frame(x = rng)
-#         mod <- mkTrend(data$y, data$x)
-#         grid$y <- grid$x * mod["slp"] + mod["intercept"]
-#         browser()
-#         # mod <- lm(y ~ x, data = data)
-#         # grid$y <- predict(mod, newdata = grid)
-#         grid
-#     }
 # )

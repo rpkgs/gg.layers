@@ -1,4 +1,7 @@
 #' @importFrom ggh4x guide_axis_minor
+#' @export 
+ggh4x::guide_axis_minor
+
 #' @importFrom dplyr mutate
 add_barchart <- function(value, brks, cols, 
     fontsize = 12, tck = 0.3, theme = NULL, ...) 
@@ -11,9 +14,11 @@ add_barchart <- function(value, brks, cols,
         # mutate(perc = N/sum(N))
 
     n = length(brks)
-    at_major = seq(1, n, 2)
-    at_minor = seq(2, n, 2)
-
+    at_major = seq(2, n, 2)
+    at_minor = seq(1, n, 2)
+    labels_major = brks[at_major]
+    labels_major[is.infinite(labels_major)] = ""
+    
     p = ggplot(dat, aes(I + 0.5, perc*100))  +
         # geom_bar(aes(y=..density..), position = "dodge", width = 1)
         geom_bar(stat = "identity", fill = cols, na.rm = F) +
@@ -51,7 +56,7 @@ add_barchart <- function(value, brks, cols,
 #' @inheritParams grid::viewport
 #' 
 #' @export 
-gg_barchart <- function(mapping = NULL, data = NULL,
+layer_barchart <- function(mapping = NULL, data = NULL,
     brks, cols,
     x = 0, y = 0, width = unit(0.5, "npc"), height = unit(0.5, "npc"), just = c(0, 0),
     fontsize = 12, theme = NULL, ...)

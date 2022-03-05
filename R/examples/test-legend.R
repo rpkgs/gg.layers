@@ -14,10 +14,6 @@ library(rcolors)
 }
 
 library(gtable)
-
-
 # add to the last column
-{
-    p2 = add_colorbar(p, g, width = 1.1)
-    # write_fig(p2, "a.pdf", 10, 4)
-}
+p2 = add_colorbar(p, g, width = 1.1)
+# write_fig(p2, "a.pdf", 10, 4)
