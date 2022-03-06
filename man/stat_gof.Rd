@@ -25,13 +25,14 @@ stat_reg(
   digits = 2,
   unit = "",
  
-    format = "slope = {str_num(b[2, \\"estimate\\"], digits)}{unit}, pvalue = {str_num(b[2, \\"p.value\\"], digits)} \\n R^2 = {str_num(s$r.squared, digits)}",
+    format = "Slope = {str_num(b[2, \\"estimate\\"], digits)}{unit}, p-value = {str_num(b[2, \\"p.value\\"], digits)} \\n *R*^2 = {str_num(s$r.squared, digits)}",
   x = 0,
   y = 1,
   hjust = 0,
   vjust = 1,
   mar = 0.02,
   height.factor = 1.2,
+  family = "Times",
   color = NULL,
   position = "dodge",
   ...

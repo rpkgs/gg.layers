@@ -29,7 +29,6 @@ geom_richtext_npc <- function(mapping = NULL, data = NULL,
     }
     position <- ggplot2::position_nudge(nudge_x, nudge_y)
   }
-
   ggplot2::layer(
     data = data,
     mapping = mapping,
