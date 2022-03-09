@@ -122,13 +122,13 @@ these should also be defined in the <code>element tree</code> argument.</p></dd>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">brks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">9</span>, <span class="cn">Inf</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">brks</span> <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span class="r-in"><span class="co"># brks = 1:10</span></span>
 <span class="r-in"><span class="va">nbrk</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">brks</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span>
 <span class="r-in"><span class="va">cols</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/rcolors/man/get_color.html" class="external-link">get_color</a></span><span class="op">(</span><span class="va">rcolors</span><span class="op">$</span><span class="va">amwg256</span>, <span class="va">nbrk</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">spaces</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"right"</span>, <span class="st">"left"</span>, <span class="st">"top"</span>, <span class="st">"bottom"</span><span class="op">)</span> <span class="co">#%&gt;% set_names(., .)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">make_colorbar</span><span class="op">(</span></span>
+<span class="r-in"><span class="va">params</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span class="r-in">    at <span class="op">=</span> <span class="va">brks</span>, col <span class="op">=</span> <span class="va">cols</span>, height <span class="op">=</span> <span class="fl">1</span>,</span>
 <span class="r-in">    tck <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span class="r-in">    <span class="co"># padding.left = unit(2, "points"),</span></span>
@@ -140,26 +140,34 @@ these should also be defined in the <code>element tree</code> argument.</p></dd>
 <span class="r-in">    <span class="co"># legend.text.just = c(0.5, 0.5),</span></span>
 <span class="r-in"></span>
 <span class="r-in">    title <span class="op">=</span> <span class="st">"Title"</span>,</span>
-<span class="r-in">    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span>, vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span class="r-in">    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0</span>, vjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span class="r-in">    <span class="co"># legend.box = element_rect(size = 0.5),</span></span>
 <span class="r-in">    <span class="co"># legend.line = element_line(size = 1),</span></span>
 <span class="r-in">    <span class="co"># legend.text = list(fontfamily = "Times", cex = 1.1),</span></span>
 <span class="r-in">    <span class="co"># hjust = 0.5</span></span>
 <span class="r-in"><span class="op">)</span></span>
 <span class="r-in"></span>
+<span class="r-in"><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">make_colorbar</span>, <span class="va">params</span><span class="op">)</span></span>
+<span class="r-in"></span>
 <span class="r-in"><span class="co"># cowplot::plot_grid(plotlist = lst)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Ipaper::write_fig({</span></span>
-<span class="r-in"><span class="co">#     grid.rect()</span></span>
-<span class="r-in"><span class="co">#     grid.draw(g)</span></span>
-<span class="r-in"><span class="co"># }, "a.pdf", 0.7, 4)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">##</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">cyl</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="va">g</span></span>
 <span class="r-plt img"><img src="make_colorbar-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># p2 = add_colorbar(p, g, width = 1)</span></span>
-<span class="r-in"><span class="co"># write_fig(p2, "a.pdf", 7, 4)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">cyl</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="add_colorbar.html">add_colorbar</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">g</span><span class="op">)</span></span>
+<span class="r-plt img"><img src="make_colorbar-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">## Test the bottom</span></span>
+<span class="r-in"><span class="va">params</span><span class="op">$</span><span class="va">space</span> <span class="op">=</span> <span class="st">"bottom"</span></span>
+<span class="r-in"><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="va">make_colorbar</span>, <span class="va">params</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu"><a href="add_colorbar.html">add_colorbar</a></span><span class="op">(</span><span class="va">p</span>, <span class="va">g</span>, space <span class="op">=</span> <span class="st">"bottom"</span>,</span>
+<span class="r-in">             title <span class="op">=</span> <span class="st">"(mm/y)"</span>,</span>
+<span class="r-in">             legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="op">-</span><span class="fl">5</span>, vjust <span class="op">=</span> <span class="op">-</span><span class="fl">3</span>, family <span class="op">=</span> <span class="st">"Times"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-plt img"><img src="make_colorbar-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span class="co"># Need to add a grob function</span></span>
 </code></pre></div>
     </div>
   </div>
