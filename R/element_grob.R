@@ -1,4 +1,5 @@
-element_grob_text <- function (element,
+#' @export 
+element_grob_text <- function(element = element_text(),
     label = "", x = NULL, y = NULL, family = NULL,
     face = NULL, colour = NULL, size = NULL, hjust = NULL, vjust = NULL,
     angle = NULL, lineheight = NULL, margin = NULL, margin_x = FALSE,

@@ -47,15 +47,6 @@ add_colorbar <- function(p, g,
     # as.ggplot(ans)
 }
 
-#' grobs
-#' @param options parameters (except `plotlist`) of [cowplot::plot_grid()]
-#' @keywords internal
-#' @export
-grobs <- function(..., options = list(nrow = 1)) {
-    params = c(plotlist = list(...), options)
-    do.call(cowplot::plot_grid, params)
-}
-
 
 # #' @export
 # `+.gtable` <- function(e1, e2) {

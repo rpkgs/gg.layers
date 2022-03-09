@@ -40,8 +40,13 @@ add_colorbar(p, g)
 
 ## Test the bottom
 params$space = "bottom"
-g <- do.call(make_colorbar, params)
-add_colorbar(p, g, space = "bottom",
+params$title = ""
+g2 <- do.call(make_colorbar, params)
+add_colorbar(p, g2, space = "bottom",
              title = "(mm/y)",
              legend.title = element_text(hjust = -5, vjust = -3, family = "Times"))
-# Need to add a grob function
+
+# Another option
+title = element_grob_text(element_text(family = "Times", hjust = 1, vjust = 0, size = 12),
+  label = "(mm/y)", x = 0.98, y = 0.09)
+add_colorbar(p, g2, space = "bottom") %>% add_grob(title)
