@@ -8,15 +8,17 @@ add_colorbar(
   p,
   g,
   width = NULL,
+  height = NULL,
   title = NULL,
+  space = "left",
   legend.title = element_text(hjust = 0, vjust = 0, size = 14, family = "Times")
 )
 }
 \arguments{
-\item{width}{}
-
 \item{title}{all title elements: plot, axes, legends (\code{\link[ggplot2:element]{element_text()}};
 inherits from \code{text})}
+
+\item{space}{one of \code{c("left", "bottom")}}
 
 \item{legend.title}{title of legend (\code{\link[ggplot2:element]{element_text()}}; inherits from
 \code{title})}

@@ -1,36 +1,48 @@
 #' add_colorbar
-#' 
+#'
 #' @inheritParams make_colorbar
-#' @param width 
+#' @param space one of `c("left", "bottom")`
 #' 
 #' @import gtable ggplotify
 #' @importFrom ggplot2 ggplotGrob ggplot_add
+#' @importFrom grid grobHeight grobWidth
 #' @export
-add_colorbar <- function(p, g, width = NULL, 
-    title = NULL, 
-    legend.title = element_text(hjust = 0, vjust = 0, size = 14, family = "Times")) 
+add_colorbar <- function(p, g, 
+    width = NULL, height = NULL,
+    title = NULL,
+    space = "left",
+    legend.title = element_text(hjust = 0, vjust = 0, size = 14, family = "Times"))
 {
     if (!("gtable" %in% class(p))) p <- ggplotGrob(p)
     dim = dim(p)
 
-    loc = p$layout %>% subset(grepl("panel", name)) %>% .[nrow(.), ]
-
+    loc = p$layout %>% subset(grepl("panel", name)) #%>% .[nrow(.), ]
     if (!is.null(title)) {
         g_title = element_grob(legend.title, title, x = 0, y = 0.5)
     } else {
         g_title = nullGrob()
     }
 
-    if (is.null(width)) {   
-        width = max(grobWidth(g), grobWidth(g_title))
-    }
-    
-    # width = grid::grobWidth(g) * width
-    p2 = p %>% gtable_add_cols(width)
     # p2$layout$clip <- "on"
     # g = as.grob(g)
-    ans = gtable_add_grob(p2, g, l = dim[2] + 1, t = loc$t, b = loc$b, clip = "off")
-    ans <- gtable_add_grob(ans, g_title, l = dim[2] + 1, t = loc$t - 1, clip = "off")
+    if (space == "left") {
+        if (is.null(width)) {
+            width = max(grobWidth(g), grobWidth(g_title))
+        }
+        p2 = p %>% gtable_add_cols(width)
+        ans = gtable_add_grob(p2, g, l = dim[2] + 1, t = min(loc$t), b = max(loc$b), clip = "off")
+        ans <- gtable_add_grob(ans, g_title, l = dim[2] + 1, t = min(loc$t) - 1, clip = "off")
+    } else if (space == "bottom"){
+        if (is.null(height)) {
+            height = max(grobHeight(g), grobHeight(g_title))
+        }
+        p2 = p %>% gtable_add_rows(height)
+        ans = gtable_add_grob(p2, g, l = min(loc$l), r = max(loc$r), 
+            t = dim[1] + 1, clip = "off")
+        ans <- gtable_add_grob(ans, g_title, l = max(loc$r), t = dim[1] + 1, clip = "off")
+    } else {
+        stop("space only supports `left` or `bottom`")
+    }
     ans
     # as.ggplot(ans)
 }

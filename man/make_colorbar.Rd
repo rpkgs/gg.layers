@@ -81,13 +81,13 @@ library(rcolors)
 library(ggplot2)
 
 brks = c(-Inf, -1, 0, 1, 3, 6, 9, Inf)
-brks = 1:10
+# brks = 1:10
 nbrk = length(brks) - 1
 cols = get_color(rcolors$amwg256, nbrk)
 
 spaces = c("right", "left", "top", "bottom") #\%>\% set_names(., .)
 
-g <- make_colorbar(
+params <- list(
     at = brks, col = cols, height = 1,
     tck = 0.4,
     # padding.left = unit(2, "points"),
@@ -99,23 +99,29 @@ g <- make_colorbar(
     # legend.text.just = c(0.5, 0.5),
 
     title = "Title",
-    legend.title = element_text(hjust = 0, vjust = 1),
+    legend.title = element_text(hjust = 0, vjust = 1)
     # legend.box = element_rect(size = 0.5),
     # legend.line = element_line(size = 1),
     # legend.text = list(fontfamily = "Times", cex = 1.1),
     # hjust = 0.5
 )
 
+g <- do.call(make_colorbar, params)
+
 # cowplot::plot_grid(plotlist = lst)
-
-# Ipaper::write_fig({
-#     grid.rect()
-#     grid.draw(g)
-# }, "a.pdf", 0.7, 4)
-
-##
-p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+p <- ggplot(mtcars, aes(mpg, disp)) + geom_point() +
+  facet_wrap(~cyl)
 p + g
-# p2 = add_colorbar(p, g, width = 1)
-# write_fig(p2, "a.pdf", 7, 4)
+
+p <- ggplot(mtcars, aes(mpg, disp)) + geom_point() +
+  facet_wrap(~cyl, nrow = 2)
+add_colorbar(p, g)
+
+## Test the bottom
+params$space = "bottom"
+g <- do.call(make_colorbar, params)
+add_colorbar(p, g, space = "bottom",
+             title = "(mm/y)",
+             legend.title = element_text(hjust = -5, vjust = -3, family = "Times"))
+# Need to add a grob function
 }
