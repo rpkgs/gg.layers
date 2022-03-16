@@ -15,7 +15,8 @@ stat_gof(
   hjust = 0,
   vjust = 1,
   mar = 0.02,
-  show.bias = TRUE
+  show.bias = TRUE,
+  show.line = FALSE
 )
 
 stat_reg(
@@ -65,6 +66,10 @@ text is rotated 90 degrees to the left or right.}
     can be coerced to that class): a symbolic description of the
     model to be fitted.  The details of model specification are given
     under \sQuote{Details}.}
+
+\item{digits}{the number of \emph{significant} digits to be
+    passed to \code{\link{format}(\link[stats]{coef}(x), .)} when
+    \code{\link{print}()}ing.}
 
 \item{position}{"dodge" or "identity"}
 

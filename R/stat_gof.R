@@ -20,7 +20,8 @@
 stat_gof <- function(
     mapping = NULL, data = NULL,
     format = "NSE = {str_num(NSE,2)}, R^2 = {str_num(R2, 2)} \n RMSE = {str_num(RMSE,2)}",
-    x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.02, show.bias = TRUE)
+    x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.02, 
+    show.bias = TRUE, show.line = FALSE)
 {
     fun <- function(data, coords, ...) {
         g = GOF(data$x, data$y)
@@ -28,8 +29,11 @@ stat_gof <- function(
         if (show.bias) label = sprintf("%s \n Bias(%%) = %.2f%%", label, g$Bias_perc)
         richtextGrob(label, x, y, hjust, vjust, mar, ...)
     }
-    list(grid_panel(fun, mapping, data),
-         geom_abline(slope = 1, color = "red"))
+    if (show.line) {
+        list(grid_panel(fun, mapping, data), geom_abline(slope = 1, color = "red"))
+    } else {
+        list(grid_panel(fun, mapping, data))
+    }
 }
 
 #' @inheritParams stats::lm
