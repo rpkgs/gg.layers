@@ -54,7 +54,8 @@
   hjust <span class="op">=</span> <span class="fl">0</span>,
   vjust <span class="op">=</span> <span class="fl">1</span>,
   mar <span class="op">=</span> <span class="fl">0.02</span>,
-  show.bias <span class="op">=</span> <span class="cn">TRUE</span>
+  show.bias <span class="op">=</span> <span class="cn">TRUE</span>,
+  show.line <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span>
 
 <span class="fu">stat_reg</span><span class="op">(</span>
@@ -107,6 +108,10 @@ text is rotated 90 degrees to the left or right.</p></dd>
     can be coerced to that class): a symbolic description of the
     model to be fitted.  The details of model specification are given
     under ‘Details’.</p></dd>
+<dt>digits</dt>
+<dd><p>the number of <em>significant</em> digits to be
+    passed to <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a>(<a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a>(x), .)</code> when
+    <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a>()</code>ing.</p></dd>
 <dt>position</dt>
 <dd><p>"dodge" or "identity"</p></dd>
 <dt>...</dt>
