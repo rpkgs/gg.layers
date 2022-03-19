@@ -22,6 +22,7 @@ margin_adj <- function(x, margin) {
 richtextGrob <- function(label, x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.02,
                          padding = unit(c(1, 1, 1, 1) * 0, "pt"),
                          lineheight = 1.5,
+                         fontsize = 12,
                          family = "Times",
                          color = "black",
                          ...) {
@@ -29,7 +30,7 @@ richtextGrob <- function(label, x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.02,
     x %<>% margin_adj(mar)
     y %<>% margin_adj(mar)
 
-    gp <- gpar(col = color, lineheight = lineheight, fontfamily = family)
+    gp <- gpar(col = color, lineheight = lineheight, fontsize = fontsize, fontfamily = family)
     richtext_grob(label,
         x = x, y = y,
         hjust = hjust, vjust = vjust, padding = padding, ..., gp = gp
