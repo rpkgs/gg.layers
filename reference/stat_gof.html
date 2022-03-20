@@ -63,14 +63,15 @@
   data <span class="op">=</span> <span class="cn">NULL</span>,
   formula <span class="op">=</span> <span class="va">y</span> <span class="op">~</span> <span class="va">x</span>,
   digits <span class="op">=</span> <span class="fl">2</span>,
-  unit <span class="op">=</span> <span class="st">""</span>,
- 
-    format <span class="op">=</span> <span class="st">"Slope = {str_num(b[2, \"estimate\"], digits)}{unit}, p-value = {str_num(b[2, \"p.value\"], digits)} \n *R*^2 = {str_num(s$r.squared, digits)}"</span>,
+  units <span class="op">=</span> <span class="st">""</span>,
+  format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Slope = {str_num(b[2, \"estimate\"], digits)}{unit}"</span>,
+    <span class="st">", p-value = {str_num(b[2, \"p.value\"], digits)} \n"</span>,
+    <span class="st">"*R*^2 = {str_num(s$r.squared, digits)}"</span><span class="op">)</span>,
   x <span class="op">=</span> <span class="fl">0</span>,
   y <span class="op">=</span> <span class="fl">1</span>,
   hjust <span class="op">=</span> <span class="fl">0</span>,
   vjust <span class="op">=</span> <span class="fl">1</span>,
-  mar <span class="op">=</span> <span class="fl">0.02</span>,
+  mar <span class="op">=</span> <span class="fl">0.03</span>,
   height.factor <span class="op">=</span> <span class="fl">1.2</span>,
   family <span class="op">=</span> <span class="st">"Times"</span>,
   color <span class="op">=</span> <span class="cn">NULL</span>,
@@ -108,10 +109,6 @@ text is rotated 90 degrees to the left or right.</p></dd>
     can be coerced to that class): a symbolic description of the
     model to be fitted.  The details of model specification are given
     under ‘Details’.</p></dd>
-<dt>digits</dt>
-<dd><p>the number of <em>significant</em> digits to be
-    passed to <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a>(<a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a>(x), .)</code> when
-    <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a>()</code>ing.</p></dd>
 <dt>position</dt>
 <dd><p>"dodge" or "identity"</p></dd>
 <dt>...</dt>
