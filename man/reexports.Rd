@@ -7,6 +7,8 @@
 \alias{\%>\%}
 \alias{\%<>\%}
 \alias{mutate}
+\alias{element_textbox}
+\alias{element_markdown}
 \alias{GeomSfPattern}
 \alias{geom_sf_pattern}
 \title{Objects exported from other packages}
@@ -21,6 +23,8 @@ below to see their documentation.
   \item{ggh4x}{\code{\link[ggh4x]{guide_axis_minor}}}
 
   \item{ggpattern}{\code{\link[ggpattern:ggpattern-ggproto]{GeomSfPattern}}, \code{\link[ggpattern:geom-docs]{geom_sf_pattern}}}
+
+  \item{ggtext}{\code{\link[ggtext]{element_markdown}}, \code{\link[ggtext]{element_textbox}}}
 
   \item{magrittr}{\code{\link[magrittr:compound]{\%<>\%}}, \code{\link[magrittr:pipe]{\%>\%}}}
 }}

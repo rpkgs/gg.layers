@@ -1,14 +1,14 @@
 .cols_lattice = c(
-    "#FF80FF", "#FF82FF", "#FF85FF", "#FF87FF", "#FF8AFF", "#FF8CFF", "#FF8FFF", "#FF91FF", "#FF94FF", 
-    "#FF96FF", "#FF99FF", "#FF9CFF", "#FF9EFF", "#FFA1FF", "#FFA3FF", "#FFA6FF", "#FFA8FF", "#FFABFF", 
-    "#FFADFF", "#FFB0FF", "#FFB3FF", "#FFB5FF", "#FFB8FF", "#FFBAFF", "#FFBDFF", "#FFBFFF", "#FFC2FF", 
-    "#FFC4FF", "#FFC7FF", "#FFC9FF", "#FFCCFF", "#FFCFFF", "#FFD1FF", "#FFD4FF", "#FFD6FF", "#FFD9FF", 
-    "#FFDBFF", "#FFDEFF", "#FFE0FF", "#FFE3FF", "#FFE6FF", "#FFE8FF", "#FFEBFF", "#FFEDFF", "#FFF0FF", 
-    "#FFF2FF", "#FFF5FF", "#FFF7FF", "#FFFAFF", "#FFFCFF", "#FCFFFF", "#FAFFFF", "#F7FFFF", "#F5FFFF", 
-    "#F2FFFF", "#F0FFFF", "#EDFFFF", "#EBFFFF", "#E8FFFF", "#E6FFFF", "#E3FFFF", "#E0FFFF", "#DEFFFF", 
-    "#DBFFFF", "#D9FFFF", "#D6FFFF", "#D4FFFF", "#D1FFFF", "#CFFFFF", "#CCFFFF", "#C9FFFF", "#C7FFFF", 
-    "#C4FFFF", "#C2FFFF", "#BFFFFF", "#BDFFFF", "#BAFFFF", "#B8FFFF", "#B5FFFF", "#B3FFFF", "#B0FFFF", 
-    "#ADFFFF", "#ABFFFF", "#A8FFFF", "#A6FFFF", "#A3FFFF", "#A1FFFF", "#9EFFFF", "#9CFFFF", "#99FFFF", 
+    "#FF80FF", "#FF82FF", "#FF85FF", "#FF87FF", "#FF8AFF", "#FF8CFF", "#FF8FFF", "#FF91FF", "#FF94FF",
+    "#FF96FF", "#FF99FF", "#FF9CFF", "#FF9EFF", "#FFA1FF", "#FFA3FF", "#FFA6FF", "#FFA8FF", "#FFABFF",
+    "#FFADFF", "#FFB0FF", "#FFB3FF", "#FFB5FF", "#FFB8FF", "#FFBAFF", "#FFBDFF", "#FFBFFF", "#FFC2FF",
+    "#FFC4FF", "#FFC7FF", "#FFC9FF", "#FFCCFF", "#FFCFFF", "#FFD1FF", "#FFD4FF", "#FFD6FF", "#FFD9FF",
+    "#FFDBFF", "#FFDEFF", "#FFE0FF", "#FFE3FF", "#FFE6FF", "#FFE8FF", "#FFEBFF", "#FFEDFF", "#FFF0FF",
+    "#FFF2FF", "#FFF5FF", "#FFF7FF", "#FFFAFF", "#FFFCFF", "#FCFFFF", "#FAFFFF", "#F7FFFF", "#F5FFFF",
+    "#F2FFFF", "#F0FFFF", "#EDFFFF", "#EBFFFF", "#E8FFFF", "#E6FFFF", "#E3FFFF", "#E0FFFF", "#DEFFFF",
+    "#DBFFFF", "#D9FFFF", "#D6FFFF", "#D4FFFF", "#D1FFFF", "#CFFFFF", "#CCFFFF", "#C9FFFF", "#C7FFFF",
+    "#C4FFFF", "#C2FFFF", "#BFFFFF", "#BDFFFF", "#BAFFFF", "#B8FFFF", "#B5FFFF", "#B3FFFF", "#B0FFFF",
+    "#ADFFFF", "#ABFFFF", "#A8FFFF", "#A6FFFF", "#A3FFFF", "#A1FFFF", "#9EFFFF", "#9CFFFF", "#99FFFF",
     "#96FFFF", "#94FFFF", "#91FFFF", "#8FFFFF", "#8CFFFF", "#8AFFFF", "#87FFFF", "#85FFFF", "#82FFFF", "#80FFFF")
 
 # ' @param space One of `c('top', 'bottom', 'right', 'left')`

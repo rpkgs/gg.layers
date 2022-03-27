@@ -4,6 +4,7 @@
 \alias{st_point2poly}
 \alias{df2rast}
 \alias{rast2poly}
+\alias{st_dissolve}
 \title{st_point2poly}
 \usage{
 st_point2poly(xyz, crs = 4326)
@@ -11,6 +12,8 @@ st_point2poly(xyz, crs = 4326)
 df2rast(xyz)
 
 rast2poly(r, crs = 4326)
+
+st_dissolve(x, by = NULL, ...)
 }
 \arguments{
 \item{xyz}{matrix or data.frame with at least three columns: x and y coordinates, and values (z). There may be several 'z' variables (columns)}

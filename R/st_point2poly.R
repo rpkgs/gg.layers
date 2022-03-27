@@ -11,7 +11,7 @@
 #' @export
 st_point2poly <- function(xyz, crs = 4326) {
     r = df2rast(xyz)
-    rast2poly(r, crs)
+    rast2poly(r, crs) #%>% st_dissolve(by = "z")
 }
 
 #' @rdname st_point2poly
@@ -35,4 +35,12 @@ rast2poly <- function(r, crs = 4326) {
     })
     sf::st_crs(sf_poly) = crs
     sf_poly
+}
+
+#' @rdname st_point2poly
+#' @export
+st_dissolve <- function (x, by = NULL, ...) {
+  if (is.null(by) || !(by %in% colnames(x)))
+    by = colnames(x)[1]
+  x %>% dplyr::group_by_at(by) %>% dplyr::summarise(...)
 }

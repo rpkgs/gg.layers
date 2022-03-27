@@ -28,3 +28,14 @@ d$label <- c(
 ggplot(d, aes(x, y)) +
   geom_richtext_npc(aes(npcx = x, npcy = y, label = label),
                     fill = NA, label.color = NA)
+
+## test for `str_mk`
+library(magrittr)
+indexes_lev = c("DOY_first", "DOY_last", "HWD", "HWI", "HWS_mean", "HWS_sum", "HWA_avg", "HWA_max", "HWA_sum")
+labels = indexes_lev %>% str_mk() #%>% label_tag(expression = F)
+d = data.frame(x = 0.5, y = 0.5, label = labels)
+
+ggplot(d) +
+  facet_wrap(~label) +
+  theme(strip.text.x = element_textbox(face = "bold")) +
+  geom_richtext_npc(aes(npcx = x, npcy = y, label = label))
