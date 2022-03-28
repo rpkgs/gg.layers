@@ -18,6 +18,7 @@ Imports:
     ggh4x,
     ggpattern,
     ggplotify,
+    rtrend,
     sp, methods
 Suggests: 
     testthat (>= 3.0.0),

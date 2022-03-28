@@ -25,9 +25,9 @@ stat_reg(
   formula = y ~ x,
   digits = 2,
   units = "",
-  format = paste0("Slope = {str_num(b[2, \\"estimate\\"], digits)}{unit}",
-    ", p-value = {str_num(b[2, \\"p.value\\"], digits)} \\n",
-    "*R*^2 = {str_num(s$r.squared, digits)}"),
+  format = paste0("Slope = {str_num(slope, digits)}{unit}",
+    ", p-value = {str_num(pvalue, digits)}"),
+  slope_FUN = NULL,
   x = 0,
   y = 1,
   hjust = 0,
@@ -68,6 +68,10 @@ text is rotated 90 degrees to the left or right.}
     model to be fitted.  The details of model specification are given
     under \sQuote{Details}.}
 
+\item{digits}{the number of \emph{significant} digits to be
+    passed to \code{\link{format}(\link[stats]{coef}(x), .)} when
+    \code{\link{print}()}ing.}
+
 \item{position}{"dodge" or "identity"}
 
 \item{...}{other parameters to \code{\link[gggrid:grid_panel]{gggrid::grid_panel()}}}
@@ -79,6 +83,12 @@ text is rotated 90 degrees to the left or right.}
 \itemize{
 \item \code{b}: the object returned by \code{\link[broom:reexports]{broom::tidy()}}
 \item \code{s}: the object returned by \code{\link[broom:reexports]{broom::glance()}}
+\itemize{
+\item "\emph{R}^2 = {str_num(s$r.squared, digits)}"
+}
+\item \code{slope}:
+\item \code{pvalue}:
+\item \code{pcode}: significant code, e.g., \verb{**}, \code{*}, \code{-}
 }
 }
 \examples{
