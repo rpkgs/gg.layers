@@ -33,8 +33,8 @@ stat_reg <- function(mapping = NULL, data = NULL,
       l = lm(formula, data)
       b = broom::tidy(l)
       s = broom::glance(l)
-      slope = b[2, "estimate"]
-      pvalue = b[2, "p.value"]
+      slope = b$estimate[2]
+      pvalue = b$p.value[2]
     } else {
       l = tryCatch({
         slope_FUN(data$y, data$x)
@@ -45,13 +45,12 @@ stat_reg <- function(mapping = NULL, data = NULL,
       pvalue = l["pvalue"]
     }
     pcode = signif_code(pvalue)
-    # if (is.na(pvalue)) pvalue = 0 # note here
-
+    if (is.na(pvalue)) pvalue = 0 # note here
     # dots = list(...)
     # color = if (is.null(dots$color)) data$colour[1] else dots$color
     if (is.null(color)) color = data$colour[1]
 
-    group = data$group[1]
+    group = data$group[1] %||% 0
     unit = ifelse(length(units) > 1, units[data$PANEL[1]], units)
     if (unit != "") unit %<>% paste0(" ", .)
 
@@ -78,5 +77,5 @@ signif_code <- function(pvalue) {
   # - : (0.05, 1   ]
   at <- c(0, 0.01, 0.05, 1)
   lev <- c("**", "*", "-")
-  cut(pvalue, at, lev) %>% as.character()
+  cut(pvalue, at, lev, include.lowest = TRUE) %>% as.character()
 }
