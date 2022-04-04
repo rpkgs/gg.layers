@@ -58,6 +58,7 @@ make_colorbar <- function(
   title = NULL,
   legend.text = element_text(hjust = 0.5),
   legend.title = element_text(),
+  fct.title.height = 1.8,
 
   padding.left = unit(2, "points"),
   padding.right = unit(2, "points"),
@@ -110,8 +111,6 @@ make_colorbar <- function(
   height.Tri <- key$height / numcol
   open.lower <- convertTri(key$tri.lower, scat[1] == -Inf, height = height.Tri)
   open.upper <- convertTri(key$tri.upper, scat[length(scat)] == Inf, height.Tri)
-  key.rect <- 1 - open.lower - open.upper
-
   # if (is.null(legend.text$hjust)) {
     # rot <- null_default(legend.text$rot, 0)
     # rot = 0
@@ -139,7 +138,7 @@ make_colorbar <- function(
     y_lab <- rep(ypos, length(labscat))
     x_lab <- labscat
   }
-  
+
   # add unit label, 20190924
   if (!(is.null(key$unit) || key$unit == "")) {
     ## DEPRECATED
@@ -154,13 +153,18 @@ make_colorbar <- function(
     x = x_lab, y = y_lab, vp = vp_label, default.units = "native")
 
   width_lab <- max(stringWidth(labels)) # %>% multiply_by(cex)
-
   if (!is.null(title)) {
-    grob_title = element_grob(legend.title, title, x = 0, y = 0.5)
-    width_lab = max(width_lab, grobWidth(grob_title))
+    grob_title = element_grob_text(legend.title, title, x = 0.5, y = 0.5)
+    #width_title = grobWidth(grob_title) %>% unit2npc()
   } else {
     grob_title = nullGrob()
   }
+  # height_title = ifelse(is.null(title), 0, height.Tri)
+  height_title = grobHeight(grob_title) %>% convertUnit("npc") %>% as.numeric()
+  height_title = height_title * fct.title.height
+  # height_title = unit(1, "lines") %>% convertUnit("npc") %>% as.numeric() #%>% multiply_by(1.2)
+  # height_title = height_title * legend.title$size /12 * 1.4
+  key.rect <- 1 - open.lower - open.upper - height_title
 
   lgd_width <- unit.c(
     padding.left,
@@ -169,23 +173,32 @@ make_colorbar <- function(
     width_lab,
     padding.right
   )
+  lgd_width %>% unit2npc() #%>% unit("NULL")
+
+
   if (space %in% c("left", "top")) lgd_width <- rev(lgd_width)
 
-  heights.x <- c(
-    0.5 * (1 - key$height) + key$legend.margin$t,
-    key$height * c(open.upper, key.rect, open.lower),
-    0.5 * (1 - key$height) + key$legend.margin$b
+  lgd_height <- c(
+    key$legend.margin$t,
+    height_title,
+    open.upper,
+    key.rect,
+    open.lower,
+    key$legend.margin$b
   )
-  lgd_height <- unit(heights.x, rep("null", 5))
+  lgd_height <- lgd_height * key$height * sum(lgd_height[2:5])
+  lgd_height <- unit(lgd_height, "npc")
 
   if (space %in% c("right", "left")) {
+    layout = c(6, 5)
     just = hjust
   } else if (space %in% c("top", "bottom")) {
     wrap(lgd_width, lgd_height)
+    layout = c(5, 6)
     just = vjust
   }
   key.layout <- grid.layout(
-    nrow = 5, ncol = 5, respect = TRUE,
+    nrow = layout[1], ncol = layout[2], respect = TRUE,
     heights = lgd_height,
     widths = lgd_width, just = just
   )
@@ -270,4 +283,12 @@ guess_at_labels <- function(key) {
     stop("malformed colorkey")
   }
   listk(at, labels)
+}
+
+unit2npc <- function(x) {
+  convertUnit(x, "npc") %>% as.numeric()
+}
+
+num2npc <- function(x) {
+  unit(x, "npc")
 }

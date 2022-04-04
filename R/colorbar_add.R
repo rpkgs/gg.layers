@@ -10,7 +10,7 @@
 add_colorbar <- function(p, g, 
     width = NULL, height = NULL,
     title = NULL,
-    space = "left",
+    space = "right",
     legend.title = element_text(hjust = 0, vjust = 0, size = 14, family = "Times"))
 {
     if (!("gtable" %in% class(p))) p <- ggplotGrob(p)
@@ -25,7 +25,7 @@ add_colorbar <- function(p, g,
 
     # p2$layout$clip <- "on"
     # g = as.grob(g)
-    if (space == "left") {
+    if (space == "right") {
         if (is.null(width)) {
             width = max(grobWidth(g), grobWidth(g_title))
         }
@@ -41,7 +41,7 @@ add_colorbar <- function(p, g,
             t = dim[1] + 1, clip = "off")
         ans <- gtable_add_grob(ans, g_title, l = max(loc$r), t = dim[1] + 1, clip = "off")
     } else {
-        stop("space only supports `left` or `bottom`")
+        stop("space only supports `right` or `bottom`")
     }
     ans
     # as.ggplot(ans)

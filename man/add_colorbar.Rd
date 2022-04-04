@@ -10,7 +10,7 @@ add_colorbar(
   width = NULL,
   height = NULL,
   title = NULL,
-  space = "left",
+  space = "right",
   legend.title = element_text(hjust = 0, vjust = 0, size = 14, family = "Times")
 )
 }

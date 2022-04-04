@@ -7,6 +7,7 @@ add_barchart <- function(value, brks, cols,
     fontsize = 12, 
     tck_size = 0.3, 
     tck_length = unit(0.05*2, "cm"), 
+    fact = 2,
     theme = NULL, ...)
 {
     x <- cut(value, brks)
@@ -17,8 +18,9 @@ add_barchart <- function(value, brks, cols,
         # mutate(perc = N/sum(N))
 
     n = length(brks)
-    at_major = seq(2, n, 2)
-    at_minor = seq(1, n, 2)
+    fact2 <- floor(fact / 2)
+    at_major = seq(fact, n, fact)
+    at_minor = seq(1, n, fact2)
     labels_major = brks[at_major]
     labels_major[is.infinite(labels_major)] = ""
 

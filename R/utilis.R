@@ -76,3 +76,31 @@ compute_npcy <- function(y, group = 1L, v.step = 0.1, margin.npc = 0.05, each.le
   y <- ifelse(y < 0, 0, y)
   y
 }
+
+#' aes2
+#' @keywords internal
+#' @examples
+#' aes2(x, y)
+#' aes2(x, y, "hello")
+#' aes2(x, y, hello = "hello")
+#' @export
+aes2 <- function(...) {
+  exprs <- rlang::enquos(..., .ignore_empty = "all")
+  for (i in seq_along(exprs)) {
+    name = names(exprs)[i]
+    if (name == "") names(exprs)[i] = rlang::as_name(exprs[[i]])
+  }
+  aes <- ggplot2:::new_aes(exprs, env = parent.frame())
+  ggplot2:::rename_aes(aes)
+  # exprs
+}
+
+#' @export
+gg_rbind <- function(ps) {
+  do.call(gtable:::rbind.gtable, ps)
+}
+
+#' @export
+gg_cbind <- function(ps) {
+  do.call(gtable:::cbind.gtable, ps)
+}

@@ -17,9 +17,10 @@
 colorkey_pos <- function(space = "right"){
     # default is right
     .cbar_layout = matrix(c(
-            "upper", ""    , "title",
+            "", "title", "",
+            "upper", ""    , "",
             "box"  , "tick", "label",
-            "lower", "",      ""), nrow = 3, byrow = TRUE) %>%
+            "lower", "",      ""), ncol = 3, byrow = TRUE) %>%
         rbind("", ., "") %>% cbind("", ., "")
 
     dat = rotate_layout(.cbar_layout, space) #%>% c()
@@ -375,7 +376,7 @@ segmentsGrob2 <- function(x0, y0, x1, y1, rot = 90, ...) {
 
 #' @importFrom gtable gtable gtable_add_grob
 #' @export
-bb_margin <- function(t = 0, r = 0, b = 0, l = 0, unit = "pt") {
+bb_margin <- function(t = 0, r = 0, b = 0, l = 0, unit = "npc") {
     # unit
     listk(t, r, b, l)
 }
