@@ -20,7 +20,14 @@ You can install the development version of gg.layers from
 remotes::install_github("rpkgs/gg.layers")
 ```
 
+## Document
+
+<https://ggplot2-book.org/programming.html>
+<https://ggplot2-book.org/extensions.html>
+
 ## Example
+
+### self-made colorbar
 
 <https://stackoverflow.com/questions/68440366/how-can-i-add-triangles-to-a-ggplot2-colorbar-in-r-to-indicate-out-of-bound-valu>
 
@@ -45,17 +52,47 @@ g <- make_colorbar(
   # legend.text = list(fontfamily = "Times", cex = 1.1),
   hjust = 0.05
 )
-
 p <- ggplot(mtcars %>% subset(cyl == 4), aes(mpg, disp)) + geom_point() + 
     facet_wrap(~cyl) + 
     theme(legend.position = "none")
 p + g
 ```
 
-<img src="man/figures/README-example-1.svg" width="100%" />
+<img src="man/figures/README-example-1.png" width="100%" />
+
+### significant regions
 
 ``` r
-p + g + g + g
+data("d_trendPerc")
+d_mask <- mutate(d_trendPerc, mask = perc <= 0.99) # %>% as.data.frame()
+
+# 1. geom_signPoint
+ggplot(data = d_mask, aes(x, y)) +
+  geom_raster(aes(fill = perc)) +
+  geom_signPoint(aes(mask = !mask), fact = 2, shape = 4)
 ```
 
-<img src="man/figures/README-example-3.svg" width="100%" />
+<img src="man/figures/README-sign-1.png" width="100%" />
+
+``` r
+# 2. geom_signHatch
+ggplot() +
+  geom_raster(data = d_trendPerc, aes(x, y, fill = perc)) +
+  # geom_sf(data = shp) +
+  geom_signHatch(data = d_mask, aes(x, y, mask = mask), color = "red")
+```
+
+<img src="man/figures/README-sign-2.png" width="100%" />
+
+``` r
+# 3. stat_signPattern
+ggplot() +
+  geom_raster(data = d_trendPerc, aes(x, y, fill = perc)) +
+  stat_signPattern(
+    data = d_mask, aes(x, y, mask = mask),
+    fill = "transparent", color = "red",
+    pattern_density = 0.02
+  )
+```
+
+<img src="man/figures/README-sign-3.png" width="100%" />

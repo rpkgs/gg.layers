@@ -11,3 +11,4 @@ test/
 inst/doc
 vignettes/
 notes/
+debug*

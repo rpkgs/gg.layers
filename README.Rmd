@@ -8,7 +8,8 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  dev = 'svg',
+  # dev = 'svg',
+  dev = 'png',
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
@@ -39,6 +40,7 @@ remotes::install_github("rpkgs/gg.layers")
 
 ## Example
 
+### self-made colorbar
 <https://stackoverflow.com/questions/68440366/how-can-i-add-triangles-to-a-ggplot2-colorbar-in-r-to-indicate-out-of-bound-valu>
 
 ```{r example}
@@ -64,5 +66,31 @@ p <- ggplot(mtcars %>% subset(cyl == 4), aes(mpg, disp)) + geom_point() +
     facet_wrap(~cyl) + 
     theme(legend.position = "none")
 p + g
-p + g + g + g
+```
+
+### significant regions
+
+```{r sign}
+data("d_trendPerc")
+d_mask <- mutate(d_trendPerc, mask = perc <= 0.99) # %>% as.data.frame()
+
+# 1. geom_signPoint
+ggplot(data = d_mask, aes(x, y)) +
+  geom_raster(aes(fill = perc)) +
+  geom_signPoint(aes(mask = !mask), fact = 2, shape = 4)
+
+# 2. geom_signHatch
+ggplot() +
+  geom_raster(data = d_trendPerc, aes(x, y, fill = perc)) +
+  # geom_sf(data = shp) +
+  geom_signHatch(data = d_mask, aes(x, y, mask = mask), color = "red")
+
+# 3. stat_signPattern
+ggplot() +
+  geom_raster(data = d_trendPerc, aes(x, y, fill = perc)) +
+  stat_signPattern(
+    data = d_mask, aes(x, y, mask = mask),
+    fill = "transparent", color = "red",
+    pattern_density = 0.02
+  )
 ```
