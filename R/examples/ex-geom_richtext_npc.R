@@ -1,5 +1,6 @@
 library(ggplot2)
 
+## first example
 labels <- c(
   "gC m^{-2} d^{-1}",
   "gC m^-2 d^-1",
@@ -7,15 +8,21 @@ labels <- c(
   "gC m_-2 d_-1"
   # "gC \n mm/d"
 )
+x = 0.2
+y = seq_along(labels)/10
 
+ggplot() + annotate_richtext_npc(x, y, labels, size = 5)
+ggplot() + annotate_richlabel_npc(x, y, labels, size = 5, label.color = "red")
+
+# Another option
 d = data.frame(x = 0.2, y = seq_along(labels)/10, label = labels)
-ggplot(d, aes(x, y)) +
+ggplot(d, aes(npcx = x, npcy = y)) +
   geom_richtext_npc(aes(npcx = x, npcy = y, label = label))
 
 # remove fill and label.color
-ggplot(d, aes(x, y)) +
+ggplot(d, aes(npcx = x, npcy = y)) +
   geom_richtext_npc(aes(npcx = x, npcy = y, label = label),
-                    fill = NA, label.color = NA)
+                    fill = "white", label.color = "red")
 
 ## second example
 d$label <- c(
@@ -25,9 +32,8 @@ d$label <- c(
   "Some <span style='color:blue'>blue text **in bold.**</span><br>And *italics text.*<br>
     And some <span style='font-size:18pt; color:black'>large</span> text."
 )
-ggplot(d, aes(x, y)) +
-  geom_richtext_npc(aes(npcx = x, npcy = y, label = label),
-                    fill = NA, label.color = NA)
+ggplot(d, aes(npcx = x, npcy = y)) +
+  geom_richtext_npc(aes(npcx = x, npcy = y, label = label))
 
 ## test for `str_mk`
 library(magrittr)

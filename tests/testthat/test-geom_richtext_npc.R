@@ -10,11 +10,11 @@ test_that("geom_richtext_npc works", {
   )
 
   d = data.frame(x = 0.2, y = seq_along(labels) / 10, label = labels)
-  p1 = ggplot(d, aes(x, y)) +
+  p1 = ggplot(d, aes(npcx = x, npcy = y)) +
     geom_richtext_npc(aes(npcx = x, npcy = y, label = label))
 
   # remove fill and label.color
-  p2 = ggplot(d, aes(x, y)) +
+  p2 = ggplot(d, aes(npcx = x, npcy = y)) +
     geom_richtext_npc(aes(npcx = x, npcy = y, label = label),
       fill = NA, label.color = NA
     )
@@ -27,11 +27,11 @@ test_that("geom_richtext_npc works", {
     "Some <span style='color:blue'>blue text **in bold.**</span><br>And *italics text.*<br>
     And some <span style='font-size:18pt; color:black'>large</span> text."
   )
-  p3 = ggplot(d, aes(x, y)) +
+  p3 = ggplot(d, aes(npcx = x, npcy = y)) +
     geom_richtext_npc(aes(npcx = x, npcy = y, label = label),
       fill = NA, label.color = NA
     )
-  expect_silent(print(p1))
+  expect_silent(print(p1)) 
   expect_silent(print(p2))
   expect_silent(print(p3))
 })
