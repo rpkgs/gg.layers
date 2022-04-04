@@ -27,7 +27,7 @@ Suggests:
     sf, stars, rgeos, raster,
     lattice,
     cowplot,
-    gridExtra,
+    gridExtra, rlang,
     knitr,
     rmarkdown
 Config/testthat/edition: 3
