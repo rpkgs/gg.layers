@@ -144,20 +144,17 @@ these should also be defined in the <code>element tree</code> argument.</p></dd>
 <span class="r-in">    legend.text.location <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.5</span><span class="op">)</span>,</span>
 <span class="r-in">    <span class="co"># legend.margin = bb_margin(t = 0.1),</span></span>
 <span class="r-in">    <span class="co"># legend.text.just = c(0.5, 0.5),</span></span>
-<span class="r-in"></span>
+<span class="r-in">    <span class="co"># title = NULL,</span></span>
 <span class="r-in">    title <span class="op">=</span> <span class="st">"d/decade"</span>,</span>
 <span class="r-in">    fct.title.height <span class="op">=</span> <span class="fl">3</span>,</span>
-<span class="r-in">    <span class="co"># title = NULL,</span></span>
 <span class="r-in">    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span></span>
 <span class="r-in">    <span class="co"># legend.box = element_rect(size = 0.5),</span></span>
 <span class="r-in">    <span class="co"># legend.line = element_line(size = 1),</span></span>
 <span class="r-in">    <span class="co"># legend.text = list(fontfamily = "Times", cex = 1.1),</span></span>
 <span class="r-in">    <span class="co"># hjust = 0.5</span></span>
 <span class="r-in">  <span class="op">)</span></span>
-<span class="r-in">  <span class="fu">write_fig</span><span class="op">(</span><span class="va">g</span>, <span class="st">"a.pdf"</span>, <span class="fl">0.9</span>, <span class="fl">6</span><span class="op">)</span></span>
+<span class="r-in">  <span class="co">#write_fig(g, "a.pdf", 0.9, 6)</span></span>
 <span class="r-in"><span class="op">}</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in write_fig(g, "a.pdf", 0.9, 6):</span> could not find function "write_fig"</span>
-<span class="r-in"></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># cowplot::plot_grid(plotlist = lst)</span></span>
 <span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">disp</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
