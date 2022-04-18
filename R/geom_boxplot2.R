@@ -6,7 +6,8 @@
 #'
 #' @inheritParams ggplot2::geom_boxplot
 #' @inheritSection ggplot2::geom_boxplot Summary statistics
-#'
+#' @param width.errorbar the width of errorbar (default 0.7)
+#' 
 #' @eval ggplot2:::rd_aesthetics("geom", "boxplot")
 #' @seealso [geom_quantile()] for continuous `x`,
 #'   [geom_violin()] for a richer display of the distribution, and

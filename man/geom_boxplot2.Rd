@@ -143,6 +143,8 @@ by setting \code{outlier.shape = NA}. Importantly, this does not remove the outl
 it only hides them, so the range calculated for the y-axis will be the
 same with outliers shown and outliers hidden.}
 
+\item{width.errorbar}{the width of errorbar (default 0.7)}
+
 \item{notch}{If \code{FALSE} (default) make a standard box plot. If
 \code{TRUE}, make a notched box plot. Notches are used to compare groups;
 if the notches of two boxes do not overlap, this suggests that the medians
@@ -224,6 +226,8 @@ library(ggplot2)
 
 p <- ggplot(mpg, aes(class, hwy))
 p + geom_boxplot2()
+p + geom_boxplot2(width.errorbar = 0.5)
+p + geom_boxplot2(width = 0.5)
 # Orientation follows the discrete axis
 # ggplot(mpg, aes(hwy, class)) + geom_boxplot2()
 

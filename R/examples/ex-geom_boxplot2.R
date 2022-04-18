@@ -2,6 +2,8 @@ library(ggplot2)
 
 p <- ggplot(mpg, aes(class, hwy))
 p + geom_boxplot2()
+p + geom_boxplot2(width.errorbar = 0.5)
+p + geom_boxplot2(width = 0.5)
 # Orientation follows the discrete axis
 # ggplot(mpg, aes(hwy, class)) + geom_boxplot2()
 
