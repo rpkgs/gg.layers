@@ -13,7 +13,7 @@ Imports:
     dplyr, magrittr, stringr, 
     grid,
     ggplot2, gtable,
-    gggrid, gridtext, ggtext,
+    gggrid, gridtext, ggtext, ggpp,
     glue, hydroGOF, broom,
     ggh4x,
     ggpattern,

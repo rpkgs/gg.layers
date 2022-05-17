@@ -118,3 +118,25 @@ annotate_richlabel_npc <- function(x, y, label,
   annotate_richtext_npc(x, y, label, size, family, 
     fill = fill, label.color = label.color, ...)
 }
+
+#' @export
+annotate_text_npc <- function(x, y, label,
+                              size = 5, family = "", ...) {
+
+  if (family == "") family = theme_get()$text$family
+  data <- data.frame(x, y)
+  geom_text_npc(
+    data = data,
+    aes(npcx = x, npcy = y), size = size, family = family, label = label, ...
+  )
+}
+
+#' @rdname geom_richtext_npc
+#' @export
+#' @importFrom ggpp geom_text_npc
+annotate_label_npc <- function(x, y, label,
+  size = 5, family = "", fill = "white", label.color = "black", ...) {
+  
+  annotate_text_npc(x, y, label, size, family, 
+    fill = fill, label.color = label.color, ...)
+}

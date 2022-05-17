@@ -14,6 +14,7 @@ richtextGrob(
   padding = unit(c(1, 1, 1, 1) * 0, "pt"),
   lineheight = 1.5,
   fontsize = 12,
+  fontface = 1,
   family = "Times",
   color = "black",
   ...

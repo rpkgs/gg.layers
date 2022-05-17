@@ -4,6 +4,7 @@
 \alias{geom_richtext_npc}
 \alias{annotate_richtext_npc}
 \alias{annotate_richlabel_npc}
+\alias{annotate_label_npc}
 \title{Text with Normalised Parent Coordinates}
 \usage{
 geom_richtext_npc(
@@ -25,6 +26,17 @@ geom_richtext_npc(
 annotate_richtext_npc(x, y, label, size = 5, family = "", ...)
 
 annotate_richlabel_npc(
+  x,
+  y,
+  label,
+  size = 5,
+  family = "",
+  fill = "white",
+  label.color = "black",
+  ...
+)
+
+annotate_label_npc(
   x,
   y,
   label,
