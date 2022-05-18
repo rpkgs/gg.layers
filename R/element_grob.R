@@ -2,6 +2,7 @@
 element_grob_text <- function(element = element_text(),
     label = "", x = NULL, y = NULL, family = NULL,
     face = NULL, colour = NULL, size = NULL, hjust = NULL, vjust = NULL,
+    alpha = 1, 
     angle = NULL, lineheight = NULL, margin = NULL, margin_x = FALSE,
     margin_y = FALSE,
     default.units = "native",
@@ -18,7 +19,7 @@ element_grob_text <- function(element = element_text(),
 
     gp <- gpar(fontsize = size, col = colour, fontfamily = family,
         fontface = face, lineheight = lineheight)
-    element_gp <- gpar(fontsize = element$size, col = element$colour,
+    element_gp <- gpar(fontsize = element$size, col = element$colour, alpha = alpha,
         fontfamily = element$family, fontface = element$face,
         lineheight = element$lineheight)
 
