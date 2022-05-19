@@ -68,6 +68,7 @@ stat_reg <- function(mapping = NULL, data = NULL,
   grid_group(fun, mapping, data)
 }
 
+#' @export
 signif_code <- function(pvalue) {
   at <- c(0, 0.001, 0.01, 0.05, 1)
   lev <- c("***", "**", "*", "-")

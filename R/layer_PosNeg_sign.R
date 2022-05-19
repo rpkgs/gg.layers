@@ -26,16 +26,16 @@ add_PosNeg_sign <- function(z, mask,
   z = sign(z)
   n = length(z)
   n_pos = sum(z == 1, na.rm = TRUE)
-  n_pos_sign = sum(z == 1 && mask == 1, na.rm = TRUE)
+  n_pos_sign = sum(z == 1 & mask == 1, na.rm = TRUE)
 
   n_neg = sum(z == -1, na.rm = TRUE)
-  n_neg_sign = sum(z == -1 && mask == 1, na.rm = TRUE)
+  n_neg_sign = sum(z == -1 & mask == 1, na.rm = TRUE)
 
   levs = c("P", "N") #%>% rev()
   cols = set_names(cols, c("N", "P"))
   df = data.frame(sign = factor(c("N", "P"), levs),
                 perc      = c(n_neg, n_pos)/n,
-                perc_sign = c(n_neg_sign, n_pos_sign)) %>%
+                perc_sign = c(n_neg_sign, n_pos_sign)/n) %>%
     mutate(label = sprintf("%s: %.1f%% (%.1f%%)", sign, perc*100, perc_sign*100),
             pos = c(perc[1]*0.75, perc[1] + perc[2]*0.75))
 
