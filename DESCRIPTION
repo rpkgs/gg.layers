@@ -11,6 +11,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     dplyr, magrittr, stringr, 
+    rlang,
     grid,
     ggplot2, gtable,
     gggrid, gridtext, ggtext, ggpp,
@@ -27,7 +28,7 @@ Suggests:
     sf, stars, rgeos, raster,
     lattice,
     cowplot,
-    gridExtra, rlang,
+    gridExtra, 
     knitr,
     rmarkdown
 Config/testthat/edition: 3
