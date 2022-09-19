@@ -8,8 +8,7 @@
 stat_gof(
   mapping = NULL,
   data = NULL,
- 
-    format = "NSE = {str_num(NSE,2)}, R^2 = {str_num(R2, 2)} \\n RMSE = {str_num(RMSE,2)}",
+  format = "NSE = {str_num(NSE,2)}, R^2 = {str_num(R2, 2)} \\n RMSE = {str_num(RMSE,2)}",
   x = 0,
   y = 1,
   hjust = 0,
@@ -47,17 +46,9 @@ stat_reg(
     variables are taken from \code{environment(formula)},
     typically the environment from which \code{lm} is called.}
 
-\item{x}{Unit objects specifying the location of the reference point.}
+\item{x, y}{Unit objects specifying the location of the reference point.}
 
-\item{y}{Unit objects specifying the location of the reference point.}
-
-\item{hjust}{Numerical values specifying the justification
-of the text boxes relative to \code{x} and \code{y}. These justification parameters
-are specified in the internal reference frame of the text boxes, so that,
-for example, \code{hjust} adjusts the vertical justification when the
-text is rotated 90 degrees to the left or right.}
-
-\item{vjust}{Numerical values specifying the justification
+\item{hjust, vjust}{Numerical values specifying the justification
 of the text boxes relative to \code{x} and \code{y}. These justification parameters
 are specified in the internal reference frame of the text boxes, so that,
 for example, \code{hjust} adjusts the vertical justification when the

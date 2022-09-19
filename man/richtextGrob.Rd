@@ -21,28 +21,13 @@ richtextGrob(
 )
 }
 \arguments{
-\item{x}{Unit objects specifying the location of the reference point.}
+\item{x, y}{Unit objects specifying the location of the reference point.}
 
-\item{y}{Unit objects specifying the location of the reference point.}
-
-\item{hjust}{Numerical values specifying the justification
+\item{hjust, vjust}{Numerical values specifying the justification
 of the text boxes relative to \code{x} and \code{y}. These justification parameters
 are specified in the internal reference frame of the text boxes, so that,
 for example, \code{hjust} adjusts the vertical justification when the
 text is rotated 90 degrees to the left or right.}
-
-\item{vjust}{Numerical values specifying the justification
-of the text boxes relative to \code{x} and \code{y}. These justification parameters
-are specified in the internal reference frame of the text boxes, so that,
-for example, \code{hjust} adjusts the vertical justification when the
-text is rotated 90 degrees to the left or right.}
-
-\item{padding}{Unit vectors of four elements each indicating the
-margin and padding around each text label in the order top, right,
-bottom, left. Margins are drawn outside the enclosing box (if any),
-and padding is drawn inside. To avoid rendering artifacts, it is best
-to specify these values in absolute units (such as points, mm, or inch)
-rather than in relative units (such as npc).}
 
 \item{...}{other parameters to \code{\link[gridtext:richtext_grob]{gridtext::richtext_grob()}}}
 }

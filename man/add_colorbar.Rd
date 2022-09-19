@@ -15,12 +15,12 @@ add_colorbar(
 )
 }
 \arguments{
-\item{title}{all title elements: plot, axes, legends (\code{\link[ggplot2:element]{element_text()}};
+\item{title}{all title elements: plot, axes, legends (\code{\link[ggplot2:element_text]{element_text()}};
 inherits from \code{text})}
 
 \item{space}{one of \code{c("left", "bottom")}}
 
-\item{legend.title}{title of legend (\code{\link[ggplot2:element]{element_text()}}; inherits from
+\item{legend.title}{title of legend (\code{\link[ggplot2:element_text]{element_text()}}; inherits from
 \code{title})}
 }
 \description{
