@@ -47,22 +47,25 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">st_point2poly</span><span class="op">(</span><span class="va">xyz</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
-
-<span class="fu">df2rast</span><span class="op">(</span><span class="va">xyz</span><span class="op">)</span>
-
-<span class="fu">rast2poly</span><span class="op">(</span><span class="va">r</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
-
-<span class="fu">st_dissolve</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">st_point2poly</span><span class="op">(</span><span class="va">xyz</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">df2rast</span><span class="op">(</span><span class="va">xyz</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">rast2poly</span><span class="op">(</span><span class="va">r</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">st_dissolve</span><span class="op">(</span><span class="va">x</span>, by <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>xyz</dt>
 <dd><p>matrix or data.frame with at least three columns: x and y coordinates, and values (z). There may be several 'z' variables (columns)</p></dd>
+
+
 <dt>crs</dt>
 <dd><p>one of (i) character: a string accepted by GDAL, (ii) integer, a
 valid EPSG value (numeric), or (iii) an object of class crs.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -86,7 +89,7 @@ valid EPSG value (numeric), or (iii) an object of class crs.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

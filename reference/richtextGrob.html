@@ -47,60 +47,50 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">richtextGrob</span><span class="op">(</span>
-  <span class="va">label</span>,
-  x <span class="op">=</span> <span class="fl">0</span>,
-  y <span class="op">=</span> <span class="fl">1</span>,
-  hjust <span class="op">=</span> <span class="fl">0</span>,
-  vjust <span class="op">=</span> <span class="fl">1</span>,
-  mar <span class="op">=</span> <span class="fl">0.02</span>,
-  padding <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0</span>, <span class="st">"pt"</span><span class="op">)</span>,
-  lineheight <span class="op">=</span> <span class="fl">1.5</span>,
-  fontsize <span class="op">=</span> <span class="fl">12</span>,
-  fontface <span class="op">=</span> <span class="fl">1</span>,
-  family <span class="op">=</span> <span class="st">"Times"</span>,
-  color <span class="op">=</span> <span class="st">"black"</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">richtextGrob</span><span class="op">(</span></span>
+<span>  <span class="va">label</span>,</span>
+<span>  x <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  y <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  hjust <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  vjust <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  mar <span class="op">=</span> <span class="fl">0.02</span>,</span>
+<span>  padding <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0</span>, <span class="st">"pt"</span><span class="op">)</span>,</span>
+<span>  lineheight <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  fontsize <span class="op">=</span> <span class="fl">12</span>,</span>
+<span>  fontface <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  family <span class="op">=</span> <span class="st">"Times"</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>x</dt>
+    <dl><dt>x, y</dt>
 <dd><p>Unit objects specifying the location of the reference point.</p></dd>
-<dt>y</dt>
-<dd><p>Unit objects specifying the location of the reference point.</p></dd>
-<dt>hjust</dt>
+
+
+<dt>hjust, vjust</dt>
 <dd><p>Numerical values specifying the justification
 of the text boxes relative to <code>x</code> and <code>y</code>. These justification parameters
 are specified in the internal reference frame of the text boxes, so that,
 for example, <code>hjust</code> adjusts the vertical justification when the
 text is rotated 90 degrees to the left or right.</p></dd>
-<dt>vjust</dt>
-<dd><p>Numerical values specifying the justification
-of the text boxes relative to <code>x</code> and <code>y</code>. These justification parameters
-are specified in the internal reference frame of the text boxes, so that,
-for example, <code>hjust</code> adjusts the vertical justification when the
-text is rotated 90 degrees to the left or right.</p></dd>
-<dt>padding</dt>
-<dd><p>Unit vectors of four elements each indicating the
-margin and padding around each text label in the order top, right,
-bottom, left. Margins are drawn outside the enclosing box (if any),
-and padding is drawn inside. To avoid rendering artifacts, it is best
-to specify these values in absolute units (such as points, mm, or inch)
-rather than in relative units (such as npc).</p></dd>
+
+
 <dt>...</dt>
 <dd><p>other parameters to <code><a href="https://wilkelab.org/gridtext/reference/richtext_grob.html" class="external-link">gridtext::richtext_grob()</a></code></p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span class="r-in">    <span class="st">"Some text **in bold.**"</span>,</span>
-<span class="r-in">    <span class="st">"Linebreaks&lt;br&gt;Linebreaks&lt;br&gt;Linebreaks"</span>,</span>
-<span class="r-in">    <span class="st">"*x*&lt;sup&gt;2&lt;/sup&gt; + 5*x* + *C*&lt;sub&gt;*i*&lt;/sub&gt;"</span>,</span>
-<span class="r-in">    <span class="st">"Some &lt;span style='color:blue'&gt;blue text **in bold.**&lt;/span&gt;&lt;br&gt;And *italics text.*&lt;br&gt;And some &lt;span style='font-size:18pt; color:black'&gt;large&lt;/span&gt; text."</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="st">"Some text **in bold.**"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"Linebreaks&lt;br&gt;Linebreaks&lt;br&gt;Linebreaks"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"*x*&lt;sup&gt;2&lt;/sup&gt; + 5*x* + *C*&lt;sub&gt;*i*&lt;/sub&gt;"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"Some &lt;span style='color:blue'&gt;blue text **in bold.**&lt;/span&gt;&lt;br&gt;And *italics text.*&lt;br&gt;And some &lt;span style='font-size:18pt; color:black'&gt;large&lt;/span&gt; text."</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -115,7 +105,7 @@ rather than in relative units (such as npc).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

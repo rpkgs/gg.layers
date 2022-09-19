@@ -49,30 +49,41 @@ avoid overlaps when grouping is active. If numeric validate npc values.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">compute_npcx</span><span class="op">(</span><span class="va">x</span>, group <span class="op">=</span> <span class="fl">1L</span>, h.step <span class="op">=</span> <span class="fl">0.1</span>, margin.npc <span class="op">=</span> <span class="fl">0.05</span>, each.len <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-
-<span class="fu">compute_npcy</span><span class="op">(</span><span class="va">y</span>, group <span class="op">=</span> <span class="fl">1L</span>, v.step <span class="op">=</span> <span class="fl">0.1</span>, margin.npc <span class="op">=</span> <span class="fl">0.05</span>, each.len <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">compute_npcx</span><span class="op">(</span><span class="va">x</span>, group <span class="op">=</span> <span class="fl">1L</span>, h.step <span class="op">=</span> <span class="fl">0.1</span>, margin.npc <span class="op">=</span> <span class="fl">0.05</span>, each.len <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">compute_npcy</span><span class="op">(</span><span class="va">y</span>, group <span class="op">=</span> <span class="fl">1L</span>, v.step <span class="op">=</span> <span class="fl">0.1</span>, margin.npc <span class="op">=</span> <span class="fl">0.05</span>, each.len <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x, y</dt>
 <dd><p>numeric or character vector of coordinates.</p></dd>
+
+
 <dt>group</dt>
 <dd><p>integer ggplot's group id. Used to shift coordinates to avoid
 overlaps.</p></dd>
+
+
 <dt>h.step, v.step</dt>
 <dd><p>numeric <code>[0, 1]</code> The step size for shifting coordinates
 in npc units.</p></dd>
+
+
 <dt>margin.npc</dt>
 <dd><p>numeric <code>[0, 1]</code> The margin added towards the nearest
 plotting area edge when converting character coordinates into npc.</p></dd>
+
+
 <dt>each.len</dt>
 <dd><p>integer The number of steps per group.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric vector with values in the range <code>[0, 1]</code> representing
+    
+
+<p>A numeric vector with values in the range <code>[0, 1]</code> representing
 npc coordinates.</p>
     </div>
 
@@ -88,7 +99,7 @@ npc coordinates.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

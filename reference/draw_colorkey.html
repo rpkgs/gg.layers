@@ -49,52 +49,75 @@ key_label"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">key_box</span><span class="op">(</span><span class="va">key</span>, <span class="va">key.layout</span>, <span class="va">vp</span>, <span class="va">vp_label</span>, <span class="va">reccentre</span>, <span class="va">recdim</span>, border <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">key_tick</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">labscat</span>, <span class="va">vp_label</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="fu">key_border</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">open.lower</span>, <span class="va">open.upper</span><span class="op">)</span>
-
-<span class="fu">key_triangle</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">open.lower</span>, <span class="va">open.upper</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">key_box</span><span class="op">(</span><span class="va">key</span>, <span class="va">key.layout</span>, <span class="va">vp</span>, <span class="va">vp_label</span>, <span class="va">reccentre</span>, <span class="va">recdim</span>, border <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">key_tick</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">labscat</span>, <span class="va">vp_label</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">key_border</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">open.lower</span>, <span class="va">open.upper</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">key_triangle</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">open.lower</span>, <span class="va">open.upper</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>key</dt>
 <dd><p>The parameter of colorkey</p></dd>
+
+
 <dt>key.layout</dt>
 <dd><p>The position</p></dd>
+
+
 <dt>vp</dt>
 <dd><p>viewport</p></dd>
+
+
 <dt>vp_label</dt>
 <dd><p>viewport label</p></dd>
+
+
 <dt>reccentre</dt>
 <dd><p><code>reccentre = (scat[-1] + scat[-length(scat)]) / 2</code></p></dd>
+
+
 <dt>recdim</dt>
 <dd><p><code>recdim = diff(scat)</code></p></dd>
+
+
 <dt>border</dt>
 <dd><p>boolean, the rentangle border</p></dd>
+
+
 <dt>...</dt>
 <dd><p>ignored.</p></dd>
+
+
 <dt>key.gf</dt>
 <dd><p>returned by <code>key.gf</code></p></dd>
+
+
 <dt>labscat</dt>
 <dd><p>at which to draw labels</p></dd>
+
+
 <dt>open.lower, open.upper</dt>
 <dd><p>The width of lower and upper triangle</p></dd>
+
+
 <dt>labelsGrob</dt>
 <dd><p>labels grobs</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">key.gf</span> <span class="op">&lt;-</span> <span class="fu">key_gf</span><span class="op">(</span><span class="va">key</span>, <span class="va">key.layout</span>, <span class="va">vp</span>, <span class="va">vp_label</span>, <span class="va">legend.line</span>, <span class="va">reccentre</span>, <span class="va">recdim</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">key.gf</span> <span class="op">&lt;-</span> <span class="fu">key_label</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">labscat</span>, <span class="va">vp_label</span>, <span class="va">legend.line</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">key.gf</span> <span class="op">&lt;-</span> <span class="fu">key_gf</span><span class="op">(</span><span class="va">key</span>, <span class="va">key.layout</span>, <span class="va">vp</span>, <span class="va">vp_label</span>, <span class="va">legend.line</span>, <span class="va">reccentre</span>, <span class="va">recdim</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">key.gf</span> <span class="op">&lt;-</span> <span class="fu">key_label</span><span class="op">(</span><span class="va">key.gf</span>, <span class="va">key</span>, <span class="va">labscat</span>, <span class="va">vp_label</span>, <span class="va">legend.line</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -109,7 +132,7 @@ key_label"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/m
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -51,28 +51,28 @@ and two whiskers), and all "outlying" points individually.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">geom_boxplot2</span><span class="op">(</span>
-  mapping <span class="op">=</span> <span class="cn">NULL</span>,
-  data <span class="op">=</span> <span class="cn">NULL</span>,
-  stat <span class="op">=</span> <span class="st">"boxplot"</span>,
-  position <span class="op">=</span> <span class="st">"dodge2"</span>,
-  <span class="va">...</span>,
-  outlier.colour <span class="op">=</span> <span class="cn">NULL</span>,
-  outlier.color <span class="op">=</span> <span class="cn">NULL</span>,
-  outlier.fill <span class="op">=</span> <span class="cn">NULL</span>,
-  outlier.shape <span class="op">=</span> <span class="fl">19</span>,
-  outlier.size <span class="op">=</span> <span class="fl">1.5</span>,
-  outlier.stroke <span class="op">=</span> <span class="fl">0.5</span>,
-  outlier.alpha <span class="op">=</span> <span class="cn">NULL</span>,
-  show.errorbar <span class="op">=</span> <span class="cn">TRUE</span>,
-  width.errorbar <span class="op">=</span> <span class="fl">0.7</span>,
-  notch <span class="op">=</span> <span class="cn">FALSE</span>,
-  notchwidth <span class="op">=</span> <span class="fl">0.5</span>,
-  varwidth <span class="op">=</span> <span class="cn">FALSE</span>,
-  na.rm <span class="op">=</span> <span class="cn">FALSE</span>,
-  show.legend <span class="op">=</span> <span class="cn">NA</span>,
-  inherit.aes <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">geom_boxplot2</span><span class="op">(</span></span>
+<span>  mapping <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stat <span class="op">=</span> <span class="st">"boxplot"</span>,</span>
+<span>  position <span class="op">=</span> <span class="st">"dodge2"</span>,</span>
+<span>  <span class="va">...</span>,</span>
+<span>  outlier.colour <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  outlier.color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  outlier.fill <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  outlier.shape <span class="op">=</span> <span class="fl">19</span>,</span>
+<span>  outlier.size <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>  outlier.stroke <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  outlier.alpha <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  show.errorbar <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  width.errorbar <span class="op">=</span> <span class="fl">0.7</span>,</span>
+<span>  notch <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  notchwidth <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  varwidth <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  na.rm <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  show.legend <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  inherit.aes <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -82,6 +82,8 @@ and two whiskers), and all "outlying" points individually.</p>
 <code><a href="https://ggplot2.tidyverse.org/reference/aes_.html" class="external-link">aes_()</a></code>. If specified and <code>inherit.aes = TRUE</code> (the
 default), it is combined with the default mapping at the top level of the
 plot. You must supply <code>mapping</code> if there is no plot mapping.</p></dd>
+
+
 <dt>data</dt>
 <dd><p>The data to be displayed in this layer. There are three
 options:</p>
@@ -94,18 +96,21 @@ data. All objects will be fortified to produce a data frame. See
 the plot data. The return value must be a <code>data.frame</code>, and
 will be used as the layer data. A <code>function</code> can be created
 from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
-<dt>stat</dt>
-<dd><p>Use to override the default connection between
-<code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">geom_boxplot()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" class="external-link">stat_boxplot()</a></code>.</p></dd>
+
+
 <dt>position</dt>
 <dd><p>Position adjustment, either as a string, or the result of
 a call to a position adjustment function.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other arguments passed on to <code><a href="https://ggplot2.tidyverse.org/reference/layer.html" class="external-link">layer()</a></code>. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 <code>colour = "red"</code> or <code>size = 3</code>. They may also be parameters
 to the paired geom/stat.</p></dd>
-<dt>outlier.colour</dt>
+
+
+<dt>outlier.colour, outlier.color, outlier.fill, outlier.shape, outlier.size, outlier.stroke, outlier.alpha</dt>
 <dd><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
 aesthetics used for the box.</p>
 <p>In the unlikely event you specify both US and UK spellings of colour, the
@@ -115,95 +120,50 @@ the raw data points on top of the boxplot. Hiding the outliers can be achieved
 by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the y-axis will be the
 same with outliers shown and outliers hidden.</p></dd>
-<dt>outlier.color</dt>
-<dd><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
-aesthetics used for the box.</p>
-<p>In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.</p>
-<p>Sometimes it can be useful to hide the outliers, for example when overlaying
-the raw data points on top of the boxplot. Hiding the outliers can be achieved
-by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be the
-same with outliers shown and outliers hidden.</p></dd>
-<dt>outlier.fill</dt>
-<dd><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
-aesthetics used for the box.</p>
-<p>In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.</p>
-<p>Sometimes it can be useful to hide the outliers, for example when overlaying
-the raw data points on top of the boxplot. Hiding the outliers can be achieved
-by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be the
-same with outliers shown and outliers hidden.</p></dd>
-<dt>outlier.shape</dt>
-<dd><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
-aesthetics used for the box.</p>
-<p>In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.</p>
-<p>Sometimes it can be useful to hide the outliers, for example when overlaying
-the raw data points on top of the boxplot. Hiding the outliers can be achieved
-by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be the
-same with outliers shown and outliers hidden.</p></dd>
-<dt>outlier.size</dt>
-<dd><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
-aesthetics used for the box.</p>
-<p>In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.</p>
-<p>Sometimes it can be useful to hide the outliers, for example when overlaying
-the raw data points on top of the boxplot. Hiding the outliers can be achieved
-by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be the
-same with outliers shown and outliers hidden.</p></dd>
-<dt>outlier.stroke</dt>
-<dd><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
-aesthetics used for the box.</p>
-<p>In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.</p>
-<p>Sometimes it can be useful to hide the outliers, for example when overlaying
-the raw data points on top of the boxplot. Hiding the outliers can be achieved
-by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be the
-same with outliers shown and outliers hidden.</p></dd>
-<dt>outlier.alpha</dt>
-<dd><p>Default aesthetics for outliers. Set to <code>NULL</code> to inherit from the
-aesthetics used for the box.</p>
-<p>In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.</p>
-<p>Sometimes it can be useful to hide the outliers, for example when overlaying
-the raw data points on top of the boxplot. Hiding the outliers can be achieved
-by setting <code>outlier.shape = NA</code>. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be the
-same with outliers shown and outliers hidden.</p></dd>
+
+
 <dt>width.errorbar</dt>
 <dd><p>the width of errorbar (default 0.7)</p></dd>
+
+
 <dt>notch</dt>
 <dd><p>If <code>FALSE</code> (default) make a standard box plot. If
 <code>TRUE</code>, make a notched box plot. Notches are used to compare groups;
 if the notches of two boxes do not overlap, this suggests that the medians
 are significantly different.</p></dd>
+
+
 <dt>notchwidth</dt>
 <dd><p>For a notched box plot, width of the notch relative to
 the body (defaults to <code>notchwidth = 0.5</code>).</p></dd>
+
+
 <dt>varwidth</dt>
 <dd><p>If <code>FALSE</code> (default) make a standard box plot. If
 <code>TRUE</code>, boxes are drawn with widths proportional to the
 square-roots of the number of observations in the groups (possibly
 weighted, using the <code>weight</code> aesthetic).</p></dd>
+
+
 <dt>na.rm</dt>
 <dd><p>If <code>FALSE</code>, the default, missing values are removed with
 a warning. If <code>TRUE</code>, missing values are silently removed.</p></dd>
+
+
 <dt>show.legend</dt>
 <dd><p>logical. Should this layer be included in the legends?
 <code>NA</code>, the default, includes if any aesthetics are mapped.
 <code>FALSE</code> never includes, and <code>TRUE</code> always includes.
 It can also be a named logical vector to finely select the aesthetics to
 display.</p></dd>
+
+
 <dt>inherit.aes</dt>
 <dd><p>If <code>FALSE</code>, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/borders.html" class="external-link">borders()</a></code>.</p></dd>
+
 </dl></div>
     <div id="aesthetics">
     <h2>Aesthetics</h2>
@@ -260,64 +220,64 @@ The American Statistician 32, 12-16.</p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">class</span>, <span class="va">hwy</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>width.errorbar <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>width.errorbar <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># Orientation follows the discrete axis</span></span>
-<span class="r-in"><span class="co"># ggplot(mpg, aes(hwy, class)) + geom_boxplot2()</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>notch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Orientation follows the discrete axis</span></span></span>
+<span class="r-in"><span><span class="co"># ggplot(mpg, aes(hwy, class)) + geom_boxplot2()</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>notch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> notch went outside hinges. Try setting notch=FALSE.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> notch went outside hinges. Try setting notch=FALSE.</span>
 <span class="r-plt img"><img src="geom_boxplot2-4.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>varwidth <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>varwidth <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-5.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span>, colour <span class="op">=</span> <span class="st">"#3366FF"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span>, colour <span class="op">=</span> <span class="st">"#3366FF"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># By default, outlier points match the colour of the box. Use</span></span>
-<span class="r-in"><span class="co"># outlier.colour to override</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>outlier.colour <span class="op">=</span> <span class="st">"red"</span>, outlier.shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># By default, outlier points match the colour of the box. Use</span></span></span>
+<span class="r-in"><span><span class="co"># outlier.colour to override</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>outlier.colour <span class="op">=</span> <span class="st">"red"</span>, outlier.shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-7.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span class="co"># Remove outliers when overlaying boxplot with original data points</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co"># Remove outliers when overlaying boxplot with original data points</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span>outlier.shape <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html" class="external-link">geom_jitter</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-8.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Boxplots are automatically dodged when any aesthetic is a factor</span></span>
-<span class="r-in"><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">drv</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Boxplots are automatically dodged when any aesthetic is a factor</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_boxplot2</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="va">drv</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-9.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># You can also use boxplots with continuous x, as long as you supply</span></span>
-<span class="r-in"><span class="co"># a grouping variable. cut_width is particularly useful</span></span>
-<span class="r-in"><span class="co"># ggplot(diamonds, aes(carat, price)) +</span></span>
-<span class="r-in"><span class="co">#   geom_boxplot2()</span></span>
-<span class="r-in"><span class="co"># ggplot(diamonds, aes(carat, price)) +</span></span>
-<span class="r-in"><span class="co">#   geom_boxplot2(aes(group = cut_width(carat, 0.25)))</span></span>
-<span class="r-in"><span class="co"># Adjust the transparency of outliers using outlier.alpha</span></span>
-<span class="r-in"><span class="co"># ggplot(diamonds, aes(carat, price)) +</span></span>
-<span class="r-in"><span class="co">#   geom_boxplot2(aes(group = cut_width(carat, 0.25)), outlier.alpha = 0.1)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># It's possible to draw a boxplot with your own computations if you</span></span>
-<span class="r-in"><span class="co"># use stat = "identity":</span></span>
-<span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
-<span class="r-in">  x <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">  y0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,</span>
-<span class="r-in">  y25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">0.25</span><span class="op">)</span>,</span>
-<span class="r-in">  y50 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,</span>
-<span class="r-in">  y75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
-<span class="r-in">  y100 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span class="r-in">  <span class="fu">geom_boxplot2</span><span class="op">(</span></span>
-<span class="r-in">   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">y0</span>, lower <span class="op">=</span> <span class="va">y25</span>, middle <span class="op">=</span> <span class="va">y50</span>, upper <span class="op">=</span> <span class="va">y75</span>, ymax <span class="op">=</span> <span class="va">y100</span><span class="op">)</span>,</span>
-<span class="r-in">   stat <span class="op">=</span> <span class="st">"identity"</span></span>
-<span class="r-in"> <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># You can also use boxplots with continuous x, as long as you supply</span></span></span>
+<span class="r-in"><span><span class="co"># a grouping variable. cut_width is particularly useful</span></span></span>
+<span class="r-in"><span><span class="co"># ggplot(diamonds, aes(carat, price)) +</span></span></span>
+<span class="r-in"><span><span class="co">#   geom_boxplot2()</span></span></span>
+<span class="r-in"><span><span class="co"># ggplot(diamonds, aes(carat, price)) +</span></span></span>
+<span class="r-in"><span><span class="co">#   geom_boxplot2(aes(group = cut_width(carat, 0.25)))</span></span></span>
+<span class="r-in"><span><span class="co"># Adjust the transparency of outliers using outlier.alpha</span></span></span>
+<span class="r-in"><span><span class="co"># ggplot(diamonds, aes(carat, price)) +</span></span></span>
+<span class="r-in"><span><span class="co">#   geom_boxplot2(aes(group = cut_width(carat, 0.25)), outlier.alpha = 0.1)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># It's possible to draw a boxplot with your own computations if you</span></span></span>
+<span class="r-in"><span><span class="co"># use stat = "identity":</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  x <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>  y0 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y25 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">0.25</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y50 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y75 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">y</span>, <span class="fl">0.75</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  y100 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">geom_boxplot2</span><span class="op">(</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>ymin <span class="op">=</span> <span class="va">y0</span>, lower <span class="op">=</span> <span class="va">y25</span>, middle <span class="op">=</span> <span class="va">y50</span>, upper <span class="op">=</span> <span class="va">y75</span>, ymax <span class="op">=</span> <span class="va">y100</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   stat <span class="op">=</span> <span class="st">"identity"</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_boxplot2-10.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -333,7 +293,7 @@ The American Statistician 32, 12-16.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -49,70 +49,86 @@ Create one line for hatch area of one polygon"><!-- mathjax --><script src="http
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">polygon.fullhatch</span><span class="op">(</span>
-  <span class="va">x</span>,
-  y <span class="op">=</span> <span class="cn">NULL</span>,
-  <span class="va">density</span>,
-  <span class="va">angle</span>,
-  ..debug.hatch <span class="op">=</span> <span class="cn">FALSE</span>,
-  fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span>
-
-<span class="fu">polygon.onehatch</span><span class="op">(</span>
-  <span class="va">x</span>,
-  <span class="va">y</span>,
-  <span class="va">x0</span>,
-  <span class="va">y0</span>,
-  <span class="va">xd</span>,
-  <span class="va">yd</span>,
-  ..debug.hatch <span class="op">=</span> <span class="cn">FALSE</span>,
-  fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">polygon.fullhatch</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  y <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  <span class="va">density</span>,</span>
+<span>  <span class="va">angle</span>,</span>
+<span>  ..debug.hatch <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">polygon.onehatch</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  <span class="va">y</span>,</span>
+<span>  <span class="va">x0</span>,</span>
+<span>  <span class="va">y0</span>,</span>
+<span>  <span class="va">xd</span>,</span>
+<span>  <span class="va">yd</span>,</span>
+<span>  ..debug.hatch <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>x</dt>
+    <dl><dt>x, y</dt>
 <dd><p>vectors containing the coordinates of the vertices
     of the polygon.</p></dd>
-<dt>y</dt>
-<dd><p>vectors containing the coordinates of the vertices
-    of the polygon.</p></dd>
+
+
 <dt>density</dt>
 <dd><p>the density of shading lines, in lines per inch.  The
     default value of <code>NULL</code> means that no shading lines are drawn.
     A zero value of <code>density</code> means no shading nor filling whereas
     negative values and <code>NA</code> suppress shading (and so allow
     color filling).</p></dd>
+
+
 <dt>angle</dt>
 <dd><p>the slope of shading lines, given as an angle
      in degrees (counter-clockwise).</p></dd>
+
+
 <dt>..debug.hatch</dt>
 <dd><p>for drawing when debugging function</p></dd>
+
+
 <dt>fillOddEven</dt>
 <dd><p>logical controlling the polygon shading mode:  see
       below for details.  Default <code>FALSE</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>graphical parameters such as <code>xpd</code>, <code>lend</code>,
     <code>ljoin</code> and <code>lmitre</code> can be given as arguments.</p></dd>
+
+
 <dt>x0</dt>
 <dd><p>parameter as issued from <code>polygon.fullhatch</code></p></dd>
+
+
 <dt>y0</dt>
 <dd><p>parameter as issued from <code>polygon.fullhatch</code></p></dd>
+
+
 <dt>xd</dt>
 <dd><p>parameter as issued from <code>polygon.fullhatch</code></p></dd>
+
+
 <dt>yd</dt>
 <dd><p>parameter as issued from <code>polygon.fullhatch</code></p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">polygon.fullhatch</span><span class="op">(</span><span class="va">x</span>, density <span class="op">=</span> <span class="fl">10</span>, angle <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/arrows.html" class="external-link">arrows</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">lx1</span>, <span class="va">res</span><span class="op">$</span><span class="va">ly1</span>, <span class="va">res</span><span class="op">$</span><span class="va">lx2</span>, <span class="va">res</span><span class="op">$</span><span class="va">ly2</span>, col <span class="op">=</span> <span class="st">"red"</span>, code <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">polygon.fullhatch</span><span class="op">(</span><span class="va">x</span>, density <span class="op">=</span> <span class="fl">10</span>, angle <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/arrows.html" class="external-link">arrows</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">lx1</span>, <span class="va">res</span><span class="op">$</span><span class="va">ly1</span>, <span class="va">res</span><span class="op">$</span><span class="va">lx2</span>, <span class="va">res</span><span class="op">$</span><span class="va">ly2</span>, col <span class="op">=</span> <span class="st">"red"</span>, code <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -127,7 +143,7 @@ Create one line for hatch area of one polygon"><!-- mathjax --><script src="http
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

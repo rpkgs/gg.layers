@@ -47,7 +47,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">str_num</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">str_num</span><span class="op">(</span><span class="va">x</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -55,17 +55,20 @@
     <dl><dt>x</dt>
 <dd><p>a numeric vector.  Or, for <code>round</code> and <code>signif</code>, a
     complex vector.</p></dd>
+
+
 <dt>digits</dt>
 <dd><p>integer indicating the number of decimal places
     (<code>round</code>) or significant digits (<code>signif</code>) to be used.
     For <code>round</code>, negative values are allowed (see ‘Details’).</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># 2</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># 2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2"</span>
-<span class="r-in"><span class="fu">str_num</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># 2.00</span></span>
+<span class="r-in"><span><span class="fu">str_num</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="co"># 2.00</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2.00"</span>
 </code></pre></div>
     </div>
@@ -81,7 +84,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

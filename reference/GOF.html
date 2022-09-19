@@ -47,28 +47,39 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">GOF</span><span class="op">(</span><span class="va">yobs</span>, <span class="va">ysim</span>, <span class="va">w</span>, include.cv <span class="op">=</span> <span class="cn">FALSE</span>, include.r <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-<span class="fu">NSE</span><span class="op">(</span><span class="va">yobs</span>, <span class="va">ysim</span>, <span class="va">w</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">GOF</span><span class="op">(</span><span class="va">yobs</span>, <span class="va">ysim</span>, <span class="va">w</span>, include.cv <span class="op">=</span> <span class="cn">FALSE</span>, include.r <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">NSE</span><span class="op">(</span><span class="va">yobs</span>, <span class="va">ysim</span>, <span class="va">w</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>yobs</dt>
 <dd><p>Numeric vector, observations</p></dd>
+
+
 <dt>ysim</dt>
 <dd><p>Numeric vector, corresponding simulated values</p></dd>
+
+
 <dt>w</dt>
 <dd><p>Numeric vector, weights of every points. If w included, when
 calculating mean, Bias, MAE, RMSE and NSE, w will be taken into considered.</p></dd>
+
+
 <dt>include.cv</dt>
 <dd><p>If true, cv will be included.</p></dd>
+
+
 <dt>include.r</dt>
 <dd><p>If true, r and R2 will be included.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <ul><li><p><code>RMSE</code> root mean square error</p></li>
+    
+
+<ul><li><p><code>RMSE</code> root mean square error</p></li>
 <li><p><code>NSE</code> NASH coefficient</p></li>
 <li><p><code>MAE</code> mean absolute error</p></li>
 <li><p><code>AI</code> Agreement index (only good points (w == 1)) participate to
@@ -92,14 +103,14 @@ calculate. See details in Zhang et al., (2015).</p></li>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">yobs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">ysim</span> <span class="op">=</span> <span class="va">yobs</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">/</span><span class="fl">4</span></span>
-<span class="r-in"><span class="fu">GOF</span><span class="op">(</span><span class="va">yobs</span>, <span class="va">ysim</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">yobs</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ysim</span> <span class="op">=</span> <span class="va">yobs</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">/</span><span class="fl">4</span></span></span>
+<span class="r-in"><span><span class="fu">GOF</span><span class="op">(</span><span class="va">yobs</span>, <span class="va">ysim</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       R   pvalue    R2   NSE   KGE  RMSE   MAE    Bias Bias_perc    AI n_sim</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0.975 1.99<span style="color: #949494;">e</span><span style="color: #BB0000;">-65</span> 0.950 0.948 -<span style="color: #BB0000;">2.73</span> 0.254 0.210 -<span style="color: #BB0000;">0.022</span><span style="color: #BB0000; text-decoration: underline;">7</span>      3.73 0.987   100</span>
-<span class="r-in"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       R   pvalue    R2   NSE   KGE  RMSE   MAE   Bias Bias_perc    AI n_sim</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0.972 1.01<span style="color: #949494;">e</span><span style="color: #BB0000;">-63</span> 0.945 0.930 0.824 0.263 0.210 0.017<span style="text-decoration: underline;">1</span>     0.145 0.984   100</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -114,7 +125,7 @@ calculate. See details in Zhang et al., (2015).</p></li>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

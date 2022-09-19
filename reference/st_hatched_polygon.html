@@ -47,38 +47,51 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">st_hatched_polygon</span><span class="op">(</span>
-  <span class="va">x</span>,
-  density <span class="op">=</span> <span class="fl">2</span>,
-  angle <span class="op">=</span> <span class="fl">45</span>,
-  fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,
-  type <span class="op">=</span> <span class="st">"sf"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">st_hatched_polygon</span><span class="op">(</span></span>
+<span>  <span class="va">x</span>,</span>
+<span>  density <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  angle <span class="op">=</span> <span class="fl">45</span>,</span>
+<span>  fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"sf"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>SpatialPolygons* from library sp</p></dd>
+
+
 <dt>density</dt>
 <dd><p>the density of shading lines, in lines per inch. The default
 value of NULL means that no shading lines are drawn. A zero value of density
 means no shading nor filling whereas negative values and NA suppress shading
 (and so allow color filling).</p></dd>
+
+
 <dt>angle</dt>
 <dd><p>the slope of shading lines, given as an angle
      in degrees (counter-clockwise).</p></dd>
+
+
 <dt>fillOddEven</dt>
 <dd><p>logical controlling the polygon shading mode:  see
       below for details.  Default <code>FALSE</code>.</p></dd>
+
+
 <dt>type</dt>
 <dd><p>Controls the type of the returned object:</p><ul><li><p><code>sf</code>: sf object of <code>MULTILINESTRING</code></p></li>
 <li><p><code>sp</code>: sp object of <code><a href="https://rdrr.io/pkg/sp/man/SpatialLines.html" class="external-link">sp::SpatialLinesDataFrame()</a></code></p></li>
 </ul></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An hatched area for assigned <code>type</code></p>
+    
+
+<p>An hatched area for assigned <code>type</code></p>
+
+
     </div>
     <div id="references">
     <h2>References</h2>
@@ -90,14 +103,14 @@ means no shading nor filling whereas negative values and NA suppress shading
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gg.layers</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"d_trendPerc"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">d</span> <span class="op">=</span> <span class="va">d_trendPerc</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">perc</span> <span class="op">&gt;=</span> <span class="fl">0.99</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">.</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">poly</span> <span class="op">=</span> <span class="fu"><a href="st_point2poly.html">st_point2poly</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">hatches</span> <span class="op">=</span> <span class="fu">st_hatched_polygon</span><span class="op">(</span><span class="va">poly</span><span class="op">)</span> <span class="co">#</span></span>
-<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">hatches</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gg.layers</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"d_trendPerc"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">d</span> <span class="op">=</span> <span class="va">d_trendPerc</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">perc</span> <span class="op">&gt;=</span> <span class="fl">0.99</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="va">.</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">poly</span> <span class="op">=</span> <span class="fu"><a href="st_point2poly.html">st_point2poly</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">hatches</span> <span class="op">=</span> <span class="fu">st_hatched_polygon</span><span class="op">(</span><span class="va">poly</span><span class="op">)</span> <span class="co">#</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">hatches</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="st_hatched_polygon-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -113,7 +126,7 @@ means no shading nor filling whereas negative values and NA suppress shading
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -47,7 +47,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">st_df2hatch</span><span class="op">(</span><span class="va">data</span>, density <span class="op">=</span> <span class="fl">1</span>, angle <span class="op">=</span> <span class="fl">45</span>, hatch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">st_df2hatch</span><span class="op">(</span><span class="va">data</span>, density <span class="op">=</span> <span class="fl">1</span>, angle <span class="op">=</span> <span class="fl">45</span>, hatch <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -55,21 +55,30 @@
     <dl><dt>data</dt>
 <dd><p>A data.frame, with the columns of "x", "y", "mask"(optional), and
 "PANEL"(optional), "group"(optional).</p></dd>
+
+
 <dt>density</dt>
 <dd><p>the density of shading lines, in lines per inch. The default
 value of NULL means that no shading lines are drawn. A zero value of density
 means no shading nor filling whereas negative values and NA suppress shading
 (and so allow color filling).</p></dd>
+
+
 <dt>angle</dt>
 <dd><p>the slope of shading lines, given as an angle
      in degrees (counter-clockwise).</p></dd>
+
+
 <dt>hatch</dt>
 <dd><p>boolean. If <code>FALSE</code>, a polygon will be returned, other than lines.
 Meanwhile, the parameters <code>density</code> and <code>angle</code> will be ignored.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A multi-line sf object</p>
+    
+
+<p>A multi-line sf object</p>
     </div>
 
   </div>
@@ -84,7 +93,7 @@ Meanwhile, the parameters <code>density</code> and <code>angle</code> will be ig
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
