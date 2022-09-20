@@ -2,20 +2,41 @@
 % Please edit documentation in R/stat_gof.R, R/stat_reg.R
 \name{stat_gof}
 \alias{stat_gof}
+\alias{geom_gof}
 \alias{stat_reg}
-\title{\code{stat} of regression coefficient and good-of-fitting information}
+\title{stat_gof}
 \usage{
 stat_gof(
   mapping = NULL,
   data = NULL,
-  format = "NSE = {str_num(NSE,2)}, R^2 = {str_num(R2, 2)} \\n RMSE = {str_num(RMSE,2)}",
+  geom = GeomRichTextNpc,
+  position = "identity",
+  na.rm = FALSE,
+  show.legend = NA,
+  show.bias = TRUE,
+  label.format = fmt_gof,
+  x = 0.05,
+  y = 0.95,
+  inherit.aes = TRUE,
+  ...
+)
+
+geom_gof(
+  mapping = NULL,
+  data = NULL,
+  stat = StatGOF,
+  position = "identity",
+  ...,
+  show.bias = TRUE,
+  label.format = fmt_gof,
   x = 0,
   y = 1,
   hjust = 0,
   vjust = 1,
-  mar = 0.02,
-  show.bias = TRUE,
-  show.line = FALSE
+  size = 5,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
 )
 
 stat_reg(
@@ -40,19 +61,49 @@ stat_reg(
 )
 }
 \arguments{
-\item{data}{an optional data frame, list or environment (or object
-    coercible by \code{\link{as.data.frame}} to a data frame) containing
-    the variables in the model.  If not found in \code{data}, the
-    variables are taken from \code{environment(formula)},
-    typically the environment from which \code{lm} is called.}
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
+\code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
+default), it is combined with the default mapping at the top level of the
+plot. You must supply \code{mapping} if there is no plot mapping.}
 
-\item{x, y}{Unit objects specifying the location of the reference point.}
+\item{data}{The data to be displayed in this layer. There are three
+options:
 
-\item{hjust, vjust}{Numerical values specifying the justification
-of the text boxes relative to \code{x} and \code{y}. These justification parameters
-are specified in the internal reference frame of the text boxes, so that,
-for example, \code{hjust} adjusts the vertical justification when the
-text is rotated 90 degrees to the left or right.}
+If \code{NULL}, the default, the data is inherited from the plot
+data as specified in the call to \code{\link[ggplot2:ggplot]{ggplot()}}.
+
+A \code{data.frame}, or other object, will override the plot
+data. All objects will be fortified to produce a data frame. See
+\code{\link[ggplot2:fortify]{fortify()}} for which variables will be created.
+
+A \code{function} will be called with a single argument,
+the plot data. The return value must be a \code{data.frame}, and
+will be used as the layer data. A \code{function} can be created
+from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
+
+\item{position}{"dodge" or "identity"}
+
+\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+a warning. If \code{TRUE}, missing values are silently removed.}
+
+\item{show.legend}{logical. Should this layer be included in the legends?
+\code{NA}, the default, includes if any aesthetics are mapped.
+\code{FALSE} never includes, and \code{TRUE} always includes.
+It can also be a named logical vector to finely select the aesthetics to
+display.}
+
+\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+rather than combining with them. This is most useful for helper functions
+that define both data and aesthetics and shouldn't inherit behaviour from
+the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
+often aesthetics, used to set an aesthetic to a fixed value, like
+\code{colour = "red"} or \code{size = 3}. They may also be parameters
+to the paired geom/stat.}
+
+\item{stat}{The statistical transformation to use on the data for this
+layer, as a string.}
 
 \item{formula}{an object of class \code{"\link[stats]{formula}"} (or one that
     can be coerced to that class): a symbolic description of the
@@ -62,13 +113,13 @@ text is rotated 90 degrees to the left or right.}
 \item{digits}{the number of \emph{significant} digits to be
     passed to \code{\link{format}(\link[stats]{coef}(x), .)} when
     \code{\link{print}()}ing.}
-
-\item{position}{"dodge" or "identity"}
-
-\item{...}{other parameters to \code{\link[gggrid:grid_panel]{gggrid::grid_panel()}}}
+}
+\value{
+No return. This function is used to calculate data for gglot2 \verb{geom_*},
+just like \code{\link[ggplot2:geom_smooth]{ggplot2::stat_smooth()}}.
 }
 \description{
-\code{stat} of regression coefficient and good-of-fitting information
+stat_gof
 }
 \details{
 \itemize{

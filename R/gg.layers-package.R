@@ -2,9 +2,11 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @import gggrid
 #' @import grid magrittr ggplot2
+#' @importFrom gridtext richtext_grob
+#' @importFrom grid gpar
 #' @importFrom stats median approx setNames quantile lm predict cor.test qf
-#' 
 #' @importFrom dplyr first last tibble 
 #' 
 ## usethis namespace: end

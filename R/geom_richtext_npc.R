@@ -62,8 +62,10 @@ GeomRichTextNpc <- ggplot2::ggproto("GeomRichTextNpc", GeomRichText,
     # y = 0.5,
     colour = "black",
     fill = NA, label.color = NA, label.size = 0.25,
-    size = 3.88, angle = 0, hjust = 0.5,
-    vjust = 0.5, alpha = NA, family = "", fontface = 1, lineheight = 1.2
+    size = 3.88, angle = 0, 
+    hjust = 0.5, vjust = 0.5, 
+    # hjust = 0, vjust = 1, 
+    alpha = NA, family = "", fontface = 1, lineheight = 1.2
   ),
   # setup_data = function(data, params) {
   #   data

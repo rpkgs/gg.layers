@@ -1,3 +1,13 @@
+# ' @importFrom ggpmisc stat_poly_eq
+# stat_reg_coef <- function() {
+#     my.format <- 'R^2 ~`=`~"%.2f" * ","~slope~`=`~%.3g*", "*pvalue ~`=`~"%.3f"'
+#     stat_poly_eq(formula = y ~ x,
+#                  output.type = "numeric", parse = TRUE,
+#                  mapping = aes(color = NULL,
+#                                label = sprintf(my.format, after_stat(adj.r.squared), # adj.r.squared
+#                                                after_stat(b_1), after_stat(p.value))))
+# }
+
 #' @inheritParams stats::lm
 #' @param position "dodge" or "identity"
 #'
