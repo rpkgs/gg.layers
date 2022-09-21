@@ -7,8 +7,9 @@
 stat_mk(
   mapping = NULL,
   data = NULL,
-  geom = "line",
+  geom = "abline",
   position = "identity",
+  slope_FUN = slope_mk,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
@@ -68,8 +69,8 @@ stat_mk
 \examples{
 library(ggplot2)
 
-ggplot(mpg, aes(displ, hwy, colour = drv)) + 
-    geom_point() + 
-    stat_mk(size = 1) + 
+ggplot(mpg, aes(displ, hwy, colour = drv)) +
+    geom_point() +
+    stat_mk(size = 1) +
     geom_smooth(method = "lm", se = FALSE, linetype = 2)
 }
