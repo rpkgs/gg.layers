@@ -68,6 +68,7 @@ stat_mk
 }
 \examples{
 library(ggplot2)
+library(rtrend)
 
 ggplot(mpg, aes(displ, hwy, colour = drv)) +
     geom_point() +

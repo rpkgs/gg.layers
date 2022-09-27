@@ -11,6 +11,8 @@
 \alias{element_markdown}
 \alias{GeomSfPattern}
 \alias{geom_sf_pattern}
+\alias{slope_mk}
+\alias{slope_p}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -27,5 +29,7 @@ below to see their documentation.
   \item{ggtext}{\code{\link[ggtext]{element_markdown}}, \code{\link[ggtext]{element_textbox}}}
 
   \item{magrittr}{\code{\link[magrittr:compound]{\%<>\%}}, \code{\link[magrittr:pipe]{\%>\%}}}
+
+  \item{rtrend}{\code{\link[rtrend:slope]{slope_mk}}, \code{\link[rtrend:slope]{slope_p}}}
 }}
 

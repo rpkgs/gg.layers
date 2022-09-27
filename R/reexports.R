@@ -20,3 +20,10 @@ ggpattern::GeomSfPattern
 
 #' @export
 ggpattern::geom_sf_pattern
+
+#' @importFrom rtrend slope_mk slope_p
+#' @export
+rtrend::slope_mk
+
+#' @export
+rtrend::slope_p
