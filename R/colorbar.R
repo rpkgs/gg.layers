@@ -175,7 +175,6 @@ make_colorbar <- function(
   )
   lgd_width %>% unit2npc() #%>% unit("NULL")
 
-
   if (space %in% c("left", "top")) lgd_width <- rev(lgd_width)
 
   lgd_height <- c(
@@ -193,6 +192,7 @@ make_colorbar <- function(
     layout = c(6, 5)
     just = hjust
   } else if (space %in% c("top", "bottom")) {
+    lgd_height %<>% rev()
     wrap(lgd_width, lgd_height)
     layout = c(5, 6)
     just = vjust
@@ -202,6 +202,7 @@ make_colorbar <- function(
     heights = lgd_height,
     widths = lgd_width, just = just
   )
+  # print2(lgd_width, lgd_height, max.level=1)
 
   pos <- colorkey_pos(space)
   key.gf <- key_box(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)

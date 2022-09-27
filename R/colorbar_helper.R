@@ -171,7 +171,6 @@ key_box <- function(key, key.layout, vp, vp_label,
     key.gf <- frameGrob(layout = key.layout, vp = vp,
         name = lattice::trellis.grobname("frame", type="colorkey"))
 
-
     if (key$raster) {
         # raster
         grob = rasterGrob(mat,

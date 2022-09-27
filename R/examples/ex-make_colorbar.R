@@ -1,6 +1,41 @@
-library(rcolors)
 library(ggplot2)
+library(rcolors)
+library(magrittr)
+library(glue)
 
+## example 01
+spaces <- c("right", "left", "top", "bottom") # %>% set_names(., .)
+
+make_cbar <- function(brks, space, outfile = NULL) {
+  # brks <- 1:5
+  nbrk <- length(brks) - 1
+  cols <- rcolors::get_color("amwg256", nbrk)
+
+  g <- make_colorbar(
+    at = brks, col = cols,
+    space = space, title = space
+  )
+  if (!is.null(outfile)) {
+    if (require(Ipaper))
+      Ipaper::write_fig(g, outfile, 10, 6)
+  }
+  g
+}
+
+brks = 1:5 %>% c(-Inf, ., Inf)
+spaces <- c("right", "left", "top", "bottom")
+ps = lapply(spaces, function(space) {
+  fout = glue("cbar_{space}.pdf")
+  fout = NULL
+  make_cbar(brks, space, fout)
+})
+g = cowplot::plot_grid(plotlist = ps)
+# g = patchwork::wrap_plots(ps)
+# grid.newpage(); grid.draw(g)
+# Ipaper::write_fig(g, "Rplot.pdf", 10, 6) # uncomment if want to show figure
+
+
+## example 02
 brks = c(-Inf, -1, 0, 1, 3, 6, 9, Inf)
 # brks = 1:10
 nbrk = length(brks) - 1

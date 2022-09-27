@@ -28,6 +28,7 @@ Suggests:
     sf, stars, rgeos, raster,
     lattice,
     cowplot,
+    glue,
     gridExtra, 
     knitr,
     rmarkdown

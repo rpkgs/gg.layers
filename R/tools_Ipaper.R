@@ -60,3 +60,10 @@ modify_list <- function(old, new) {
 `%||%` <- function(x, y) {
     if (is.null(x)) y else x
 }
+
+
+print2 <- function(..., max.level = NA) {
+  l = listk(...)
+  .tmp = print(str(l, max.level = max.level))
+  invisible()
+}
