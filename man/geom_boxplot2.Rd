@@ -28,10 +28,10 @@ geom_boxplot2(
 )
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
-\code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
-default), it is combined with the default mapping at the top level of the
-plot. You must supply \code{mapping} if there is no plot mapping.}
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}}. If specified and
+\code{inherit.aes = TRUE} (the default), it is combined with the default mapping
+at the top level of the plot. You must supply \code{mapping} if there is no plot
+mapping.}
 
 \item{data}{The data to be displayed in this layer. There are three
 options:
@@ -48,8 +48,10 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{position}{Position adjustment, either as a string, or the result of
-a call to a position adjustment function.}
+\item{position}{Position adjustment, either as a string naming the adjustment
+(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
+position adjustment function. Use the latter if you need to change the
+settings of the adjustment.}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
@@ -117,6 +119,7 @@ and two whiskers), and all "outlying" points individually.
 \item \code{fill}
 \item \code{group}
 \item \code{linetype}
+\item \code{linewidth}
 \item \code{shape}
 \item \code{size}
 \item \code{weight}
@@ -130,7 +133,7 @@ Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.
 The lower and upper hinges correspond to the first and third quartiles
 (the 25th and 75th percentiles). This differs slightly from the method used
 by the \code{\link[=boxplot]{boxplot()}} function, and may be apparent with small samples.
-See \code{\link[=boxplot.stats]{boxplot.stats()}} for for more information on how hinge
+See \code{\link[=boxplot.stats]{boxplot.stats()}} for more information on how hinge
 positions are calculated for \code{\link[=boxplot]{boxplot()}}.
 
 The upper whisker extends from the hinge to the largest value no further than

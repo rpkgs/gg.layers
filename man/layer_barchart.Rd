@@ -20,10 +20,10 @@ layer_barchart(
 )
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}} or
-\code{\link[ggplot2:aes_]{aes_()}}. If specified and \code{inherit.aes = TRUE} (the
-default), it is combined with the default mapping at the top level of the
-plot. You must supply \code{mapping} if there is no plot mapping.}
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}}. If specified and
+\code{inherit.aes = TRUE} (the default), it is combined with the default mapping
+at the top level of the plot. You must supply \code{mapping} if there is no plot
+mapping.}
 
 \item{data}{The data to be displayed in this layer. There are three
 options:
@@ -44,19 +44,16 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{y}{A numeric vector or unit object specifying y-location.}
 
-\item{width}{Bar width. By default, set to 90\% of the resolution of the data.}
+\item{width}{Bar width. By default, set to 90\% of the \code{\link[ggplot2:resolution]{resolution()}} of the
+data.}
 
 \item{height}{A numeric vector or unit object specifying height.}
 
-\item{just}{A string or numeric
-    vector specifying the justification of the viewport
-    relative to its (x, y) location.  If there are two values, the first
-    value specifies horizontal justification and the second value specifies
-    vertical justification.  Possible string values are: \code{"left"},
-    \code{"right"}, \code{"centre"}, \code{"center"}, \code{"bottom"},
-    and \code{"top"}.  For numeric values, 0 means left alignment
-    and 1 means right alignment.
-  }
+\item{just}{Adjustment for column placement. Set to \code{0.5} by default, meaning
+that columns will be centered about axis breaks. Set to \code{0} or \code{1} to place
+columns to the left/right of axis breaks. Note that this argument may have
+unintended behaviour when used with alternative positions, e.g.
+\code{position_dodge()}.}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
