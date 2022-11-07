@@ -68,3 +68,30 @@ print2 <- function(..., max.level = NA) {
   # .tmp <- print(str(l, max.level = max.level))
   invisible()
 }
+
+
+# Fast data.frame constructor and indexing
+# No checking, recycling etc. unless asked for
+new_data_frame <- function(x = list(), n = NULL) {
+  if (length(x) != 0 && is.null(names(x))) stop("Elements must be named", call. = FALSE)
+  lengths <- vapply(x, length, integer(1))
+  if (is.null(n)) {
+    n <- if (length(x) == 0) 0 else max(lengths)
+  }
+  for (i in seq_along(x)) {
+    if (lengths[i] == n) next
+    if (lengths[i] != 1) stop("Elements must equal the number of rows or 1", call. = FALSE)
+    x[[i]] <- rep(x[[i]], n)
+  }
+
+  class(x) <- "data.frame"
+
+  attr(x, "row.names") <- .set_row_names(n)
+  x
+}
+
+#' @export
+box_qtl <- function(x) {
+  x <- stats::na.omit(x)
+  quantile(x, c(0.1, 0.9)) %>% set_names(c("ymin", "ymax"))
+}

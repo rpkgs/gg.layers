@@ -8,7 +8,7 @@
 #' @importFrom grid gpar
 #' @importFrom stats median approx setNames quantile lm predict cor.test qf
 #' @importFrom dplyr first last tibble 
-#' 
+#' @importFrom utils str
 ## usethis namespace: end
 NULL
 # ' @importFrom ggplot2 geom_abline

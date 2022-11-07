@@ -122,7 +122,7 @@ GeomBoxplot2 <- ggproto("GeomBoxplot2", Geom,
                         notch = FALSE, notchwidth = 0.5, varwidth = FALSE) {
     common <- list(
       colour   = data$colour,
-      size     = data$size,
+      linewidth = data$linewidth,
       linetype = data$linetype,
       fill     = alpha(data$fill, data$alpha),
       group    = data$group
@@ -198,34 +198,8 @@ GeomBoxplot2 <- ggproto("GeomBoxplot2", Geom,
   },
   draw_key = draw_key_boxplot,
   default_aes = aes(
-    weight = 1, colour = "grey20", fill = "white", size = 0.5,
+    weight = 1, colour = "grey20", fill = "white", linewidth = 0.5,
     alpha = NA, shape = 19, linetype = "solid"
   ),
   required_aes = c("x", "lower", "upper", "middle", "ymin", "ymax")
 )
-
-# Fast data.frame constructor and indexing
-# No checking, recycling etc. unless asked for
-new_data_frame <- function(x = list(), n = NULL) {
-  if (length(x) != 0 && is.null(names(x))) stop("Elements must be named", call. = FALSE)
-  lengths <- vapply(x, length, integer(1))
-  if (is.null(n)) {
-    n <- if (length(x) == 0) 0 else max(lengths)
-  }
-  for (i in seq_along(x)) {
-    if (lengths[i] == n) next
-    if (lengths[i] != 1) stop("Elements must equal the number of rows or 1", call. = FALSE)
-    x[[i]] <- rep(x[[i]], n)
-  }
-
-  class(x) <- "data.frame"
-
-  attr(x, "row.names") <- .set_row_names(n)
-  x
-}
-
-#' @export
-box_qtl <- function(x) {
-  x <- stats::na.omit(x)
-  quantile(x, c(0.1, 0.9)) %>% set_names(c("ymin", "ymax"))
-}

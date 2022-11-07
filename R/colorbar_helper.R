@@ -187,7 +187,7 @@ key_box <- function(key, key.layout, vp, vp_label,
             name = lattice::trellis.grobname("image", type = "colorkey"),
             gp = gpar(fill = key$col,
                 col = key$legend.box$colour,
-                lwd = key$legend.box$size,
+                lwd = key$legend.box$linewidth,
                 alpha = key$legend.box$alpha)
         )
     }
@@ -257,8 +257,9 @@ key_tick <- function(key.gf, key, labscat, vp_label, ...)
 #' @export
 key_border <- function(key.gf, key, open.lower, open.upper){
     # alpha = alpha,
+    # size renamed to linewidth in ggplot v3.4.0
     gp.border <- with(key$legend.line,
-        gpar(col = colour, lty = linetype, lwd = size, fill = "transparent"))
+        gpar(col = colour, lty = linetype, lwd = linewidth, fill = "transparent"))
 
     segment_bolder <- function(x0, y0, x1, y1, rot = 0, name) {
         segmentsGrob2(x0, y0, x1, y1, rot,
@@ -309,7 +310,7 @@ key_border <- function(key.gf, key, open.lower, open.upper){
 key_triangle <- function(key.gf, key, open.lower, open.upper){
     space = key$space
     # lwd = key$legend.line$lwd
-    lwd = key$legend.line$size
+    lwd = key$legend.line$linewidth
     col = "transparent" # key$legend.line$colour
 
     gp_lower = gpar(fill = key$col[1], col = col, alpha = key$alpha, lwd = lwd)

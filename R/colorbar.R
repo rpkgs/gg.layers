@@ -44,8 +44,8 @@ make_colorbar <- function(
   tri.upper = NA,
   tri.lower = NA,
 
-  legend.line = element_line(size = 0.8),
-  legend.box = element_rect(size = 0.5),
+  legend.line = element_line(linewidth = 0.8),
+  legend.box = element_rect(linewidth = 0.5),
 
   hjust = 0.5, vjust = 0.5,
 

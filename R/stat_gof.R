@@ -7,14 +7,17 @@ StatGOF <- ggproto("StatGOF", Stat,
   required_aes = c("x", "y"),
 
   compute_group = function(data, scales, x, y, label.format, show.bias) {
-  
+    
+    x0 = mean(data$x, na.rm = TRUE)
+    y0 = mean(data$y, na.rm = TRUE)
+
     g <- GOF(data$x, data$y)
     label <- with(g, glue(label.format))
     if (show.bias) label <- sprintf("%s \n Bias(%%) = %.2f%%", label, g$Bias_perc)
     hjust = data$hjust %||% 0
     vjust = data$vjust %||% 1
-    df <- data.frame(npcx = x, npcy = y, hjust = hjust[1], vjust = vjust[1], label)
-    # print(head(data))
+    df <- data.frame(x = x0, y = y0, 
+      npcx = x, npcy = y, hjust = hjust[1], vjust = vjust[1], label)
     # print(head(df))
     df
   }
