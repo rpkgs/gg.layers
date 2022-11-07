@@ -66,10 +66,10 @@
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>mapping</dt>
-<dd><p>Set of aesthetic mappings created by <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes()</a></code> or
-<code><a href="https://ggplot2.tidyverse.org/reference/aes_.html" class="external-link">aes_()</a></code>. If specified and <code>inherit.aes = TRUE</code> (the
-default), it is combined with the default mapping at the top level of the
-plot. You must supply <code>mapping</code> if there is no plot mapping.</p></dd>
+<dd><p>Set of aesthetic mappings created by <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes()</a></code>. If specified and
+<code>inherit.aes = TRUE</code> (the default), it is combined with the default mapping
+at the top level of the plot. You must supply <code>mapping</code> if there is no plot
+mapping.</p></dd>
 
 
 <dt>data</dt>
@@ -95,7 +95,8 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 
 
 <dt>width</dt>
-<dd><p>Bar width. By default, set to 90% of the resolution of the data.</p></dd>
+<dd><p>Bar width. By default, set to 90% of the <code><a href="https://ggplot2.tidyverse.org/reference/resolution.html" class="external-link">resolution()</a></code> of the
+data.</p></dd>
 
 
 <dt>height</dt>
@@ -103,14 +104,11 @@ from a <code>formula</code> (e.g. <code>~ head(.x, 10)</code>).</p></dd>
 
 
 <dt>just</dt>
-<dd><p>A string or numeric
-    vector specifying the justification of the viewport
-    relative to its (x, y) location.  If there are two values, the first
-    value specifies horizontal justification and the second value specifies
-    vertical justification.  Possible string values are: <code>"left"</code>,
-    <code>"right"</code>, <code>"centre"</code>, <code>"center"</code>, <code>"bottom"</code>,
-    and <code>"top"</code>.  For numeric values, 0 means left alignment
-    and 1 means right alignment.</p></dd>
+<dd><p>Adjustment for column placement. Set to <code>0.5</code> by default, meaning
+that columns will be centered about axis breaks. Set to <code>0</code> or <code>1</code> to place
+columns to the left/right of axis breaks. Note that this argument may have
+unintended behaviour when used with alternative positions, e.g.
+<code><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge()</a></code>.</p></dd>
 
 
 <dt>...</dt>
