@@ -84,7 +84,7 @@ geom_gof <- function(mapping = NULL, data = NULL,
       label.format = label.format,
       na.rm = na.rm,
       hjust = hjust, vjust = vjust,
-      size = 5, 
+      size = size, 
       # hjust = 0, vjust = 1, 
       ...
     )
