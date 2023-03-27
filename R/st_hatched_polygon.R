@@ -108,7 +108,12 @@ polygonRingHolesLines <- function(Sr, density = 0.5, angle = 45, ID = 1, fillOdd
       Lines.i <- SpatialLines(list(Lines(lines, ID = i)))
 
       # Clean Lines if over a "hole"
-      Lines.i.holes <- rgeos::gIntersection(Lines.i, SpatialPolygons(list(Sr)), drop_lower_td = TRUE)
+      # TODO: warning at here, use sf instead
+      suppressWarnings({
+        Lines.i.holes <- rgeos::gIntersection(Lines.i, SpatialPolygons(list(Sr)),
+          drop_lower_td = TRUE
+        )
+      })
 
       if (!is.null(Lines.i.holes)) {
         lines = Lines.i.holes@lines[[1]]
