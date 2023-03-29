@@ -119,6 +119,29 @@ to the paired geom/stat.</p></dd>
 
 </dl></div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">gg.layers</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rcolors</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"d_trendPerc"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">d_mask</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">d_trendPerc</span>, mask <span class="op">=</span> <span class="va">perc</span> <span class="op">&lt;=</span> <span class="fl">0.99</span><span class="op">)</span> <span class="co"># %&gt;% as.data.frame()</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">brks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.9</span>, <span class="fl">1</span>, <span class="fl">0.025</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nbrk</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">brks</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span><span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rcolors/man/get_color.html" class="external-link">get_color</a></span><span class="op">(</span><span class="va">rcolors</span><span class="op">$</span><span class="va">amwg256</span>, <span class="va">nbrk</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># the part of not significant</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">d_mask</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">perc</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">layer_barchart</span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>z <span class="op">=</span> <span class="va">perc</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="st">"npc"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="st">"npc"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    brks <span class="op">=</span> <span class="va">brks</span>, cols <span class="op">=</span> <span class="va">cols</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="layer_barchart-1.png" alt="" width="700" height="433"></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
