@@ -2,9 +2,12 @@
 % Please edit documentation in R/str_format.R
 \name{str_mk}
 \alias{str_mk}
+\alias{label_mk}
 \title{markdown superscript and subscript}
 \usage{
 str_mk(x)
+
+label_mk(labels, ...)
 }
 \arguments{
 \item{x}{character vector}
@@ -14,13 +17,28 @@ markdown superscript and subscript
 }
 \examples{
 x <- c(
-    "gC m^{-2} d^{-1}",
-    "gC m^-2 d^-1",
-    "gC m_{-2} d_{-1}",
-    "gC m_-2 d_-1",
-    "gC \n mm/d"
+  "gC m^{-2} d^{-1}",
+  "gC m^-2 d^-1",
+  "gC m_{-2} d_{-1}",
+  "gC m_-2 d_-1",
+  "gC \n mm/d"
 )
 str_mk(x)
+## use str_mk in ggplot
+library(ggplot2)
+
+d <- data.frame(
+  x = 1:3, y = 1:3,
+  varname = c("T_min", "T_max", "T_avg")
+)
+
+ggplot(d, aes(x, y)) +
+  geom_point() +
+  geom_richtext(aes(label = varname), x = 2, y = 2) +
+  facet_wrap(~varname, labeller = label_mk) +
+  theme(
+    strip.text = element_markdown(face = "bold")
+  )
 }
 \author{
 Dongdong Kong
