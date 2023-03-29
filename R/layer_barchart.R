@@ -68,6 +68,7 @@ layer_barchart <- function(
     brks, cols,
     x = 0, y = 0, width = unit(0.5, "npc"), height = unit(0.5, "npc"), just = c(0, 0),
     fontsize = 12, theme = NULL, ...) {
+  
   fun <- function(data, coords) {
     p <- add_barchart(data$z, brks, cols, fontsize = fontsize, theme = theme, ...)
     g <- grid::grobTree(as.grob(p),

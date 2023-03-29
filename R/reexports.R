@@ -7,12 +7,15 @@ magrittr::`%<>%`
 #' @export
 dplyr::mutate
 
-#' @importFrom ggtext element_textbox element_markdown
+#' @importFrom ggtext element_textbox element_markdown geom_richtext
 #' @export
 ggtext::element_textbox
 
 #' @export
 ggtext::element_markdown
+
+#' @export
+ggtext::geom_richtext
 
 #' @importFrom ggpattern geom_sf_pattern GeomSfPattern
 #' @export

@@ -9,6 +9,7 @@
 \alias{mutate}
 \alias{element_textbox}
 \alias{element_markdown}
+\alias{geom_richtext}
 \alias{GeomSfPattern}
 \alias{geom_sf_pattern}
 \alias{slope_mk}
@@ -26,7 +27,7 @@ below to see their documentation.
 
   \item{ggpattern}{\code{\link[ggpattern:geom-docs]{geom_sf_pattern}}, \code{\link[ggpattern:ggpattern-ggproto]{GeomSfPattern}}}
 
-  \item{ggtext}{\code{\link[ggtext]{element_markdown}}, \code{\link[ggtext]{element_textbox}}}
+  \item{ggtext}{\code{\link[ggtext]{element_markdown}}, \code{\link[ggtext]{element_textbox}}, \code{\link[ggtext]{geom_richtext}}}
 
   \item{magrittr}{\code{\link[magrittr:compound]{\%<>\%}}, \code{\link[magrittr:pipe]{\%>\%}}}
 
