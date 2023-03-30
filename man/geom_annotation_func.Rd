@@ -17,32 +17,70 @@ geom_annotation_func(
 )
 }
 \arguments{
+\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}}. If specified and
+\code{inherit.aes = TRUE} (the default), it is combined with the default mapping
+at the top level of the plot. You must supply \code{mapping} if there is no plot
+mapping.}
+
+\item{data}{A tibble with the column of \code{grob}}
+
 \item{...}{other parameters to \code{plot.fun}}
+
+\item{x}{A numeric vector or unit object specifying x-location.}
+
+\item{y}{A numeric vector or unit object specifying y-location.}
+
+\item{width}{A numeric vector or unit object specifying width.}
+
+\item{height}{A numeric vector or unit object specifying height.}
+
+\item{just}{A string or numeric
+    vector specifying the justification of the viewport
+    relative to its (x, y) location.  If there are two values, the first
+    value specifies horizontal justification and the second value specifies
+    vertical justification.  Possible string values are: \code{"left"},
+    \code{"right"}, \code{"centre"}, \code{"center"}, \code{"bottom"},
+    and \code{"top"}.  For numeric values, 0 means left alignment
+    and 1 means right alignment.
+  }
 }
 \description{
 geom_annotation
 }
 \examples{
-## make plot
+## prepare data
+library(gg.layers)
 library(ggplot2)
-d <- data.frame(x = 1:3, y = 1:3,
-                varname = c("T_min", "T_max", "T_avg"))
-p = ggplot(d, aes(x, y)) +
-  geom_point() +
-  geom_richtext(aes(label = varname), x = 2, y = 2) +
-  facet_wrap(~varname, labeller = label_mk) +
-  theme(
-    strip.text = element_markdown(face = "bold", margin = margin(t = 1, b = 0))
-  )
+library(rcolors)
 
-## make legend
-brks = 1:5 \%>\% c(-Inf, ., Inf)
+data("d_trendPerc")
+d_mask <- mutate(d_trendPerc, mask = perc <= 0.99) \%>\% as_tibble()
+n <- nrow(d_mask) * 2
+dat <- rbind(cbind(type = "a", d_mask), cbind(type = "b", d_mask)) \%>\%
+  mutate(val = rnorm(n))
+
+brks <- seq(0.9, 1, 0.025)
 nbrk <- length(brks) - 1
-cols <- rcolors::get_color("amwg256", nbrk)
-g = make_colorbar(brks, col = cols, space = "right")
-d_lgd = tibble(varname = d$varname, grob = rep(list(g), 3))
+cols <- get_color(rcolors$amwg256, nbrk)
 
-## add legend to each panel
-p2 = p + geom_annotation(data = d_lgd, aes(grob = grob), xmin = 0.8, xmax = 1, ymax = 1)
-p2
+## option1
+# the part of not significant
+ggplot(data = dat, aes(x, y)) +
+  geom_raster(aes(fill = perc)) +
+  layer_barchart(aes(z = val),
+    width = unit(0.3, "npc"),
+    height = unit(0.3, "npc"),
+    brks = brks, cols = cols
+  ) +
+  facet_wrap(~type)
+
+## option2
+func <- function(data, ...) {
+  add_barchart(data$z, brks, cols, ...)
+}
+
+ggplot(data = dat, aes(x, y)) +
+  geom_raster(aes(fill = perc)) +
+  geom_annotation_func(aes(z = val), plot.fun = func) +
+  facet_wrap(~type)
 }

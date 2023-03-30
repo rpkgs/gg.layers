@@ -8,6 +8,7 @@
 \alias{\%<>\%}
 \alias{mutate}
 \alias{as_tibble}
+\alias{tibble}
 \alias{element_textbox}
 \alias{element_markdown}
 \alias{geom_richtext}
@@ -22,7 +23,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr:reexports]{as_tibble}}, \code{\link[dplyr]{mutate}}}
+  \item{dplyr}{\code{\link[dplyr:reexports]{as_tibble}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr:reexports]{tibble}}}
 
   \item{ggh4x}{\code{\link[ggh4x]{guide_axis_minor}}}
 

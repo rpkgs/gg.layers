@@ -1,8 +1,11 @@
 #' geom_annotation
 #' 
+#' @inheritParams geom_annotation
+#' @inheritParams grid::viewport
+#' 
 #' @param ... other parameters to `plot.fun`
 #' 
-#' @example R/examples/ex-geom_anno.R
+#' @example R/examples/ex-geom_anno_func.R
 #' @export
 geom_annotation_func <- function(
     mapping = NULL, data = NULL,

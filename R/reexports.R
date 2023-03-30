@@ -4,12 +4,15 @@ magrittr::`%>%`
 #' @export
 magrittr::`%<>%`
 
-#' @importFrom dplyr mutate as_tibble
+#' @importFrom dplyr mutate as_tibble tibble
 #' @export
 dplyr::mutate
 
 #' @export
 dplyr::as_tibble
+
+#' @export
+dplyr::tibble
 
 #' @importFrom ggtext element_textbox element_markdown geom_richtext
 #' @export
