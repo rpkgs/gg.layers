@@ -27,11 +27,9 @@ geom_annotation <- function(
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
-      # grob = grob,
       # x = x, y = y, width = width, height = height,
       xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax,
-      just = just,
-      ...
+      just = just, ...
     )
   )
 }
@@ -50,9 +48,6 @@ GeomAnnotation <- ggproto("GeomAnnotation", Geom,
   draw_panel = function(data, panel_params, coord,
       xmin, xmax, ymin, ymax, just) {
       # x, y, width, height, just) {
-    # if (!inherits(coord, "CoordCartesian")) {
-    #   cli::cli_abort("{.fn annotation_custom} only works with {.fn coord_cartesian}")
-    # }
     grob = data$grob[[1]]
     # corners <- ggplot2:::data_frame0(
     #   x = c(xmin, xmax),
@@ -65,8 +60,7 @@ GeomAnnotation <- ggproto("GeomAnnotation", Geom,
     g <- grid::grobTree(as.grob(grob),
       vp = grid::viewport(
         x = xmin, y = ymin, width = xmax - xmin, height = ymax - ymin, just = c(0, 0)
-        # x = x, y = y, just = just,
-        # width = width, height = height
+        # x = x, y = y, width = width, height = height, just = just
       )
     )
     g

@@ -68,6 +68,7 @@ geom_annotation
 }
 \examples{
 ## make plot
+library(ggplot2)
 d <- data.frame(x = 1:3, y = 1:3,
                 varname = c("T_min", "T_max", "T_avg"))
 p = ggplot(d, aes(x, y)) +

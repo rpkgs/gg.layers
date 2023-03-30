@@ -71,14 +71,18 @@ layer_barchart <- function(
   
   fun <- function(data, coords) {
     p <- add_barchart(data$z, brks, cols, fontsize = fontsize, theme = theme, ...)
+    
     g <- grid::grobTree(as.grob(p),
       vp = grid::viewport(
         x = x, y = y, just = just,
         width = width, height = height
       )
     )
-    # need to return a grob object
     g
   }
   grid_panel(fun, mapping, data)
 }
+
+#' @rdname layer_barchart
+#' @export
+geom_barchart = layer_barchart
