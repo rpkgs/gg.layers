@@ -3,6 +3,7 @@
 ggh4x::guide_axis_minor
 
 #' @importFrom dplyr mutate
+#' @export 
 add_barchart <- function(
     value, brks, cols,
     fontsize = 12,
