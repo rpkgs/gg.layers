@@ -5,7 +5,9 @@
 StatSignPattern <- ggproto("StatSignPattern", StatSf,
     compute_panel = function(self, data, scales, coord) {
         st = st_df2hatch(data, hatch = FALSE) # st polygon
-        ggproto_parent(StatSf, self)$compute_group(st, scales, coord)
+        # https://github.com/tidyverse/ggplot2/blob/main/R/stat-sf.R
+        # Compute stat_sf() by panel instead of group (#5170)
+        ggproto_parent(StatSf, self)$compute_panel(st, scales, coord)
     }, 
     required_aes = c("x", "y", "mask"), 
     default_aes = aes(mask = TRUE)
