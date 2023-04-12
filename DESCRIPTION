@@ -15,6 +15,7 @@ Imports:
     grid,
     ggplot2 (>= 3.4.2), 
     gtable,
+    data.table,
     gggrid, gridtext, ggtext, ggpp,
     glue, hydroGOF, broom,
     ggh4x,

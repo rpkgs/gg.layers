@@ -5,7 +5,7 @@ SD <- function(x, subn) {
   return(ssd)
 }
 
-#' @export 
+#' @export
 taylor_data <- function(ref, model, sd.method = "sample", normalize = FALSE, ...) {
   R <- cor(ref, model, use = "pairwise")
   if (is.list(ref)) {
@@ -25,7 +25,7 @@ taylor_data <- function(ref, model, sd.method = "sample", normalize = FALSE, ...
 }
 
 #' geom_taylor
-#' @importFrom ggplot2 geom_point
+#' @inheritParams ggplot2::geom_point
 #' @example R/examples/ex-geom_taylor.R
 #' @export
 geom_taylor <- function(mapping = NULL, data = NULL,
@@ -55,18 +55,37 @@ geom_taylor <- function(mapping = NULL, data = NULL,
   )
 }
 
+
+scale_x <- function(x, panel_params) {
+  lims = panel_params$x$continuous_range
+  (x - lims[1]) / (lims[2] - lims[1])
+}
+
+scale_y <- function(y, panel_params) {
+  lims = panel_params$y$continuous_range
+  (y - lims[1]) / (lims[2] - lims[1])
+}
+
+panel_vp <- function(panel_params) {
+  viewport(
+    xscale = panel_params$x$continuous_range, 
+    yscale = panel_params$y$continuous_range
+  )
+}
+
 #' @importFrom dplyr group_by group_map
-#' @importFrom data.table rbindlist
+#' @importFrom data.table rbindlist data.table as.data.table
 #' @export
 GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
-  # required_aes = c("x", "y"),
+  required_aes = c("sd.obs", "sd.mod", "R"),
   default_aes = aes(
     shape = 19, colour = "black", size = 5, fill = "black",
     alpha = 1, stroke = 0.5
   ),
   setup_data = function(data, params) {
-    maxsd <- max(sqrt(data$x^2 + data$y^2)) * 1.2
-    # print(maxsd)
+    data %<>% transform(x = sd.mod * R, y = sd.mod * sin(acos(R)))
+    maxsd <- max(data$sd.obs, data$sd.mod) * 1.2
+    
     data$ymin_final <- 0
     data$ymax_final <- maxsd
     data$xmin_final <- 0
@@ -80,12 +99,15 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
   draw_panel = function(data, panel_params, coord, obs.colour = "black", obs.size = 5) {
     # panel_params$x.range <- c(0, maxsd)
     # panel_params$y.range <- c(0, maxsd)
-    # data %<>% mutate(sd.obs = x, sd.mod = y)
-    sd.obs = data$x[1]
-
+    sd.obs = data$sd.obs[1]
     data = dplyr::select(data, -ends_with("final"))
-    coords <- coord$transform(data, panel_params)
-
+    ## TODO: future updates
+    # coords <- coord$transform(data, panel_params)  
+    vp = panel_vp(panel_params)
+    # g = rectGrob(x = 1, y = 1, 
+    #   hjust = 0, vjust = 0,
+    #   vp = vp, default.units = "native",
+    #   gp = gpar(fill = "red"), width = 0.5, height = 0.5)
     linewidth = 0.4 #data$linewidth[1]
     common <- list(
       colour   = "black",
@@ -93,20 +115,27 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
       linewidth= linewidth,
       group    = data$group[1]
     )
-    maxsd <- max(sqrt(data$x^2 + data$y^2)) * 1.1
+    maxsd <- max(data$sd.obs, data$sd.mod) * 1.1
 
     ## s大圆
-    xcurve <- cos(seq(0, pi / 2, by = 0.01)) * maxsd
-    ycurve <- sin(seq(0, pi / 2, by = 0.01)) * maxsd
-    sd_big = new_data_frame(c(list(x = xcurve, y = ycurve), common))
-    grob_sd_big <- GeomLine$draw_panel(sd_big, panel_params, coord)
+    x <- cos(seq(0, pi / 2, by = 0.01)) * maxsd
+    y <- sin(seq(0, pi / 2, by = 0.01)) * maxsd
+    sd_big = new_data_frame(c(listk(x, y), common))
+    grob_sd_big <- linesGrob(x, y, 
+      vp = vp, default.units = "native",
+      gp = gpar(lwd = linewidth * .pt, lty = 1))
+    # grob_sd_big <- GeomLine$draw_panel(sd_big, panel_params, coord)
 
     ## s小圆
-    xcurve <- cos(seq(0, pi / 2, by = 0.01)) * sd.obs
-    ycurve <- sin(seq(0, pi / 2, by = 0.01)) * sd.obs
-    sd_sml = new_data_frame(c(list(x = xcurve, y = ycurve, linetype = 5), common))
+    x <- cos(seq(0, pi / 2, by = 0.01)) * sd.obs
+    y <- sin(seq(0, pi / 2, by = 0.01)) * sd.obs
+    sd_sml = new_data_frame(c(listk(x, y, linetype = 5), common))
     sd_sml %<>% as.data.table()
-    grob_sd_sml <- GeomLine$draw_panel(sd_sml, panel_params, coord)
+    grob_sd_sml <- linesGrob(x, y,
+      vp = vp, default.units = "native",
+      gp = gpar(lwd = linewidth * .pt, lty = 5)
+    )
+    # grob_sd_sml <- GeomLine$draw_panel(sd_sml, panel_params, coord)
 
     ## 相关系数的虚线
     corr.lines <- c(0.2, 0.4, 0.6, 0.8, 0.9)
@@ -153,7 +182,9 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
     )
     scales = c(0.96, 0.98, 0.99)
 
-    d_tick = foreach(tick = ticks, scale = scales, i = 1:3) %do% {
+    d_tick = lapply(1:3, function(i) {
+      tick = ticks[[i]]
+      scale = scales[i]
       data.table(
         x = cos(tick) * maxsd,
         y = sin(tick) * maxsd,
@@ -161,7 +192,7 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
         yend = sin(tick) * scale * maxsd,
         group = scale
       )
-    } %>% rbindlist()
+    }) %>% rbindlist()
     d_tick %<>% mutate(colour = "black", linewidth = 0.4, alpha = 1)
 
     ## tick labels
@@ -186,7 +217,7 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
 
 
     grid::gList(
-      # p_obs,
+      # g,
       GeomPoint$draw_panel(data, panel_params, coord),
       GeomPoint$draw_panel(d_obs, panel_params, coord),
       GeomText$draw_panel(d_obs_txt, panel_params, coord),

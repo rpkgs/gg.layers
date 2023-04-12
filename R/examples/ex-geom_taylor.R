@@ -3,12 +3,11 @@ library(dplyr)
 
 data = dummy_model %>%
   group_by(model, variable) %>%
-  group_modify(~taylor_data(.$obs, .$mod)) %>% as.data.table()
-# d_obs = data[, .(variable, sd.obs, label = "Observed")] %>% unique()
+  group_modify(~taylor_data(.$obs, .$mod)) #%>% as.data.table()
 
 mar = 0.01
-p = ggplot(data, aes(sd.obs, sd.mod)) +
-  geom_taylor(aes(color = model), obs.colour = "black", obs.size = 5) +
+p = ggplot(data) +
+  geom_taylor(aes2(sd.obs, sd.mod, R, color = model), obs.colour = "black", obs.size = 5) +
   # geom_point(aes(color = model), size = 5) +
   facet_wrap(~variable) +
   labs(color = NULL) +
@@ -21,4 +20,4 @@ p = ggplot(data, aes(sd.obs, sd.mod)) +
   )
 p
 # p = last_plot()
-# write_fig(p, "Rplot.pdf")
+# Ipaper::write_fig(p, "Rplot.pdf")
