@@ -22,8 +22,9 @@ remotes::install_github("rpkgs/gg.layers")
 
 ## Document
 
-<https://ggplot2-book.org/programming.html>
-<https://ggplot2-book.org/extensions.html>
+- <https://ggplot2-book.org/programming.html>
+
+- <https://ggplot2-book.org/extensions.html>
 
 ## Example
 
