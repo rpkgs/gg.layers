@@ -108,7 +108,7 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
     #   hjust = 0, vjust = 0,
     #   vp = vp, default.units = "native",
     #   gp = gpar(fill = "red"), width = 0.5, height = 0.5)
-    linewidth = 0.4 #data$linewidth[1]
+    linewidth = 0.7 #data$linewidth[1]
     common <- list(
       colour   = "black",
       alpha    = 1,
@@ -143,7 +143,7 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
       data.table(x = c(0, maxsd * cor),
                  y = c(0, maxsd * sqrt(1 - cor ^ 2)), group = cor)
     }) %>% rbindlist() %>%
-      mutate(group = factor(group), linewidth = linewidth, colour = "black", alpha = 0.3)
+      mutate(group = factor(group), linewidth = linewidth, colour = "black", alpha = 0.1)
     grob_corr_line <- GeomLine$draw_panel(d_corr, panel_params, coord)
 
     ## RMSE的半圆

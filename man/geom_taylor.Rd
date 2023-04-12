@@ -77,6 +77,7 @@ library(dplyr)
 data = dummy_model \%>\%
   group_by(model, variable) \%>\%
   group_modify(~taylor_data(.$obs, .$mod)) #\%>\% as.data.table()
+print(data)
 
 mar = 0.01
 p = ggplot(data) +
