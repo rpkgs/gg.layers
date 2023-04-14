@@ -56,22 +56,7 @@ geom_taylor <- function(mapping = NULL, data = NULL,
 }
 
 
-scale_x <- function(x, panel_params) {
-  lims = panel_params$x$continuous_range
-  (x - lims[1]) / (lims[2] - lims[1])
-}
 
-scale_y <- function(y, panel_params) {
-  lims = panel_params$y$continuous_range
-  (y - lims[1]) / (lims[2] - lims[1])
-}
-
-panel_vp <- function(panel_params) {
-  viewport(
-    xscale = panel_params$x$continuous_range, 
-    yscale = panel_params$y$continuous_range
-  )
-}
 
 #' @importFrom dplyr group_by group_map
 #' @importFrom data.table rbindlist data.table as.data.table
@@ -97,6 +82,7 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
   },
 
   draw_panel = function(data, panel_params, coord, obs.colour = "black", obs.size = 5) {
+    # print(params)
     # panel_params$x.range <- c(0, maxsd)
     # panel_params$y.range <- c(0, maxsd)
     sd.obs = data$sd.obs[1]
