@@ -46,6 +46,9 @@
     <loc>/reference/draw_colorkey.html</loc>
   </url>
   <url>
+    <loc>/reference/draw_polygon.html</loc>
+  </url>
+  <url>
     <loc>/reference/equispaced_colorkey.html</loc>
   </url>
   <url>
@@ -56,6 +59,9 @@
   </url>
   <url>
     <loc>/reference/geom_boxplot2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/geom_latFreq.html</loc>
   </url>
   <url>
     <loc>/reference/geom_richtext2.html</loc>
