@@ -64,6 +64,9 @@
     <loc>/reference/geom_latFreq.html</loc>
   </url>
   <url>
+    <loc>/reference/geom_raster_filled.html</loc>
+  </url>
+  <url>
     <loc>/reference/geom_richtext2.html</loc>
   </url>
   <url>
@@ -83,6 +86,12 @@
   </url>
   <url>
     <loc>/reference/grobs.html</loc>
+  </url>
+  <url>
+    <loc>/reference/guide_colourbar2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/guide_coloursteps2.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
