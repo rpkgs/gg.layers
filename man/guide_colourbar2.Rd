@@ -180,6 +180,7 @@ As for how to specify the guide for each scale in more detail,
 see \code{\link[ggplot2:guides]{ggplot2::guides()}}.
 }
 \examples{
+library(ggplot2)
 df <- expand.grid(X1 = 1:10, X2 = 1:10)
 df$value <- df$X1 * df$X2
 

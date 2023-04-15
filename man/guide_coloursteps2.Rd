@@ -92,6 +92,7 @@ scales. It shows areas between breaks as a single constant colour instead of
 the gradient known from the colourbar counterpart.
 }
 \examples{
+library(ggplot2)
 df <- expand.grid(X1 = 1:10, X2 = 1:10)
 df$value <- df$X1 * df$X2
 
