@@ -343,6 +343,35 @@ key_triangle <- function(key.gf, key, open.lower, open.upper){
     return(key.gf)
 }
 
+## for ggplot2
+make_triangle <- function(space = "right", cols) {
+  col = "black"
+  lwd = 0.4
+  alpha = 1
+  gp_lower <- gpar(fill = cols[1], col = col, alpha = alpha, lwd = lwd)
+  gp_upper <- gpar(fill = keys$col[length(key$col)], col = col, alpha = alpha, lwd = lwd)
+
+  pnts0 <- cbind(
+    x = c(0, 1, 0.5),
+    y = c(0, 0, 1)
+  )
+
+  ## 下界
+  # name <- lattice::trellis.grobname("lower.arrow", type = "colorkey")
+  rot <- ifelse(space %in% c("right", "left"), 180, 90)
+  pnts <- rotate(pnts0[, 1], pnts0[, 2], rot = rot)
+  g_lower <- polygonGrob(pnts[, 1], pnts[, 2], default.units = "npc", gp = gp_lower)
+
+  ## 上界
+  # name <- lattice::trellis.grobname("upper.arrow", type = "colorkey")
+  rot <- ifelse(space %in% c("right", "left"), 0, -90)
+  pnts <- rotate(pnts0[, 1], pnts0[, 2], rot = rot)
+  g_upper <- polygonGrob(pnts[, 1], pnts[, 2], default.units = "npc", gp = gp_upper)
+
+  list(lower = g_lower, upper = g_upper)
+}
+
+
 #' rotate x and y
 #'
 #' @param x,y numeric vector

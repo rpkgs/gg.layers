@@ -203,7 +203,6 @@ make_colorbar <- function(
     widths = lgd_width, just = just
   )
   # print2(lgd_width, lgd_height, max.level=1)
-
   pos <- colorkey_pos(space)
   key.gf <- key_box(key, key.layout, vp, vp_label, reccentre, recdim, FALSE)
   key.gf %<>% key_triangle(key, open.lower, open.upper)

@@ -27,7 +27,7 @@ below to see their documentation.
 
   \item{ggh4x}{\code{\link[ggh4x]{guide_axis_minor}}}
 
-  \item{ggpattern}{\code{\link[ggpattern:ggpattern-ggproto]{GeomSfPattern}}, \code{\link[ggpattern:geom-docs]{geom_sf_pattern}}}
+  \item{ggpattern}{\code{\link[ggpattern:geom-docs]{geom_sf_pattern}}, \code{\link[ggpattern:ggpattern-ggproto]{GeomSfPattern}}}
 
   \item{ggtext}{\code{\link[ggtext]{element_markdown}}, \code{\link[ggtext]{element_textbox}}, \code{\link[ggtext]{geom_richtext}}}
 

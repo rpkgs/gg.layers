@@ -8,7 +8,9 @@ geom_latFreq <- function(mapping = NULL, data = NULL,
                         # obs.colour = "black",
                         # obs.size = 5,
                         options = list(),
-                        na.rm = FALSE, show.legend = NA,
+                        bbox = c(185, 240, -60, 90),
+                        na.rm = FALSE,
+                        show.legend = NA,
                         inherit.aes = TRUE) {
   layer(
     data = data,
@@ -19,14 +21,13 @@ geom_latFreq <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
-      # obs.colour = obs.colour, obs.size = obs.size,
       options = options,
+      bbox = bbox,
       na.rm = na.rm,
       ...
     )
   )
 }
-
 
 #' @importFrom dplyr group_by group_map
 #' @importFrom data.table rbindlist data.table as.data.table
@@ -39,10 +40,10 @@ GeomLatFreq <- ggproto("GeomLatFreq", Geom,
   # ),
 
   setup_data = function(data, params) {
-    # browser()
+    ylim = params$bbox[3:4]
+    data %<>% subset(y >= ylim[1] & y <= ylim[2])
     # data %<>% transform(x = sd.mod * R, y = sd.mod * sin(acos(R)))
     # maxsd <- max(data$sd.obs, data$sd.mod) * 1.2
-
     # data$ymin_final <- 0
     # data$ymax_final <- maxsd
     # data$xmin_final <- 0
@@ -50,14 +51,13 @@ GeomLatFreq <- ggproto("GeomLatFreq", Geom,
     data
   },
 
-  draw_panel = function(data, panel_params, coord, options) {
+  draw_panel = function(data, panel_params, coord, options, bbox) {
     grob = as.grob(function(){
       .param = c(data[c("y", "z")], options)
       do.call(make_latFreq, .param)
       # make_latFreq(data$y, data$y, ...)
     })
 
-    bbox = c(185, 240, -60, 90)
     bbox2 = bbox2npc(bbox, panel_params)
     unit = "npc"
 
@@ -75,8 +75,6 @@ round_decade <- function(x) {
   times <- 10^p
   round(x / times) * times
 }
-
-
 
 
 make_latFreq <- function(
@@ -113,7 +111,6 @@ make_latFreq <- function(
   d <- data.table(vals = z, x = y)
   d2 <- d[, .(value = mean(vals, na.rm = TRUE)), .(x)] %>%
     .[x <= ylim[2] & x >= ylim[1]]
-  # browser()
 
   d2[is.na(value), value := 0]
 

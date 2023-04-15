@@ -235,7 +235,6 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
 
 # CoordTaylor <- ggproto("CoordTaylor", Coord,
 #   setup_panel_params = function(self, scale_x, scale_y, params = list()) {
-#     browser()
 #     c(
 #       view_scales_from_scale(scale_x, self$limits$x, self$expand),
 #       view_scales_from_scale(scale_y, self$limits$y, self$expand)
