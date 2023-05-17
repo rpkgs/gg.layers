@@ -68,6 +68,7 @@
 <span>  <span class="va">...</span>,</span>
 <span>  fun_middle <span class="op">=</span> <span class="st">"median"</span>,</span>
 <span>  interval <span class="op">=</span> <span class="fl">0.8</span>,</span>
+<span>  alpha.line <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  na.rm <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  show.legend <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  inherit.aes <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -153,10 +154,7 @@ stat stripped of the <code>stat_</code> prefix (e.g. <code>"count"</code> rather
 <span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">value</span>, color <span class="op">=</span> <span class="va">prob</span>, fill <span class="op">=</span> <span class="va">prob</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># both line and fill</span></span></span>
-<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_interval</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span>, interval <span class="op">=</span> <span class="fl">0.8</span>, fun_middle <span class="op">=</span> <span class="st">"mean"</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_interval()`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> Caused by error in `is.data.table()`:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> could not find function "is.data.table"</span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">+</span> <span class="fu">geom_interval</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span>, alpha.line <span class="op">=</span> <span class="fl">1</span>, interval <span class="op">=</span> <span class="fl">0.8</span>, fun_middle <span class="op">=</span> <span class="st">"mean"</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="geom_interval-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># only line</span></span></span>
@@ -165,9 +163,6 @@ stat stripped of the <code>stat_</code> prefix (e.g. <code>"count"</code> rather
 <span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.4</span>, interval <span class="op">=</span> <span class="fl">0.8</span>, fun_middle <span class="op">=</span> <span class="st">"mean"</span>, linewidth <span class="op">=</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"NA"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_interval()`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> Caused by error in `is.data.table()`:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> could not find function "is.data.table"</span>
 <span class="r-plt img"><img src="geom_interval-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># only fill</span></span></span>
@@ -176,9 +171,6 @@ stat stripped of the <code>stat_</code> prefix (e.g. <code>"count"</code> rather
 <span class="r-in"><span>  alpha <span class="op">=</span> <span class="fl">0.4</span>, interval <span class="op">=</span> <span class="fl">0.8</span>, fun_middle <span class="op">=</span> <span class="st">"mean"</span>, linewidth <span class="op">=</span> <span class="fl">1</span></span></span>
 <span class="r-in"><span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.key <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"NA"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Computation failed in `stat_interval()`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> Caused by error in `is.data.table()`:</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> could not find function "is.data.table"</span>
 <span class="r-plt img"><img src="geom_interval-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
