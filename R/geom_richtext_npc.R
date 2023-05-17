@@ -2,7 +2,7 @@
 #'
 #' @inheritParams ggtext::geom_richtext
 #' @inheritSection ggtext::geom_richtext Aesthetics
-#'
+#' 
 #' @example R/examples/ex-geom_richtext_npc.R
 #'
 #' @seealso [ggtext::geom_richtext()], [geom_richtext2()]
