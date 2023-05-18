@@ -31,7 +31,7 @@ stat_reg <- function(mapping = NULL, data = NULL,
     format = paste0(
       'Slope = {str_num(slope, digits)}{unit}',
       ', p-value = {str_num(pvalue, digits)}'),
-    slope_FUN = NULL,
+    fun_slope = NULL,
     x = 0, y = 1, hjust = 0, vjust = 1, mar = 0.03, height.factor = 1.2,
     family = "Times",
     color = NULL,
@@ -39,7 +39,7 @@ stat_reg <- function(mapping = NULL, data = NULL,
     ...)
 {
   fun <- function(data, coords) {
-    if (is.null(slope_FUN)) {
+    if (is.null(fun_slope)) {
       l = lm(formula, data)
       b = broom::tidy(l)
       s = broom::glance(l)
@@ -47,7 +47,7 @@ stat_reg <- function(mapping = NULL, data = NULL,
       pvalue = b$p.value[2]
     } else {
       l = tryCatch({
-        slope_FUN(data$y, data$x)
+        fun_slope(data$y, data$x)
       }, error = function(e) {
         message(sprintf('%s', e$message))
       })

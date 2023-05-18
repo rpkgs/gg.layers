@@ -47,7 +47,7 @@ stat_reg(
   units = "",
   format = paste0("Slope = {str_num(slope, digits)}{unit}",
     ", p-value = {str_num(pvalue, digits)}"),
-  slope_FUN = NULL,
+  fun_slope = NULL,
   x = 0,
   y = 1,
   hjust = 0,

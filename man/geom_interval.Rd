@@ -26,7 +26,9 @@ geom_interval(
   ...,
   fun_middle = "median",
   interval = 0.8,
-  alpha.line = 1,
+  alpha.line = 0.7,
+  param_ensemble = list(),
+  param_slope = list(alpha = 1, linewidth = 1),
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -62,6 +64,10 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 position adjustment function. Use the latter if you need to change the
 settings of the adjustment.}
 
+\item{interval}{interval of confidence interval, default is 0.8}
+
+\item{fun_middle}{function to calculate middle value, default is median}
+
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
@@ -85,6 +91,12 @@ to the paired geom/stat.}
 layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
 stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
 \code{"stat_count"})}
+
+\item{alpha.line}{alpha of ensemble line}
+
+\item{param_ensemble}{list of parameters for ensemble line}
+
+\item{param_slope}{list of parameters for slope line}
 }
 \description{
 geom_interval
@@ -96,19 +108,22 @@ df <- CMIP6_HWD
 p <- ggplot(df, aes(year, value, color = prob, fill = prob))
 
 # both line and fill
-p + geom_interval(alpha = 0.2, alpha.line = 1, interval = 0.8, fun_middle = "mean", linewidth = 1)
+p + geom_interval(alpha = 0.2, alpha.line = 1, 
+  linewidth = 0.7, linetype = 2, # for ensemble line
+  param_slope = list(linewidth = 1, alpha = 1, linetype = 1), # slope line
+  interval = 0.8, fun_middle = "mean")
 
 # only line
 p + geom_interval(
   fill = "NA",
-  alpha = 0.4, interval = 0.8, fun_middle = "mean", linewidth = 1
+  alpha = 0.4, interval = 0.8, fun_middle = "mean", linewidth = 0.4
 ) +
   theme(legend.key = element_rect(fill = "NA"))
 
 # only fill
 p + geom_interval(
   color = "NA", key_glyph = "polygon2",
-  alpha = 0.4, interval = 0.8, fun_middle = "mean", linewidth = 1
+  alpha = 0.4, interval = 0.8, fun_middle = "mean", linewidth = 0.4
 ) +
   theme(legend.key = element_rect(fill = "NA"))
 }

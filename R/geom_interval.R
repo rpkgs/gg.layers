@@ -62,7 +62,7 @@ draw_key_line2 <- function(data, params, size) {
     # fill = alpha(params$arrow.fill %||% data$colour %||%
     #   data$fill %||% "black", data$alpha),
     lwd = (data$linewidth %||% 0.5) * .pt,
-    lty = data$linetype %||% 1,
+    # lty = data$linetype %||% 1,
     lineend = params$lineend %||% "butt"
   ), arrow = params$arrow)
 }
@@ -89,20 +89,27 @@ draw_key_polygon2 <- function(data, params, size) {
 }
 
 GeomInterval <- ggproto("GeomInterval", GeomRibbon,
-  default_aes = aes(colour = "black", fill = "red", linewidth = 0.5, alpha = 0.6),
+  default_aes = aes(colour = "black", fill = "red", linewidth = 0.5, linetype = 1, alpha = 0.6),
   setup_data = function(data, param) {
     data
   },
   # draw_key = GeomLine$draw_key,
   draw_key = draw_key_line2,
   draw_group = function(self, data, panel_params, coord,
-                        alpha.line = 1, na.rm = FALSE) {
-    data_ribbon <- mutate(data, colour = "transparent")
-    data_line <- mutate(data, alpha = alpha.line)
-
+                        alpha.line = 0.7, 
+                        param_ensemble = list(), 
+                        param_slope = list(alpha = 1, linewidth = 1), 
+                        na.rm = FALSE) {
+    param_ensemble$alpha = param_ensemble$alpha %||% alpha.line
+    
+    data_ribbon <- modifyList(data, list(colour = "transparent"))
+    data_line <- modifyList(data, param_ensemble)
+    data_mk <- modifyList(data, param_slope)
+    
     gTree(children = gList(
       GeomRibbon$draw_panel(data_ribbon, panel_params, coord, na.rm = na.rm),
-      GeomLine$draw_panel(data_line, panel_params, coord, na.rm = na.rm)
+      GeomLine$draw_panel(data_line, panel_params, coord, na.rm = na.rm),
+      GeomMK$draw_panel(data_mk, panel_params, coord, na.rm = na.rm)
     ))
   }
 )
@@ -110,14 +117,23 @@ GeomInterval <- ggproto("GeomInterval", GeomRibbon,
 #' geom_interval
 #'
 #' @inheritParams ggplot2::geom_ribbon
-#'
+#' 
+#' @param fun_middle function to calculate middle value, default is median
+#' @param interval interval of confidence interval, default is 0.8
+#' 
+#' @param alpha.line alpha of ensemble line
+#' @param param_ensemble list of parameters for ensemble line
+#' @param param_slope list of parameters for slope line
+#' 
 #' @example R/examples/ex-geom_interval.R
 #' @export
 geom_interval <- function(mapping = NULL, data = NULL,
                           stat = "interval", position = "identity",
                           ...,
                           fun_middle = "median", interval = 0.8,
-                          alpha.line = 1,
+                          alpha.line = 0.7,
+                          param_ensemble = list(), 
+                          param_slope = list(alpha = 1, linewidth = 1), 
                           na.rm = FALSE,
                           show.legend = NA,
                           inherit.aes = TRUE) {
@@ -129,11 +145,13 @@ geom_interval <- function(mapping = NULL, data = NULL,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
-    params = list2(
+    params = listk(
       na.rm = na.rm,
       fun_middle = fun_middle,
       interval = interval,
       alpha.line = alpha.line, 
+      param_ensemble, 
+      param_slope,
       ...
     )
   )
