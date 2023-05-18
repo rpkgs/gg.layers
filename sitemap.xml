@@ -67,6 +67,9 @@
     <loc>/reference/geom_latFreq.html</loc>
   </url>
   <url>
+    <loc>/reference/geom_mk.html</loc>
+  </url>
+  <url>
     <loc>/reference/geom_raster_filled.html</loc>
   </url>
   <url>
@@ -140,9 +143,6 @@
   </url>
   <url>
     <loc>/reference/stat_gof.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_mk.html</loc>
   </url>
   <url>
     <loc>/reference/stat_prob_2d.html</loc>
