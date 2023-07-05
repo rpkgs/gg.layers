@@ -233,7 +233,7 @@ guide_train.colorbar2 <- function(guide, scale, aesthetic = NULL) {
   .limits <- scale$get_limits()
   .bar <- seq(.limits[1], .limits[2], length.out = guide$nbin)
   if (length(.bar) == 0) {
-    .bar = unique0(.limits)
+    .bar = ggplot2:::unique0(.limits)
   }
   guide$bar <- data_frame0(
     colour = scale$map(.bar),
