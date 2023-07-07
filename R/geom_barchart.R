@@ -25,7 +25,7 @@ add_barchart <- function(
   labels_major <- brks[at_major]
   labels_major[is.infinite(labels_major)] <- ""
 
-  p <- ggplot(dat, aes(I + 0.5, perc * 100)) +
+  p <- ggplot(dat, aes(I + 0.5, perc)) +
     # geom_bar(aes(y=..density..), position = "dodge", width = 1)
     geom_bar(stat = "identity", fill = cols, na.rm = F) +
     # geom_histogram(breaks = brks, na.rm = F, fill = cols)
@@ -45,6 +45,7 @@ add_barchart <- function(
       axis.ticks = element_line(linewidth = tck_size),
       axis.ticks.length = tck_length
     ) +
+    scale_y_continuous(labels = scales::percent) +
     scale_x_continuous(
       # expand = c(-1, 1)*0.1,
       guide = "axis_minor",
