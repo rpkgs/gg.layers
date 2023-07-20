@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom_latFreq.R
 \name{geom_latFreq}
 \alias{geom_latFreq}
-\title{geom_taylor}
+\title{geom_latFreq}
 \usage{
 geom_latFreq(
   mapping = NULL,
@@ -68,31 +68,31 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
 \description{
-geom_taylor
+geom_latFreq
 }
 \examples{
 library(ggplot2)
-library(dplyr)
+# the lattice version: https://github.com/CUG-hydro/Liu2021-JGRA-ET_trends_attribution
 
-data = dummy_model \%>\%
-  group_by(model, variable) \%>\%
-  group_modify(~taylor_data(.$obs, .$mod)) #\%>\% as.data.table()
-print(data)
+# f <- "data-raw/AridityIndex_MSWEP-prcp_div_GLEAM-Ep_1980-2020.tif"
+# r <- terra::rast(f)
+# d <- as.data.table(r, xy = TRUE) |> set_names(c("x", "y", "z"))
+d = AridityIndex
 
-mar = 0.01
-p = ggplot(data) +
-  geom_taylor(aes2(sd.obs, sd.mod, R, color = model), obs.colour = "black", obs.size = 5) +
-  # geom_point(aes(color = model), size = 5) +
-  facet_wrap(~variable) +
-  labs(color = NULL) +
-  theme_bw() +
-  theme(
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-    legend.position = c(1, 1) - c(1, 1/3)*mar,
-    legend.justification = c(1, 1)
-  )
+# make_latFreq(d$y, d$z, debug = TRUE, zlim = c(-2, 2), is_spatial = TRUE)
+# brks <- c(-Inf, 0.05, 0.2, 0.5, 0.65, Inf)
+brks <- c(-Inf, 0.05, 0.2, 0.5, 0.65, 1:5, 20, Inf)
+
+nbrk <- length(brks) - 1
+cols <- rcolors::get_color("amwg256", nbrk) |> rev()
+
+p = ggplot(d, aes(x, y, z = z)) + 
+  geom_raster_filled(breaks = brks) + 
+  geom_latFreq(options = list(is_spatial = TRUE, zlim = c(-1, 1)*10), 
+    bbox = c(190, 240, -60, 90)) + 
+  coord_cartesian(xlim = c(-180, 240), ylim = c(-60, 90), expand = FALSE, clip = "on") +
+  scale_x_continuous(limits = c(-180, 240), breaks = seq(-180, 180, 60)) + 
+  scale_fill_manual(values =cols) + 
+  labs(x = NULL, y = NULL)
 p
-# p = last_plot()
-# Ipaper::write_fig(p, "Rplot.pdf")
 }

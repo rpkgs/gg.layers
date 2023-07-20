@@ -1,6 +1,6 @@
-#' geom_taylor
+#' geom_latFreq
 #' @inheritParams ggplot2::geom_point
-#' @example R/examples/ex-geom_taylor.R
+#' @example R/examples/ex-geom_latFreq.R
 #' @export
 geom_latFreq <- function(mapping = NULL, data = NULL,
                          stat = "identity", position = "identity",
