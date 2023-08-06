@@ -62,13 +62,25 @@ get_scales <- function(panel_params) {
   listk(xlim, ylim)
 }
 
+# 2023-08-05, Yuxuan Xie
+# When the data contains `sf` objects, the structure of `panel`
+# will change and `panel_params` will not contain `x` and `y`,
+# but `x_range` and `y_range` instead.
 scale_x <- function(x, panel_params) {
-  lims <- panel_params$x$continuous_range
+  # the old version
+  # lims <- panel_params$x$continuous_range
+  x_name <- match.arg("x", names(panel_params))
+  if (x_name == "x") lims <- panel_params$x$continuous_range
+  if (x_name == "x_range") lims <- panel_params$x_range
   (x - lims[1]) / (lims[2] - lims[1])
 }
 
 scale_y <- function(y, panel_params) {
-  lims <- panel_params$y$continuous_range
+  # the old version
+  # lims <- panel_params$y$continuous_range
+  y_name <- match.arg("y", names(panel_params))
+  if (y_name == "y") lims <- panel_params$y$continuous_range
+  if (y_name == "y_range") lims <- panel_params$y_range
   (y - lims[1]) / (lims[2] - lims[1])
 }
 
