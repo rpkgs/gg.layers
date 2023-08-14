@@ -4,16 +4,10 @@
 \alias{st_hatched_polygon}
 \title{st_hatched_polygon}
 \usage{
-st_hatched_polygon(
-  x,
-  density = 2,
-  angle = 45,
-  fillOddEven = FALSE,
-  type = "sf"
-)
+st_hatched_polygon(x, density = 2, angle = 45, fillOddEven = FALSE)
 }
 \arguments{
-\item{x}{SpatialPolygons* from library sp}
+\item{x}{sf polygon object}
 
 \item{density}{the density of shading lines, in lines per inch. The default
 value of NULL means that no shading lines are drawn. A zero value of density
@@ -25,15 +19,9 @@ means no shading nor filling whereas negative values and NA suppress shading
 
 \item{fillOddEven}{logical controlling the polygon shading mode:  see
       below for details.  Default \code{FALSE}.}
-
-\item{type}{Controls the type of the returned object:
-\itemize{
-\item \code{sf}: sf object of \code{MULTILINESTRING}
-\item \code{sp}: sp object of \code{\link[sp:SpatialLines]{sp::SpatialLinesDataFrame()}}
-}}
 }
 \value{
-An hatched area for assigned \code{type}
+An hatched area, sf lines
 }
 \description{
 st_hatched_polygon

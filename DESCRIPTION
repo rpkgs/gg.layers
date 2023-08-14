@@ -8,7 +8,7 @@ Description: What the package does (one paragraph).
 License: GPL (>= 3)
 Encoding: UTF-8
 Depends: 
-    R (>= 2.10)
+    R (>= 3.6)
 Imports: 
     dplyr, magrittr, stringr, 
     rlang,
@@ -17,17 +17,17 @@ Imports:
     gtable,
     data.table,
     gggrid, gridtext, ggtext, ggpp,
-    glue, hydroGOF, broom,
+    glue, broom,
     ggh4x,
     ggpattern,
     ggplotify,
     rtrend,
-    sp, methods
+    methods
 Suggests: 
     testthat (>= 3.0.0),
     data.table,
     rcolors,
-    sf, stars, rgeos, raster,
+    sf, stars, raster,
     lattice,
     cowplot,
     glue,

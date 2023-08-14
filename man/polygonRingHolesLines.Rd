@@ -2,10 +2,10 @@
 % Please edit documentation in R/st_hatched_polygon.R
 \name{polygonRingHolesLines}
 \alias{polygonRingHolesLines}
-\title{Get SpatialLines of one Polygons feature}
+\title{Get lines of one Polygons feature}
 \usage{
 polygonRingHolesLines(
-  Sr,
+  geom,
   density = 0.5,
   angle = 45,
   ID = 1,
@@ -13,7 +13,7 @@ polygonRingHolesLines(
 )
 }
 \arguments{
-\item{Sr}{An object of class Polygons}
+\item{geom}{An object of class sf POLYGON}
 
 \item{density}{the density of shading lines, in lines per inch.  The
     default value of \code{NULL} means that no shading lines are drawn.
@@ -30,9 +30,9 @@ polygonRingHolesLines(
       below for details.  Default \code{FALSE}.}
 }
 \value{
-Spatial \code{Lines} object
+sf lines object
 }
 \description{
-Get SpatialLines of one Polygons feature
+Get lines of one Polygons feature
 }
 \keyword{internal}

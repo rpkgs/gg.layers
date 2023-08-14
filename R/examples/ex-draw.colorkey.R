@@ -14,9 +14,9 @@ g
 
 ## sp
 \dontrun{
-library(sp)
-demo(meuse, ask = FALSE, echo = FALSE)
-spplot(meuse, c("ffreq"), col.regions= "black", 
-       pch=c(1,2,3), key.space=list(x=0.1,y=.95,corner=c(0,1)))
-spplot(meuse.grid)
+# library(sp)
+# demo(meuse, ask = FALSE, echo = FALSE)
+# spplot(meuse, c("ffreq"), col.regions= "black", 
+#        pch=c(1,2,3), key.space=list(x=0.1,y=.95,corner=c(0,1)))
+# spplot(meuse.grid)
 }

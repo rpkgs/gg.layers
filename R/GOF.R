@@ -34,7 +34,6 @@
 #' ysim = yobs + rnorm(100)/4
 #' GOF(yobs, ysim)
 #' 
-#' @importFrom hydroGOF KGE
 #' @importFrom dplyr tibble
 #' @export
 GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
@@ -119,6 +118,22 @@ GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
              Bias, Bias_perc, AI = AI, n_sim = n_sim)
     if (include.cv) out <- cbind(out, CV_obs, CV_sim)
     return(out)
+}
+
+
+#' @rdname GOF
+#' @export
+KGE <- function(obs, sim, w = c(1, 1, 1), ...) {
+  length(sim) <= 2 && (return -999.0)
+  ## Check inputs and select timesteps
+
+  ## calculate components
+  c1 = cor(obs, sim) # r: linear correlation
+  c2 = sd(sim) / sd(obs) # alpha: ratio of standard deviations
+  c3 = mean(sim) / mean(obs) # beta: bias
+
+  ## calculate value
+  1 - sqrt((w[1] * (c1 - 1))^2 + (w[2] * (c2 - 1))^2 + (w[3] * (c3 - 1))^2) # weighted KGE
 }
 
 #' @rdname GOF
@@ -217,3 +232,5 @@ valindex <- function(obs, sim, ...) {
 is_empty <- function(x) {
     is.null(x) || (is.data.frame(x) && nrow(x) == 0) || length(x) == 0
 }
+
+
