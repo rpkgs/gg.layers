@@ -47,13 +47,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">st_hatched_polygon</span><span class="op">(</span></span>
-<span>  <span class="va">x</span>,</span>
-<span>  density <span class="op">=</span> <span class="fl">2</span>,</span>
-<span>  angle <span class="op">=</span> <span class="fl">45</span>,</span>
-<span>  fillOddEven <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  type <span class="op">=</span> <span class="st">"sf"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">st_hatched_polygon</span><span class="op">(</span><span class="va">x</span>, density <span class="op">=</span> <span class="fl">2</span>, angle <span class="op">=</span> <span class="fl">45</span>, fillOddEven <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -77,12 +71,6 @@ means no shading nor filling whereas negative values and NA suppress shading
 <dt>fillOddEven</dt>
 <dd><p>logical controlling the polygon shading mode:  see
       below for details.  Default <code>FALSE</code>.</p></dd>
-
-
-<dt>type</dt>
-<dd><p>Controls the type of the returned object:</p><ul><li><p><code>sf</code>: sf object of <code>MULTILINESTRING</code></p></li>
-<li><p><code>sp</code>: sp object of <code><a href="https://rdrr.io/pkg/sp/man/SpatialLines.html" class="external-link">sp::SpatialLinesDataFrame()</a></code></p></li>
-</ul></dd>
 
 </dl></div>
     <div id="value">
