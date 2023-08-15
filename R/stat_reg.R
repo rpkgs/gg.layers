@@ -83,10 +83,11 @@ signif_code <- function(pvalue) {
   at <- c(0, 0.001, 0.01, 0.05, 1)
   lev <- c("***", "**", "*", "-")
   # include.lowest = FALSE, right = TRUE
-  # **: (0   , 0.01]
-  # * : (0.01, 0.05]
-  # - : (0.05, 1   ]
   at <- c(0, 0.01, 0.05, 1)
   lev <- c("**", "*", "-")
   cut(pvalue, at, lev, include.lowest = TRUE) %>% as.character()
 }
+
+# **: (0   , 0.01]
+# * : (0.01, 0.05]
+# - : (0.05, 1   ]

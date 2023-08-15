@@ -124,7 +124,7 @@ GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
 #' @rdname GOF
 #' @export
 KGE <- function(obs, sim, w = c(1, 1, 1), ...) {
-  length(sim) <= 2 && (return -999.0)
+  length(sim) <= 2 && (return(-999.0))
   ## Check inputs and select timesteps
 
   ## calculate components
