@@ -72,6 +72,11 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 It can also be a named logical vector to finely select the aesthetics to
 display.}
 
+\item{label.format}{default value: \code{"*NSE* = {str_num(NSE,2)}, *R^2* = {str_num(R2, 2)} \\n *RMSE* = {str_num(RMSE,2)}"}.
+
+\code{label.format} will be evaluated by \code{\link[glue:glue]{glue::glue()}}. Variables inside \code{{}}
+will be evaluated. All variables returned by \code{\link[=GOF]{GOF()}} are supported.}
+
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
@@ -86,17 +91,25 @@ to the paired geom/stat.}
 layer, as a string.}
 }
 \value{
-No return. This function is used to calculate data for gglot2 \verb{geom_*},
-just like \code{\link[ggplot2:geom_smooth]{ggplot2::stat_smooth()}}.
+No return. This function is used to calculate data for gglot2
+\verb{geom_*}, just like \code{\link[ggplot2:geom_smooth]{ggplot2::stat_smooth()}}.
 }
 \description{
 stat_gof2
 }
+\section{required axes}{
+
+\itemize{
+\item \code{obs}: observed
+\item \code{sim}: simulated
+}
+}
+
 \examples{
 library(ggplot2)
 library(data.table)
 
-dates <- seq(make_date(2010), length.out = 32, by = "day")
+dates <- seq(as.Date("2010-01-01"), length.out = 32, by = "day")
 dat <- data.table(mtcars) \%>\% cbind(date = dates, .)
 dat$cyl <- as.factor(dat$cyl)
 # table(dat$cyl)

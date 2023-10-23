@@ -28,20 +28,31 @@ StatGOF2 <- ggproto("StatGOF2", Stat,
 #'
 #' @inheritParams geom_richtext_npc
 #'
-#' @return No return. This function is used to calculate data for gglot2 `geom_*`,
-#' just like [ggplot2::stat_smooth()].
+#' @param label.format default value: `"*NSE* = {str_num(NSE,2)}, *R^2* = {str_num(R2, 2)} \n
+#' *RMSE* = {str_num(RMSE,2)}"`.
+#'
+#' `label.format` will be evaluated by [glue::glue()]. Variables inside `{}`
+#' will be evaluated. All variables returned by [GOF()] are supported.
 #' 
+#' @return No return. This function is used to calculate data for gglot2
+#' `geom_*`, just like [ggplot2::stat_smooth()].
+#'
+#'
+#' @section required axes:
+#' - `obs`: observed
+#' - `sim`: simulated
+#'
 #' @example R/examples/ex-stat_reg_gof2.R
 #' @export
 stat_gof2 <- function(mapping = NULL, data = NULL,
-                     geom = GeomRichTextNpc,
-                     position = "identity", na.rm = FALSE, show.legend = NA,
-                     # parameters
-                     show.bias = TRUE,
-                     label.format = fmt_gof,
-                     x = 0.05, y = 0.95,
-                     # hjust = 0, vjust = 1,
-                     inherit.aes = TRUE, ...) {
+                      geom = GeomRichTextNpc,
+                      position = "identity", na.rm = FALSE, show.legend = NA,
+                      # parameters
+                      show.bias = TRUE,
+                      label.format = fmt_gof,
+                      x = 0.05, y = 0.95,
+                      # hjust = 0, vjust = 1,
+                      inherit.aes = TRUE, ...) {
   layer(
     stat = StatGOF2, data = data, mapping = mapping, geom = geom,
     position = position, show.legend = show.legend, inherit.aes = inherit.aes,
@@ -60,16 +71,16 @@ stat_gof2 <- function(mapping = NULL, data = NULL,
 #' @rdname stat_gof2
 #' @export
 geom_gof2 <- function(mapping = NULL, data = NULL,
-                     stat = StatGOF2, position = "identity",
-                     ...,
-                     show.bias = TRUE,
-                     label.format = fmt_gof,
-                     x = 0, y = 1,
-                     hjust = 0, vjust = 1,
-                     size = 5,
-                     na.rm = FALSE,
-                     show.legend = NA,
-                     inherit.aes = TRUE) {
+                      stat = StatGOF2, position = "identity",
+                      ...,
+                      show.bias = TRUE,
+                      label.format = fmt_gof,
+                      x = 0, y = 1,
+                      hjust = 0, vjust = 1,
+                      size = 5,
+                      na.rm = FALSE,
+                      show.legend = NA,
+                      inherit.aes = TRUE) {
   layer(
     data = data,
     mapping = mapping,

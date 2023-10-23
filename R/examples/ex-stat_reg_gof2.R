@@ -1,7 +1,7 @@
 library(ggplot2)
 library(data.table)
 
-dates <- seq(make_date(2010), length.out = 32, by = "day")
+dates <- seq(as.Date("2010-01-01"), length.out = 32, by = "day")
 dat <- data.table(mtcars) %>% cbind(date = dates, .)
 dat$cyl <- as.factor(dat$cyl)
 # table(dat$cyl)
