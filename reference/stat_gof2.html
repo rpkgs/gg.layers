@@ -123,6 +123,12 @@ It can also be a named logical vector to finely select the aesthetics to
 display.</p></dd>
 
 
+<dt>label.format</dt>
+<dd><p>default value: <code>"*NSE* = {str_num(NSE,2)}, *R^2* = {str_num(R2, 2)} \n *RMSE* = {str_num(RMSE,2)}"</code>.</p>
+<p><code>label.format</code> will be evaluated by <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code>. Variables inside <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code>
+will be evaluated. All variables returned by <code><a href="GOF.html">GOF()</a></code> are supported.</p></dd>
+
+
 <dt>inherit.aes</dt>
 <dd><p>If <code>FALSE</code>, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
@@ -146,8 +152,8 @@ layer, as a string.</p></dd>
     <h2>Value</h2>
     
 
-<p>No return. This function is used to calculate data for gglot2 <code>geom_*</code>,
-just like <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::stat_smooth()</a></code>.</p>
+<p>No return. This function is used to calculate data for gglot2
+<code>geom_*</code>, just like <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html" class="external-link">ggplot2::stat_smooth()</a></code>.</p>
     </div>
     <div id="required-axes">
     <h2>required axes</h2>
