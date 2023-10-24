@@ -19,6 +19,7 @@ geom_prcpRunoff(
   params_prcp = list(),
   prcp.coef = 1,
   prcp.qmax = NULL,
+  sec.axis = NULL,
   sec.name = "Precipitation (mm)"
 )
 }
@@ -74,14 +75,10 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
-\item{prcp.color}{color of precipitation}
-
-\item{prcp.fill}{fill of precipitation}
-
 \item{params_prcp}{parameters for precipitation hist, default \code{list(fill = "blue", colour = "white", linetype = "solid", linewidth = 0.1)}. See
 \code{\link[ggplot2:geom_tile]{ggplot2::geom_tile()}} for all supported parameters.}
 
-\item{prcp.coef}{coefficient of precipitation, default is \code{1}, `y_new = qmax
+\item{prcp.coef, prcp.max}{coefficient of precipitation, `y_new = prcp.qmax
 \itemize{
 \item prcp * prcp.coef`
 }}
@@ -89,11 +86,20 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 \description{
 Draw precipitation bar on the top of the panel
 }
+\section{Aesthetics}{
+
+\itemize{
+\item \code{x}: date or continuous variable
+\item \code{y}: runoff
+\item \code{prcp}: precipitation
+}
+}
+
 \examples{
 library(ggplot2)
 
-col_prcp = "#3e89be"
-col_runoff = "darkorange"
+col_prcp = "blue"  #"#3e89be"
+col_runoff = "black"  # "darkorange"
 
 my_theme <-
   theme_dual_axis(col_runoff, col_prcp) +
@@ -112,14 +118,16 @@ my_theme <-
 ## Visualization ---------------------------------------------------------------
 dat <- runoff_data
 prcp.coef <- guess_prcp_coef(dat$Q, dat$prcp, ratio = 0.5)
+prcp.qmax <- max(dat$Q) * 1.1
+# prcp.qmax <- NULL
 
 ggplot(dat, aes(x = time, Q)) +
-  theme_test() +
+  # theme_test() +
   geom_prcpRunoff(
     aes(prcp = prcp, color = flood_type),
-    params_prcp = list(color = "white", fill = "blue"),
-    prcp.coef = prcp.coef, 
-    # prcp.qmax = 1200,
+    params_prcp = list(color = col_prcp, fill = col_prcp),
+    prcp.coef = prcp.coef,
+    prcp.qmax = prcp.qmax,
     color = col_runoff, linewidth = 0.5
   ) +
   facet_wrap(~flood_type, scales = "free") +

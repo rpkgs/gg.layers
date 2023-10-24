@@ -37,6 +37,7 @@ GeomPrcpRunoff <- ggproto(
     width = NA
   ),
   required_aes = c("x", "y", "prcp"),
+  dropped_aes = c("prcp"),
   setup_params = function(data, params) {
     # print2("setup_params", params)
     qmax <- max(data$y, na.rm = T)
@@ -60,7 +61,7 @@ GeomPrcpRunoff <- ggproto(
     trans <- function(x) with(params, prcp.qmax - (x * prcp.coef))
     # trans_inv = function(x) with(params, (prcp.qmax - x) / prcp.coef)
     transform(data,
-      xmin = x - width / 2, xmax = x + width / 2, width = NULL,
+      xmin = x - width / 2, xmax = x + width / 2, width = NULL, prcp = NULL,
       ymin = trans(prcp), ymax = params$prcp.qmax
     )
   },
@@ -74,11 +75,9 @@ GeomPrcpRunoff <- ggproto(
       fill = "blue", colour = "white",
       linetype = "solid", linewidth = 0.1
     )
-    
+
     params_prcp <- modifyList(default_params_prcp, params_prcp)
     df_prcp <- modifyList(data, params_prcp)
-    # print2(params_prcp)
-    # print(head(df_prcp))
 
     grid::gList(
       ggplot2::GeomLine$draw_panel(data, panel_params, coord),
@@ -94,21 +93,23 @@ GeomPrcpRunoff <- ggproto(
 #'
 #' @inheritParams ggplot2::geom_tile
 #' 
-#' @param prcp.color color of precipitation 
-#' @param prcp.fill fill of precipitation
-#'
 #' @param params_prcp parameters for precipitation hist, default `list(fill =
 #' "blue", colour = "white", linetype = "solid", linewidth = 0.1)`. See
 #' [ggplot2::geom_tile()] for all supported parameters.
-#' 
-#' @param prcp.coef coefficient of precipitation, default is `1`, `y_new = qmax
+#'
+#' @param prcp.coef,prcp.max coefficient of precipitation, `y_new = prcp.qmax
 #' - prcp * prcp.coef`
 #' 
 #' @importFrom ggplot2 layer
 #' @importFrom rlang list2
 #' 
-#' @example R/examples/ex-geom_prcpRunoff.R
+#' @section Aesthetics:
+#' - `x`: date or continuous variable
+#' - `y`: runoff
+#' - `prcp`: precipitation
 #' 
+#' @example R/examples/ex-geom_prcpRunoff.R
+#'
 #' @author Xie YuXuan and Dongdong Kong
 #' @export
 geom_prcpRunoff <- function(
@@ -120,7 +121,9 @@ geom_prcpRunoff <- function(
     params_prcp = list(),
     prcp.coef = 1,
     prcp.qmax = NULL,
+    sec.axis = NULL, 
     sec.name = "Precipitation (mm)") {
+  
   layer <- layer(
     geom = GeomPrcpRunoff,
     data = data,
@@ -143,9 +146,17 @@ geom_prcpRunoff <- function(
   ## add a spy variable:
   # env_trans <- list2env(list(trans = ~.))
   # get_trans <- function() { env_trans$trans }
-  trans_inv <- ~ (max(.) - .) / prcp.coef
-  sec_axis <- ggplot2::sec_axis(name = sec.name, trans = trans_inv, labels = \(x) x)
-  scale_y <- scale_y_continuous(sec.axis = sec_axis, expand = c(0, 0))
+  if (is.null(sec.axis)) {
+    if (!is.null(prcp.qmax)) {
+      trans_inv <- ~ (prcp.qmax - .) / prcp.coef
+      ylim <- c(0, prcp.qmax)
+    } else {
+      trans_inv <- ~ (max(.) - .) / prcp.coef
+      ylim <- NULL
+    }
+    sec.axis <- ggplot2::sec_axis(name = sec.name, trans = trans_inv, labels = \(x) x)
+  }
+  scale_y <- scale_y_continuous(sec.axis = sec.axis, expand = c(0, 0), limits = ylim)
 
   c(layer, scale_y)
 }

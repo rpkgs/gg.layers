@@ -1,7 +1,7 @@
 library(ggplot2)
 
-col_prcp = "#3e89be"
-col_runoff = "darkorange"
+col_prcp = "blue"  #"#3e89be"
+col_runoff = "black"  # "darkorange"
 
 my_theme <-
   theme_dual_axis(col_runoff, col_prcp) +
@@ -20,14 +20,16 @@ my_theme <-
 ## Visualization ---------------------------------------------------------------
 dat <- runoff_data
 prcp.coef <- guess_prcp_coef(dat$Q, dat$prcp, ratio = 0.5)
+prcp.qmax <- max(dat$Q) * 1.1
+# prcp.qmax <- NULL
 
 ggplot(dat, aes(x = time, Q)) +
-  theme_test() +
+  # theme_test() +
   geom_prcpRunoff(
     aes(prcp = prcp, color = flood_type),
-    params_prcp = list(color = "white", fill = "blue"),
-    prcp.coef = prcp.coef, 
-    # prcp.qmax = 1200,
+    params_prcp = list(color = col_prcp, fill = col_prcp),
+    prcp.coef = prcp.coef,
+    prcp.qmax = prcp.qmax,
     color = col_runoff, linewidth = 0.5
   ) +
   facet_wrap(~flood_type, scales = "free") +
