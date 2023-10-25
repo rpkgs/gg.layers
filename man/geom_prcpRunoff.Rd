@@ -117,8 +117,8 @@ my_theme <-
 
 ## Visualization ---------------------------------------------------------------
 dat <- runoff_data
-prcp.coef <- guess_prcp_coef(dat$Q, dat$prcp, ratio = 0.5)
 prcp.qmax <- max(dat$Q) * 1.1
+prcp.coef <- guess_prcp_coef(prcp.qmax, dat$prcp, ratio = 0.5)
 # prcp.qmax <- NULL
 
 ggplot(dat, aes(x = time, Q)) +

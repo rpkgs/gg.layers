@@ -86,8 +86,8 @@ GeomPrcpRunoff <- ggproto(
   }
 )
 
-# @param prcp.ratio the ratio of precipitation to `ymax`
 
+# @param prcp.ratio the ratio of precipitation to `ymax`
 
 #' Draw precipitation bar on the top of the panel
 #'
@@ -156,7 +156,7 @@ geom_prcpRunoff <- function(
     }
     sec.axis <- ggplot2::sec_axis(name = sec.name, trans = trans_inv, labels = \(x) x)
   }
-  scale_y <- scale_y_continuous(sec.axis = sec.axis, expand = c(0, 0), limits = ylim)
-
-  c(layer, scale_y)
+  scale_y <- scale_y_continuous(sec.axis = sec.axis, expand = c(0, 0))
+  coord = coord_cartesian(ylim = ylim, clip = "on")
+  c(layer, scale_y, coord)
 }
