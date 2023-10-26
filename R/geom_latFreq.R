@@ -130,7 +130,7 @@ make_latFreq <- function(
 
   if (is_spatial) {
     at <- seq(-60, 90, 10)
-    abline(h = seq(-60, 60, 30), lty = 3, col = "grey", lwd = 0.5)
+    abline(h = seq(-30, 60, 30), lty = 3, col = "grey", lwd = 0.5)
     if (ylabels) {
       ylabels <- as.character(yticks)
       ylabels[c(1, length(ylabels))] <- " "
