@@ -51,14 +51,14 @@ st_hatched_polygon <- function(x, density = 2, angle = 45, fillOddEven = FALSE) 
 #' @return sf lines object
 polygonRingHolesLines <- function(geom, density = 0.5, angle = 45, ID = 1, fillOddEven = FALSE)
 {
-  if (is.null(density)) return(list())
+  if (is.null(density)) return(NULL)
   # if (!is(Sr, "Polygons")) stop("Not an Polygons object")
   # 第一个geometry是有效的，其余是holes
 
   # Transform polygon as parallel lines
   lines.hatch <- polygon.fullhatch(geom[[1]],
     density = density, angle = angle, fillOddEven = fillOddEven)
-  if (is.null(lines.hatch)) next()
+  if (is.null(lines.hatch)) return(NULL)
 
   # Transform to sf
   lines = apply(lines.hatch, 1, \(x) list(cbind(c(x[1], x[3]), c(x[2], x[4])))) %>%
