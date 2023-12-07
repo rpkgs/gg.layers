@@ -33,6 +33,7 @@ geom_taylor <- function(mapping = NULL, data = NULL,
                          ...,
                         obs.colour = "black",
                         obs.size = 5,
+                        show.obs.label = TRUE, 
 
                         na.rm = FALSE, show.legend = NA,
                         inherit.aes = TRUE) {
@@ -47,6 +48,7 @@ geom_taylor <- function(mapping = NULL, data = NULL,
       inherit.aes = inherit.aes,
       params = list(
         obs.colour = obs.colour, obs.size = obs.size,
+        show.obs.label = show.obs.label, 
         na.rm = na.rm,
         ...
       )
@@ -54,8 +56,6 @@ geom_taylor <- function(mapping = NULL, data = NULL,
     coord_equal(expand = FALSE)
   )
 }
-
-
 
 
 #' @importFrom dplyr group_by group_map
@@ -70,7 +70,7 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
   setup_data = function(data, params) {
     data %<>% transform(x = sd.mod * R, y = sd.mod * sin(acos(R)))
     maxsd <- max(data$sd.obs, data$sd.mod) * 1.2
-    
+
     data$ymin_final <- 0
     data$ymax_final <- maxsd
     data$xmin_final <- 0
@@ -81,16 +81,20 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
     # d2
   },
 
-  draw_panel = function(data, panel_params, coord, obs.colour = "black", obs.size = 5) {
-    # print(params)
+  draw_panel = function(data, panel_params, coord, 
+    show.obs.label = TRUE, 
+    obs.colour = "black", obs.size = 5) {
     # panel_params$x.range <- c(0, maxsd)
     # panel_params$y.range <- c(0, maxsd)
     sd.obs = data$sd.obs[1]
+    # maxsd <- max(data$sd.obs, data$sd.mod) * 1.1
+    maxsd <- max(data$ymax_final, data$xmax_final) * 0.9
+
     data = dplyr::select(data, -ends_with("final"))
     ## TODO: future updates
-    # coords <- coord$transform(data, panel_params)  
+    # coords <- coord$transform(data, panel_params)
     vp = panel_vp(panel_params)
-    # g = rectGrob(x = 1, y = 1, 
+    # g = rectGrob(x = 1, y = 1,
     #   hjust = 0, vjust = 0,
     #   vp = vp, default.units = "native",
     #   gp = gpar(fill = "red"), width = 0.5, height = 0.5)
@@ -101,13 +105,12 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
       linewidth= linewidth,
       group    = data$group[1]
     )
-    maxsd <- max(data$sd.obs, data$sd.mod) * 1.1
 
     ## s大圆
     x <- cos(seq(0, pi / 2, by = 0.01)) * maxsd
     y <- sin(seq(0, pi / 2, by = 0.01)) * maxsd
     sd_big = new_data_frame(c(listk(x, y), common))
-    grob_sd_big <- linesGrob(x, y, 
+    grob_sd_big <- linesGrob(x, y,
       vp = vp, default.units = "native",
       gp = gpar(lwd = linewidth * .pt, lty = 1))
     # grob_sd_big <- GeomLine$draw_panel(sd_big, panel_params, coord)
@@ -199,8 +202,8 @@ GeomTaylor <- ggproto("GeomTaylor", GeomPoint,
                        shape = 19, colour = obs.colour, size = obs.size,
                        fill = obs.colour,
                        alpha = 1, stroke = 0.5)
-    d_obs_txt = cbind(d_obs, label = "Observed", fontsize = 8, vjust = -1, angle = 0)
-
+    label_obs = ifelse(show.obs.label, "Observed", "")
+    d_obs_txt = cbind(d_obs, label = label_obs, fontsize = 8, vjust = -1, angle = 0)
 
     grid::gList(
       # g,
