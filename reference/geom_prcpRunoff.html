@@ -135,14 +135,35 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/borders.html" class="external-link">borders()</a></code>.</p></dd>
 
 
+<dt>prcp.color</dt>
+<dd><p>color of precipitation</p></dd>
+
+
+<dt>prcp.fill</dt>
+<dd><p>fill of precipitation</p></dd>
+
+
 <dt>params_prcp</dt>
 <dd><p>parameters for precipitation hist, default <code>list(fill = "blue", colour = "white", linetype = "solid", linewidth = 0.1)</code>. See
 <code><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">ggplot2::geom_tile()</a></code> for all supported parameters.</p></dd>
 
 
-<dt>prcp.coef, prcp.max</dt>
+<dt>prcp.coef</dt>
 <dd><p>coefficient of precipitation, `y_new = prcp.qmax</p><ul><li><p>prcp * prcp.coef`</p></li>
 </ul></dd>
+
+
+<dt>prcp.qmax</dt>
+<dd><p>maximum of streamflow, used to calculate <code>prcp.coef</code></p></dd>
+
+
+<dt>sec.axis</dt>
+<dd><p>secondary axis for precipitation, returned by
+<code><a href="https://ggplot2.tidyverse.org/reference/sec_axis.html" class="external-link">ggplot2::sec_axis()</a></code></p></dd>
+
+
+<dt>sec.name</dt>
+<dd><p>name of secondary axis</p></dd>
 
 </dl></div>
     <div id="aesthetics">
