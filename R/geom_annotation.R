@@ -2,6 +2,7 @@
 #'
 #' @inheritParams ggplot2::geom_point
 #' @inheritParams ggplot2::annotation_custom
+#' @inheritParams grid::viewport
 #' 
 #' @param data A tibble with the column of `grob`
 #' 

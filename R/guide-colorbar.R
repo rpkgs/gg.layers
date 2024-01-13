@@ -223,7 +223,7 @@ guide_train.colorbar2 <- function(guide, scale, aesthetic = NULL) {
   if (length(breaks) == 0 || all(is.na(breaks)))
     return()
 
-  ticks <- data_frame(scale$map(breaks), .name_repair = ~ aesthetic %||% scale$aesthetics[1])
+  ticks <- tibble(scale$map(breaks), .name_repair = ~ aesthetic %||% scale$aesthetics[1])
   ticks$.value <- breaks
   ticks$.label <- scale$get_labels(breaks)
 

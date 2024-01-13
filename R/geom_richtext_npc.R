@@ -98,6 +98,7 @@ GeomRichTextNpc <- ggplot2::ggproto("GeomRichTextNpc", GeomRichText,
   draw_key = function(...) { grid::nullGrob() }
 )
 
+#' @inheritParams grid::grid.text
 #' @rdname geom_richtext_npc
 #' @importFrom ggplot2 theme_get
 #' @export

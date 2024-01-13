@@ -34,7 +34,8 @@ GeomMK <- ggproto("GeomMK", Geom,
 #' geom_mk
 #'
 #' @inheritParams ggplot2::geom_abline
-#'
+#' @param fun_slope function to calculate slope, default [rtrend::slope_mk()]
+#' 
 #' @export
 geom_mk <- function(mapping = NULL, data = NULL,
                     stat = "identity", position = "identity",

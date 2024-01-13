@@ -1,5 +1,8 @@
 #' geom_latFreq
 #' @inheritParams ggplot2::geom_point
+#' @param bbox bounding box of the plot, in the form of `c(xmin, xmax, ymin, ymax)`.
+#' @param options parameters of [make_latFreq()]
+#' 
 #' @example R/examples/ex-geom_latFreq.R
 #' @export
 geom_latFreq <- function(mapping = NULL, data = NULL,

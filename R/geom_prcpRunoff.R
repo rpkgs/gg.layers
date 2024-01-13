@@ -97,8 +97,15 @@ GeomPrcpRunoff <- ggproto(
 #' "blue", colour = "white", linetype = "solid", linewidth = 0.1)`. See
 #' [ggplot2::geom_tile()] for all supported parameters.
 #'
-#' @param prcp.coef,prcp.max coefficient of precipitation, `y_new = prcp.qmax
+#' @param prcp.coef coefficient of precipitation, `y_new = prcp.qmax
 #' - prcp * prcp.coef`
+#' @param prcp.color color of precipitation
+#' @param prcp.fill fill of precipitation
+#' @param prcp.qmax maximum of streamflow, used to calculate `prcp.coef`
+#' 
+#' @param sec.axis secondary axis for precipitation, returned by 
+#' [ggplot2::sec_axis()]
+#' @param sec.name name of secondary axis
 #' 
 #' @importFrom ggplot2 layer
 #' @importFrom rlang list2

@@ -108,6 +108,13 @@ display.}
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+
+\item{x}{A numeric vector or unit object specifying x-values.}
+
+\item{y}{A numeric vector or unit object specifying y-values.}
+
+\item{label}{A character or \link{expression} vector.  Other
+    objects are coerced by \code{\link{as.graphicsAnnot}}.}
 }
 \description{
 Text with Normalised Parent Coordinates
@@ -172,15 +179,17 @@ d$label <- c(
   "Some text **in bold.**",
   "Linebreaks<br>Linebreaks<br>Linebreaks",
   "*x*<sup>2</sup> + 5*x* + *C*<sub>*i*</sub>",
-  "Some <span style='color:blue'>blue text **in bold.**</span><br>And *italics text.*<br>
-    And some <span style='font-size:18pt; color:black'>large</span> text."
+  "Some <span style='color:blue'>blue text **in bold.**</span><br>And 
+  *italics text.*<br>
+  And some <span style='font-size:18pt; color:black'>large</span> text."
 )
 ggplot(d, aes(npcx = x, npcy = y)) +
   geom_richtext_npc(aes(npcx = x, npcy = y, label = label))
 
 ## test for `str_mk`
 library(magrittr)
-indexes_lev = c("DOY_first", "DOY_last", "HWD", "HWI", "HWS_mean", "HWS_sum", "HWA_avg", "HWA_max", "HWA_sum")
+indexes_lev = c("DOY_first", "DOY_last", "HWD", "HWI", "HWS_mean", 
+  "HWS_sum", "HWA_avg", "HWA_max", "HWA_sum")
 labels = indexes_lev \%>\% str_mk() #\%>\% label_tag(expression = F)
 d = data.frame(x = 0.5, y = 0.5, label = labels)
 

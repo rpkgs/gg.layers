@@ -29,15 +29,17 @@ d$label <- c(
   "Some text **in bold.**",
   "Linebreaks<br>Linebreaks<br>Linebreaks",
   "*x*<sup>2</sup> + 5*x* + *C*<sub>*i*</sub>",
-  "Some <span style='color:blue'>blue text **in bold.**</span><br>And *italics text.*<br>
-    And some <span style='font-size:18pt; color:black'>large</span> text."
+  "Some <span style='color:blue'>blue text **in bold.**</span><br>And 
+  *italics text.*<br>
+  And some <span style='font-size:18pt; color:black'>large</span> text."
 )
 ggplot(d, aes(npcx = x, npcy = y)) +
   geom_richtext_npc(aes(npcx = x, npcy = y, label = label))
 
 ## test for `str_mk`
 library(magrittr)
-indexes_lev = c("DOY_first", "DOY_last", "HWD", "HWI", "HWS_mean", "HWS_sum", "HWA_avg", "HWA_max", "HWA_sum")
+indexes_lev = c("DOY_first", "DOY_last", "HWD", "HWI", "HWS_mean", 
+  "HWS_sum", "HWA_avg", "HWA_max", "HWA_sum")
 labels = indexes_lev %>% str_mk() #%>% label_tag(expression = F)
 d = data.frame(x = 0.5, y = 0.5, label = labels)
 

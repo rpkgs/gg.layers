@@ -75,13 +75,24 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
+\item{prcp.color}{color of precipitation}
+
+\item{prcp.fill}{fill of precipitation}
+
 \item{params_prcp}{parameters for precipitation hist, default \code{list(fill = "blue", colour = "white", linetype = "solid", linewidth = 0.1)}. See
 \code{\link[ggplot2:geom_tile]{ggplot2::geom_tile()}} for all supported parameters.}
 
-\item{prcp.coef, prcp.max}{coefficient of precipitation, `y_new = prcp.qmax
+\item{prcp.coef}{coefficient of precipitation, `y_new = prcp.qmax
 \itemize{
 \item prcp * prcp.coef`
 }}
+
+\item{prcp.qmax}{maximum of streamflow, used to calculate \code{prcp.coef}}
+
+\item{sec.axis}{secondary axis for precipitation, returned by
+\code{\link[ggplot2:sec_axis]{ggplot2::sec_axis()}}}
+
+\item{sec.name}{name of secondary axis}
 }
 \description{
 Draw precipitation bar on the top of the panel

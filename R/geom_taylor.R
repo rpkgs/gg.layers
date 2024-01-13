@@ -25,7 +25,12 @@ taylor_data <- function(ref, model, sd.method = "sample", normalize = FALSE, ...
 }
 
 #' geom_taylor
+#' 
 #' @inheritParams ggplot2::geom_point
+#' @param show.obs.label logical, whether to show the label of observed point.
+#' @param obj.colour color of observed point. 
+#' @param obj.size size of observed point.
+#' 
 #' @example R/examples/ex-geom_taylor.R
 #' @export
 geom_taylor <- function(mapping = NULL, data = NULL,

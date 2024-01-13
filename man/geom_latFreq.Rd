@@ -53,6 +53,10 @@ often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters
 to the paired geom/stat.}
 
+\item{options}{parameters of \code{\link[=make_latFreq]{make_latFreq()}}}
+
+\item{bbox}{bounding box of the plot, in the form of \code{c(xmin, xmax, ymin, ymax)}.}
+
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 

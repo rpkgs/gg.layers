@@ -7,6 +7,8 @@
 #' @inheritParams ggplot2::geom_boxplot
 #' @inheritSection ggplot2::geom_boxplot Summary statistics
 #' @param width.errorbar the width of errorbar (default 0.7)
+#' @param stat the statistical transformation to use on the data for this layer
+#' @param show.errorbar whether to show errorbar (default TRUE)
 #' 
 #' @eval ggplot2:::rd_aesthetics("geom", "boxplot")
 #' @seealso [geom_quantile()] for continuous `x`,

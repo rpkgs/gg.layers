@@ -11,6 +11,8 @@ censor2 <- function(x, range = c(0, 1), only.finite = TRUE) {
 #' scale_fill_gradientn2
 #'
 #' @inheritParams ggplot2::scale_fill_gradientn
+#' @param oob function that handles limits outside of the scale limits
+#' 
 #' @export 
 scale_fill_gradientn2 <- function(
     ...,

@@ -15,6 +15,12 @@ add_colorbar(
 )
 }
 \arguments{
+\item{p}{a ggplot object}
+
+\item{g}{a grob object, colorbar}
+
+\item{width, height}{width and height of the colorbar}
+
 \item{title}{all title elements: plot, axes, legends (\code{\link[ggplot2:element_text]{element_text()}};
 inherits from \code{text})}
 

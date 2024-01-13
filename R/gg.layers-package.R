@@ -19,7 +19,8 @@ NULL
   if (getRversion() >= "2.15.1") {
     utils::globalVariables(
       c(
-        ".", ".SD", ".N", "..vars"
+        ".", ".SD", ".N", "..vars", 
+        "vals", "value", "r"
       )
     )
   }

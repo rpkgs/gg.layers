@@ -96,7 +96,9 @@ display.}
 
 \item{label.format}{format string for label, default \code{fmt_gof}}
 
-\item{x}{A single number specifying size relative to parent element.}
+\item{x}{A numeric vector or unit object specifying x-values.}
+
+\item{y}{A numeric vector or unit object specifying y-values.}
 
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions

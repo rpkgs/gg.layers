@@ -48,6 +48,8 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
+\item{stat}{the statistical transformation to use on the data for this layer}
+
 \item{position}{Position adjustment, either as a string naming the adjustment
 (e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
 position adjustment function. Use the latter if you need to change the
@@ -69,6 +71,8 @@ the raw data points on top of the boxplot. Hiding the outliers can be achieved
 by setting \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
 it only hides them, so the range calculated for the y-axis will be the
 same with outliers shown and outliers hidden.}
+
+\item{show.errorbar}{whether to show errorbar (default TRUE)}
 
 \item{width.errorbar}{the width of errorbar (default 0.7)}
 

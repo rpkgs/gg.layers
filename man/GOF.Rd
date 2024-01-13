@@ -23,6 +23,8 @@ calculating mean, Bias, MAE, RMSE and NSE, w will be taken into considered.}
 \item{include.cv}{If true, cv will be included.}
 
 \item{include.r}{If true, r and R2 will be included.}
+
+\item{...}{ignored}
 }
 \value{
 \itemize{

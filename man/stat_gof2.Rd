@@ -77,6 +77,10 @@ display.}
 \code{label.format} will be evaluated by \code{\link[glue:glue]{glue::glue()}}. Variables inside \code{{}}
 will be evaluated. All variables returned by \code{\link[=GOF]{GOF()}} are supported.}
 
+\item{x}{A numeric vector or unit object specifying x-values.}
+
+\item{y}{A numeric vector or unit object specifying y-values.}
+
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from

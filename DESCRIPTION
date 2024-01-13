@@ -31,7 +31,6 @@ Suggests:
     mapview,
     lattice,
     cowplot,
-    glue,
     gridExtra, 
     knitr,
     rmarkdown

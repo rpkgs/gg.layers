@@ -24,6 +24,8 @@ mapping.}
 
 \item{data}{A tibble with the column of \code{grob}}
 
+\item{plot.fun}{function to plot, \code{p <- plot.fun(data, ...)}}
+
 \item{...}{other parameters to \code{plot.fun}}
 
 \item{x}{A numeric vector or unit object specifying x-location.}

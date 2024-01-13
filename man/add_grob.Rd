@@ -7,7 +7,11 @@
 add_grob(p, ..., ggplot = TRUE)
 }
 \arguments{
+\item{p}{ggplot object}
+
 \item{...}{grob objects}
+
+\item{ggplot}{logical, if TRUE, return a ggplot object}
 }
 \description{
 add grob to a plot

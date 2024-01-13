@@ -44,6 +44,16 @@ location of raster}
 \item{ymin, ymax}{y location (in data coordinates) giving vertical
 location of raster}
 
+\item{just}{A string or numeric
+    vector specifying the justification of the viewport
+    relative to its (x, y) location.  If there are two values, the first
+    value specifies horizontal justification and the second value specifies
+    vertical justification.  Possible string values are: \code{"left"},
+    \code{"right"}, \code{"centre"}, \code{"center"}, \code{"bottom"},
+    and \code{"top"}.  For numeric values, 0 means left alignment
+    and 1 means right alignment.
+  }
+
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value, like
 \code{colour = "red"} or \code{size = 3}. They may also be parameters

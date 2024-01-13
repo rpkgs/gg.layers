@@ -121,6 +121,7 @@ GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
 }
 
 
+#' @param ... ignored
 #' @rdname GOF
 #' @export
 KGE <- function(obs, sim, w = c(1, 1, 1), ...) {

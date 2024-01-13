@@ -15,7 +15,7 @@ add_barchart <- function(
   dat <- as.data.frame(table(x)) %>%
     # as.data.table(table(x)) %>%
     cbind(I = 1:nrow(.)) %>%
-    mutate(perc = Freq / sum(Freq))
+    mutate(perc = .data$Freq / sum(.data$Freq))
   # mutate(perc = N/sum(N))
 
   n <- length(brks)

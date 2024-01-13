@@ -10,7 +10,9 @@ grobs <- function(..., options = list(nrow = 1)) {
 
 #' add grob to a plot
 #' 
+#' @param p ggplot object
 #' @param ... grob objects
+#' @param ggplot logical, if TRUE, return a ggplot object
 #' 
 #' @example R/examples/ex-add_grob.R
 #' 

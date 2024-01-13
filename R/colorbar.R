@@ -16,8 +16,8 @@
 #' - `fontface`: The font face (bold, italic, ...)
 #' - `lineheight`:
 #' @param padding.left,padding.right padding in the left and right of the legend
-#'
 #' @param hjust,vjust used in [grid::grid.layout()]
+#' 
 #'
 #' @example R/examples/ex-make_colorbar.R
 #' @importFrom grid unit

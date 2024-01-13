@@ -3,6 +3,7 @@
 #' @inheritParams geom_annotation
 #' @inheritParams grid::viewport
 #' 
+#' @param plot.fun function to plot, `p <- plot.fun(data, ...)`
 #' @param ... other parameters to `plot.fun`
 #' 
 #' @example R/examples/ex-geom_anno_func.R
