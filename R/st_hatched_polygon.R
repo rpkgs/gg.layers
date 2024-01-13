@@ -10,14 +10,14 @@
 #' @param x sf polygon object
 #'
 #' @return An hatched area, sf lines
-#' 
+#'
 #' @references
 #' 1. <https://github.com/statnmap/HatchedPolygons>
 #' 2. <https://statnmap.github.io/HatchedPolygons/>
 #' 3. <https://statnmap.github.io/HatchedPolygons/articles/leaflet_shading_polygon.html>
 #'
 #' @example R/examples/ex-st_hatched_polygon.R
-#' 
+#'
 #' @export
 st_hatched_polygon <- function(x, density = 2, angle = 45, fillOddEven = FALSE) {
   # if (is(x, "SpatialPolygons")) {
@@ -28,7 +28,10 @@ st_hatched_polygon <- function(x, density = 2, angle = 45, fillOddEven = FALSE) 
   # }
   geoms = sf::st_geometry(x) # POLYGON, sfg
   n = length(geoms)
-
+  ## convert sfc_MULTIPOLYGON into sfc_POLYGON
+  if ("sfc_MULTIPOLYGON" %in% class(geoms)) {
+    geoms <- sf::st_cast(geoms, "POLYGON")
+  }
   if (length(density) != n) density <- rep(density, n, n)
   if (length(angle) != n) angle <- rep(angle, n, n)
 

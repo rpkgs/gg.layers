@@ -28,6 +28,7 @@ Suggests:
     data.table,
     rcolors,
     sf, stars, raster,
+    mapview,
     lattice,
     cowplot,
     glue,
