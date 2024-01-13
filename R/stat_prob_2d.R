@@ -7,6 +7,9 @@ snake_class = ggplot2:::snake_class
 data_frame0 <- function(...) vctrs::data_frame(..., .name_repair = "minimal")
 
 #' prob density
+#' 
+#' @param geom Use to override the default connection between [geom_prob_2d()] and [stat_prob_2d].
+#' 
 #' @inheritParams ggplot2::stat_density_2d
 #' @example  R/examples/ex-stat_prob_2d.R
 #' @export

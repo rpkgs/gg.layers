@@ -26,7 +26,9 @@ StatGOF <- ggproto("StatGOF", Stat,
 #' stat_gof
 #' 
 #' @inheritParams geom_richtext_npc
-#'
+#' @param label.format format string for label, default `fmt_gof`
+#' @param show.bias whether to show bias
+#' 
 #' @return No return. This function is used to calculate data for gglot2 `geom_*`,
 #' just like [ggplot2::stat_smooth()].
 #' 
@@ -55,6 +57,7 @@ stat_gof <- function(mapping = NULL, data = NULL,
   )
 }
 
+#' @inheritParams ggplot2::element_text
 #' @rdname stat_gof
 #' @export 
 geom_gof <- function(mapping = NULL, data = NULL,

@@ -6,16 +6,16 @@
 \alias{NSE}
 \title{GOF}
 \usage{
-GOF(yobs, ysim, w, include.cv = FALSE, include.r = TRUE)
+GOF(obs, sim, w, include.cv = FALSE, include.r = TRUE)
 
 KGE(obs, sim, w = c(1, 1, 1), ...)
 
-NSE(yobs, ysim, w, ...)
+NSE(obs, sim, w, ...)
 }
 \arguments{
-\item{yobs}{Numeric vector, observations}
+\item{obs}{Numeric vector, observations}
 
-\item{ysim}{Numeric vector, corresponding simulated values}
+\item{sim}{Numeric vector, corresponding simulated values}
 
 \item{w}{Numeric vector, weights of every points. If w included, when
 calculating mean, Bias, MAE, RMSE and NSE, w will be taken into considered.}
@@ -44,9 +44,9 @@ calculate. See details in Zhang et al., (2015).
 Good of fitting
 }
 \examples{
-yobs = rnorm(100)
-ysim = yobs + rnorm(100)/4
-GOF(yobs, ysim)
+obs = rnorm(100)
+sim = obs + rnorm(100)/4
+GOF(obs, sim)
 
 }
 \references{

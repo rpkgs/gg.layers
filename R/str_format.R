@@ -43,6 +43,9 @@ label_num <- function(fmt = "%.2f") {
   function(x) sprintf(fmt, x)
 }
 
+#' @param labels character vector
+#' @param ... ignored
+#' 
 #' @rdname str_mk
 #' @export
 label_mk <- function(labels, ...) {

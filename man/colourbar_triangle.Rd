@@ -6,6 +6,9 @@
 \usage{
 colourbar_triangle(...)
 }
+\arguments{
+\item{...}{parameters passed to \link[ggplot2:guide_colourbar]{ggplot2::guide_colourbar}}
+}
 \description{
 colourbar_triangle
 }

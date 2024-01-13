@@ -92,6 +92,12 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 It can also be a named logical vector to finely select the aesthetics to
 display.}
 
+\item{show.bias}{whether to show bias}
+
+\item{label.format}{format string for label, default \code{fmt_gof}}
+
+\item{x}{A single number specifying size relative to parent element.}
+
 \item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
@@ -105,6 +111,12 @@ to the paired geom/stat.}
 \item{stat}{The statistical transformation to use on the data for this
 layer, as a string.}
 
+\item{hjust}{Horizontal justification (in \eqn{[0, 1]})}
+
+\item{vjust}{Vertical justification (in \eqn{[0, 1]})}
+
+\item{size}{text size in pts.}
+
 \item{formula}{an object of class \code{"\link[stats]{formula}"} (or one that
     can be coerced to that class): a symbolic description of the
     model to be fitted.  The details of model specification are given
@@ -113,6 +125,8 @@ layer, as a string.}
 \item{digits}{the number of \emph{significant} digits to be
     passed to \code{\link{format}(\link[stats]{coef}(x), .)} when
     \code{\link{print}()}ing.}
+
+\item{family}{Font family}
 }
 \value{
 No return. This function is used to calculate data for gglot2 \verb{geom_*},

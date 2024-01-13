@@ -2,8 +2,8 @@
 #'
 #' Good of fitting
 #'
-#' @param yobs Numeric vector, observations
-#' @param ysim Numeric vector, corresponding simulated values
+#' @param obs Numeric vector, observations
+#' @param sim Numeric vector, corresponding simulated values
 #' @param w Numeric vector, weights of every points. If w included, when
 #' calculating mean, Bias, MAE, RMSE and NSE, w will be taken into considered.
 #' @param include.cv If true, cv will be included.
@@ -30,31 +30,31 @@
 #' 4. Zhang Xiaoyang (2015), http://dx.doi.org/10.1016/j.rse.2014.10.012
 #'
 #' @examples
-#' yobs = rnorm(100)
-#' ysim = yobs + rnorm(100)/4
-#' GOF(yobs, ysim)
+#' obs = rnorm(100)
+#' sim = obs + rnorm(100)/4
+#' GOF(obs, sim)
 #' 
 #' @importFrom dplyr tibble
 #' @export
-GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
-    if (missing(w)) w <- rep(1, length(yobs))
+GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
+    if (missing(w)) w <- rep(1, length(obs))
 
-    # remove NA_real_ and Inf values in ysim, yobs and w
+    # remove NA_real_ and Inf values in sim, obs and w
     valid <- function(x) !is.na(x) & is.finite(x)
 
-    I <- which(valid(ysim) & valid(yobs) & valid(w))
-    # n_obs <- length(yobs)
+    I <- which(valid(sim) & valid(obs) & valid(w))
+    # n_obs <- length(obs)
     n_sim <- length(I)
 
-    ysim <- ysim[I]
-    yobs <- yobs[I]
+    sim <- sim[I]
+    obs <- obs[I]
     w     <- w[I]
 
     if (include.cv) {
-        CV_obs <- cv_coef(yobs, w)
-        CV_sim <- cv_coef(ysim, w)
+        CV_obs <- cv_coef(obs, w)
+        CV_sim <- cv_coef(sim, w)
     }
-    if (is_empty(yobs)){
+    if (is_empty(obs)){
         out <- c(RMSE = NA_real_, 
             KGE = NA_real_,
             NSE = NA_real_, MAE = NA_real_, AI = NA_real_,
@@ -67,16 +67,16 @@ GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
 
     # R2: the portion of regression explained variance, also known as
     # coefficient of determination
-    KGE = KGE(ysim, yobs)
+    KGE = KGE(sim, obs)
     # https://en.wikipedia.org/wiki/Coefficient_of_determination
     # https://en.wikipedia.org/wiki/Explained_sum_of_squares
-    y_mean <- sum(yobs * w) / sum(w)
+    y_mean <- sum(obs * w) / sum(w)
 
-    SSR    <- sum( (ysim - y_mean)^2 * w)
-    SST    <- sum( (yobs - y_mean)^2 * w)
+    SSR    <- sum( (sim - y_mean)^2 * w)
+    SST    <- sum( (obs - y_mean)^2 * w)
     # R2     <- SSR / SST
 
-    RE     <- ysim - yobs
+    RE     <- sim - obs
     Bias   <- sum ( w*RE)     /sum(w)                     # bias
     Bias_perc <- Bias/y_mean                              # bias percentage
     MAE    <- sum ( w*abs(RE))/sum(w)                     # mean absolute error
@@ -93,7 +93,7 @@ GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
         pvalue <- NA_real_
         
         tryCatch({
-            cor.obj <- cor.test(yobs, ysim, use = "complete.obs")
+            cor.obj <- cor.test(obs, sim, use = "complete.obs")
             R       <- cor.obj$estimate[[1]]
             pvalue  <- cor.obj$p.value
         }, error = function(e){
@@ -102,16 +102,16 @@ GOF <- function(yobs, ysim, w, include.cv = FALSE, include.r = TRUE){
         R2 = R^2
     }
     # In Linear regression, R2 = R^2 (R is pearson cor)
-    # R2     <- summary(lm(ysim ~ yobs))$r.squared # low efficient
+    # R2     <- summary(lm(sim ~ obs))$r.squared # low efficient
 
     # AI: Agreement Index (only good values(w==1) calculate AI)
     AI <- NA_real_
     I2 <- which(w == 1)
     if (length(I2) >= 2) {
-        yobs = yobs[I2]
-        ysim = ysim[I2]
-        y_mean = mean(yobs)
-        AI = 1 - sum( (ysim - yobs)^2 ) / sum( (abs(ysim - y_mean) + abs(yobs - y_mean))^2 )
+        obs = obs[I2]
+        sim = sim[I2]
+        y_mean = mean(obs)
+        AI = 1 - sum( (sim - obs)^2 ) / sum( (abs(sim - y_mean) + abs(obs - y_mean))^2 )
     }
 
     out <- tibble(R, pvalue, R2, NSE, KGE, RMSE, MAE, 
@@ -138,20 +138,20 @@ KGE <- function(obs, sim, w = c(1, 1, 1), ...) {
 
 #' @rdname GOF
 #' @export
-NSE <- function(yobs, ysim, w, ...) {
-    if (missing(w)) w <- rep(1, length(yobs))
+NSE <- function(obs, sim, w, ...) {
+    if (missing(w)) w <- rep(1, length(obs))
 
-    ind <- valindex(yobs, ysim)
+    ind <- valindex(obs, sim)
     w <- w[ind]
 
-    y_mean <- sum(yobs[ind] * w) / sum(w)
+    y_mean <- sum(obs[ind] * w) / sum(w)
     # R2: the portion of regression explained variance, also known as
     # coefficient of determination
 
-    # SSR <- sum((ysim - y_mean)^2 * w)
-    SST <- sum((yobs[ind] - y_mean)^2 * w)
+    # SSR <- sum((sim - y_mean)^2 * w)
+    SST <- sum((obs[ind] - y_mean)^2 * w)
     # R2     <- SSR / SST
-    RE <- ysim[ind] - yobs[ind]
+    RE <- sim[ind] - obs[ind]
     # Bias <- sum(w * RE) / sum(w) # bias
     # Bias_perc <- Bias / y_mean # bias percentage
     # MAE <- sum(w * abs(RE)) / sum(w) # mean absolute error

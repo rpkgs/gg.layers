@@ -1,5 +1,7 @@
 #' colourbar_triangle
 #' 
+#' @param ... parameters passed to [ggplot2::guide_colourbar]
+#' 
 #' @example R/examples/ex-colorbar_triangle.R
 #' 
 #' @references 

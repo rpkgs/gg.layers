@@ -11,6 +11,10 @@ label_mk(labels, ...)
 }
 \arguments{
 \item{x}{character vector}
+
+\item{labels}{character vector}
+
+\item{...}{ignored}
 }
 \description{
 markdown superscript and subscript

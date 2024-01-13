@@ -12,6 +12,7 @@ geom_taylor(
   ...,
   obs.colour = "black",
   obs.size = 5,
+  show.obs.label = TRUE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE

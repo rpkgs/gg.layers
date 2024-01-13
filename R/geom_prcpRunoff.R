@@ -23,8 +23,8 @@ theme_dual_axis <- function(col_left = "darkorange", col_right = "blue") {
   )
 }
 
-#' @importFrom rlang `%||%`
-#' @importFrom magrittr `%<>%` `%>%`
+#' @importFrom rlang %||%
+#' @importFrom magrittr %<>% %>%
 #' @importFrom ggplot2 ggproto GeomLine aes layer
 GeomPrcpRunoff <- ggproto(
   "GeomPrcpRunoff", GeomLine,
