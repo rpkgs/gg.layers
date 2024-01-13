@@ -6,6 +6,9 @@
 \usage{
 ggplot_legend(g)
 }
+\arguments{
+\item{g}{A ggplot object}
+}
 \value{
 A grob object
 }

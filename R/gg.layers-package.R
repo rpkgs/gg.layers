@@ -20,7 +20,8 @@ NULL
     utils::globalVariables(
       c(
         ".", ".SD", ".N", "..vars", 
-        "vals", "value", "r"
+        "vals", "value", "r", 
+        'x', "perc", "name"
       )
     )
   }

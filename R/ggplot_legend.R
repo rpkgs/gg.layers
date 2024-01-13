@@ -1,4 +1,6 @@
 #' ggplot_legend
+#' 
+#' @param g A ggplot object
 #' @return A grob object
 #' 
 #' @importFrom ggplot2 ggplot_gtable
