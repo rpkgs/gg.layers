@@ -80,6 +80,10 @@ round_decade <- function(x) {
 }
 
 
+#' make_latFreq
+#' @param ... ignored
+#' @keywords internal
+#' @export 
 make_latFreq <- function(
     y, z,
     length.out = 1e4,
@@ -110,21 +114,26 @@ make_latFreq <- function(
   } else {
     zmax <- max(zlim)
   }
+  
+  # 这里算法需要改进
+  # ## 方案1
+  # d <- data.table(vals = z, x = y)
+  # d_group <- d[, .(value = mean(vals, na.rm = TRUE)), .(x)] %>%
+  #   .[x <= ylim[2] & x >= ylim[1]]
+  # d_group[is.na(value), value := 0]
 
-  d <- data.table(vals = z, x = y)
-  d2 <- d[, .(value = mean(vals, na.rm = TRUE)), .(x)] %>%
-    .[x <= ylim[2] & x >= ylim[1]]
-
-  d2[is.na(value), value := 0]
+  ## 方案2
+  d_group = upper_envelope(y, z, 0.5, nchunk = 400)[, .(x, value = mid)]
 
   if (!debug) {
     old.par = par(mar = c(0, 0, 0, 0), mgp = c(1, 0, 0), oma = c(0, 0, 0, 0))
     # on.exit(par(old.par))
   }
 
-  draw_polygon(d2$value, d2$x,
-    length.out = nrow(d2), type = "vertical",
-    tcl = tcl, ...,
+  draw_polygon(d_group$value, d_group$x,
+    length.out = nrow(d_group), type = "vertical",
+    tcl = tcl,
+    # ...,
     ylim = ylim, zlim = zlim,
     xaxs = "i", yaxs = "i",
     xlab = "", ylab = "",
