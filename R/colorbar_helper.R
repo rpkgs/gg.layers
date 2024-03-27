@@ -344,12 +344,11 @@ key_triangle <- function(key.gf, key, open.lower, open.upper){
 }
 
 ## for ggplot2
-make_triangle <- function(space = "right", cols) {
+make_triangle <- function(space = "right", cols, lwd = 0.4) {
   col = "black"
-  lwd = 0.4
   alpha = 1
   gp_lower <- gpar(fill = cols[1], col = col, alpha = alpha, lwd = lwd)
-  gp_upper <- gpar(fill = keys$col[length(key$col)], col = col, alpha = alpha, lwd = lwd)
+  gp_upper <- gpar(fill = cols[length(cols)], col = col, alpha = alpha, lwd = lwd)
 
   pnts0 <- cbind(
     x = c(0, 1, 0.5),
