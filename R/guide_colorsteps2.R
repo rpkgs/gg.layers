@@ -79,15 +79,13 @@ GuideColoursteps2 <- ggproto(
       nrow = 3, ncol = 1, # respect = TRUE,
       heights = c(bh, (n - 2) * bh, bh), widths = 1, just = c(0, 0)
     )
+    l <- make_triangle(cols = decor$colour, lwd = lwd)
     .frame <- frameGrob(layout = key.layout)
-
-    frame <- element_grob(elements$frame, fill = NA)
-
-    l = make_triangle(cols = decor$colour, lwd = lwd)
-
     .frame %<>% placeGrob(grob, row = 2, col = 1)
     .frame %<>% placeGrob(l$lower, row = 3, col = 1)
     .frame %<>% placeGrob(l$upper, row = 1, col = 1)
+
+    frame <- element_grob(elements$frame, fill = NA)
 
     list(bar = .frame, frame = frame, ticks = grobs$ticks)
   }

@@ -37,14 +37,14 @@ geom_raster_filled <- function(mapping = NULL, data = NULL,
 #' @rdname geom_raster_filled
 #' @export
 stat_raster_filled <- function(mapping = NULL, data = NULL,
-                                geom = "raster", position = "identity",
-                                ...,
-                                # bins = NULL,
-                                # binwidth = NULL,
-                                breaks = NULL,
-                                na.rm = FALSE,
-                                show.legend = NA,
-                                inherit.aes = TRUE) {
+                               geom = "raster", position = "identity",
+                               ...,
+                               # bins = NULL,
+                               # binwidth = NULL,
+                               breaks = NULL,
+                               na.rm = FALSE,
+                               show.legend = NA,
+                               inherit.aes = TRUE) {
   layer(
     data = data,
     mapping = mapping,
@@ -72,14 +72,12 @@ StatRasterFilled <- ggproto("StatRasterFilled", Stat,
   default_aes = aes(fill = after_stat(level)), # order = after_stat(level),
   # z and weight get dropped during statistical transformation
   dropped_aes = c("z"),
-
   setup_params = function(data, params) {
     if (is.null(params$breaks)) {
-      params$breaks = pretty(data$z, 7)
+      params$breaks <- pretty(data$z, 7)
     }
     params
   },
-
   setup_data = function(data, params) {
     data %>% mutate(level = cut(z, params$breaks))
   },
@@ -87,3 +85,4 @@ StatRasterFilled <- ggproto("StatRasterFilled", Stat,
     data
   }
 )
+

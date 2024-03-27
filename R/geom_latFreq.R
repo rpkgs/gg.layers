@@ -116,15 +116,17 @@ make_latFreq <- function(
   }
   
   # 这里算法需要改进
-  # ## 方案1
-  # d <- data.table(vals = z, x = y)
-  # d_group <- d[, .(value = mean(vals, na.rm = TRUE)), .(x)] %>%
-  #   .[x <= ylim[2] & x >= ylim[1]]
-  # d_group[is.na(value), value := 0]
-
-  ## 方案2
-  d_group = upper_envelope(y, z, 0.5, nchunk = 400)[, .(x, value = mid)]
-
+  if (require(Ipaper)) {
+    ## 方案2
+    d_group = Ipaper::upper_envelope(y, z, 0.5, nchunk = 400)[, .(x, value = mid)]
+  } else {
+    # ## 方案1
+    d <- data.table(vals = z, x = y)
+    d_group <- d[, .(value = mean(vals, na.rm = TRUE)), .(x)] %>%
+      .[x <= ylim[2] & x >= ylim[1]]
+    d_group[is.na(value), value := 0]  
+  }
+  
   if (!debug) {
     old.par = par(mar = c(0, 0, 0, 0), mgp = c(1, 0, 0), oma = c(0, 0, 0, 0))
     # on.exit(par(old.par))
