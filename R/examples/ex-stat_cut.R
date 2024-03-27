@@ -14,3 +14,38 @@ ggplot(df, aes(x, y, z = x)) +
     values = cols,
     guide = guide_coloursteps2(title = "lgd", barheight = unit(0.8, "npc"))
   )
+
+## another option: use `scale_color_stepsn`
+# example 2
+# ! unable to accurately control the used colors
+ggplot(df, aes(x, y, color = x)) +
+  geom_point() +
+  scale_color_stepsn(
+    colors = cols,
+    breaks = brks,
+    guide = guide_coloursteps2(title = "lgd")
+  ) +
+  theme(
+    legend.title = element_blank(),
+    legend.margin = margin(l = -2)
+  )
+
+# example 3 
+df <- expand.grid(X1 = 1:10, X2 = 1:10)
+df$value <- df$X1 * df$X2
+
+brks = c(10, 15, 25, 50)
+nbrk <- length(brks) + 1
+cols = get_color(rcolors$amwg256, nbrk)
+
+# This can be changed with the `even.steps` argument
+ggplot(df, aes(X1, X2)) +
+  geom_tile(aes(fill = value)) +
+  scale_fill_stepsn(
+    colors = cols, breaks = brks,
+    guide = guide_colorsteps2()
+  ) +
+  theme(
+    legend.title = element_blank(),
+    legend.margin = margin(l = -2)
+  )

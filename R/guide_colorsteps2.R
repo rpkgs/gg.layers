@@ -1,5 +1,6 @@
 #' guide_coloursteps2
 #'
+#' @example R/examples/ex-stat_cut.R
 #' @export
 guide_coloursteps2 <- function(
   title = waiver(),
