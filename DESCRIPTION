@@ -13,7 +13,7 @@ Imports:
     dplyr, magrittr, stringr, 
     rlang,
     grid,
-    ggplot2 (>= 3.4.2), 
+    ggplot2 (<= 3.4.4), 
     gtable,
     data.table,
     gggrid, gridtext, ggtext, ggpp,
@@ -38,4 +38,4 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
