@@ -55,29 +55,15 @@ For more information, see the inspiration for this function:
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">guide_colourbar2</span><span class="op">(</span></span>
 <span>  title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  title.position <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title.theme <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title.hjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title.vjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  label.position <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label.theme <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label.hjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label.vjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  barwidth <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  barheight <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  nbin <span class="op">=</span> <span class="fl">300</span>,</span>
-<span>  raster <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  frame.colour <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  frame.linewidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">/</span><span class="va">.pt</span>,</span>
-<span>  frame.linetype <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  ticks <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  ticks.colour <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>  ticks.linewidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">/</span><span class="va">.pt</span>,</span>
+<span>  theme <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nbin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  display <span class="op">=</span> <span class="st">"raster"</span>,</span>
+<span>  raster <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  draw.ulim <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  draw.llim <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  position <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  direction <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  default.unit <span class="op">=</span> <span class="st">"line"</span>,</span>
 <span>  reverse <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  order <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  available_aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"colour"</span>, <span class="st">"color"</span>, <span class="st">"fill"</span><span class="op">)</span>,</span>
@@ -86,29 +72,15 @@ For more information, see the inspiration for this function:
 <span></span>
 <span><span class="fu">guide_colorbar2</span><span class="op">(</span></span>
 <span>  title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html" class="external-link">waiver</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  title.position <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title.theme <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title.hjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  title.vjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  label.position <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label.theme <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label.hjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  label.vjust <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  barwidth <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  barheight <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  nbin <span class="op">=</span> <span class="fl">300</span>,</span>
-<span>  raster <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  frame.colour <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  frame.linewidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">/</span><span class="va">.pt</span>,</span>
-<span>  frame.linetype <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  ticks <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  ticks.colour <span class="op">=</span> <span class="st">"white"</span>,</span>
-<span>  ticks.linewidth <span class="op">=</span> <span class="fl">0.5</span><span class="op">/</span><span class="va">.pt</span>,</span>
+<span>  theme <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nbin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  display <span class="op">=</span> <span class="st">"raster"</span>,</span>
+<span>  raster <span class="op">=</span> <span class="fu">deprecated</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  draw.ulim <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  draw.llim <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  position <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  direction <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  default.unit <span class="op">=</span> <span class="st">"line"</span>,</span>
 <span>  reverse <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  order <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  available_aes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"colour"</span>, <span class="st">"color"</span>, <span class="st">"fill"</span><span class="op">)</span>,</span>
@@ -125,66 +97,10 @@ If <code>NULL</code>, the title is not shown. By default
 specified in <code><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs()</a></code> is used for the title.</p></dd>
 
 
-<dt>title.position</dt>
-<dd><p>A character string indicating the position of a
-title. One of "top" (default for a vertical guide), "bottom", "left"
-(default for a horizontal guide), or "right."</p></dd>
-
-
-<dt>title.theme</dt>
-<dd><p>A theme object for rendering the title text. Usually the
-object of <code><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text()</a></code> is expected. By default, the theme is
-specified by <code>legend.title</code> in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code> or theme.</p></dd>
-
-
-<dt>title.hjust</dt>
-<dd><p>A number specifying horizontal justification of the
-title text.</p></dd>
-
-
-<dt>title.vjust</dt>
-<dd><p>A number specifying vertical justification of the title
-text.</p></dd>
-
-
-<dt>label</dt>
-<dd><p>logical. If <code>TRUE</code> then the labels are drawn. If
-<code>FALSE</code> then the labels are invisible.</p></dd>
-
-
-<dt>label.position</dt>
-<dd><p>A character string indicating the position of a
-label. One of "top", "bottom" (default for horizontal guide), "left", or
-"right" (default for vertical guide).</p></dd>
-
-
-<dt>label.theme</dt>
-<dd><p>A theme object for rendering the label text. Usually the
-object of <code><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text()</a></code> is expected. By default, the theme is
-specified by <code>legend.text</code> in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code>.</p></dd>
-
-
-<dt>label.hjust</dt>
-<dd><p>A numeric specifying horizontal justification of the
-label text. The default for standard text is 0 (left-aligned) and 1
-(right-aligned) for expressions.</p></dd>
-
-
-<dt>label.vjust</dt>
-<dd><p>A numeric specifying vertical justification of the label
-text.</p></dd>
-
-
-<dt>barwidth</dt>
-<dd><p>A numeric or a <code><a href="https://rdrr.io/r/grid/unit.html" class="external-link">grid::unit()</a></code> object specifying
-the width of the colourbar. Default value is <code>legend.key.width</code> or
-<code>legend.key.size</code> in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code> or theme.</p></dd>
-
-
-<dt>barheight</dt>
-<dd><p>A numeric or a <code><a href="https://rdrr.io/r/grid/unit.html" class="external-link">grid::unit()</a></code> object specifying
-the height of the colourbar. Default value is <code>legend.key.height</code> or
-<code>legend.key.size</code> in <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme()</a></code> or theme.</p></dd>
+<dt>theme</dt>
+<dd><p>A <code><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></code> object to style the guide individually or
+differently from the plot's theme settings. The <code>theme</code> argument in the
+guide overrides, and is combined with, the plot's theme.</p></dd>
 
 
 <dt>nbin</dt>
@@ -192,40 +108,25 @@ the height of the colourbar. Default value is <code>legend.key.height</code> or
 colourbar. A smoother colourbar results from a larger value.</p></dd>
 
 
+<dt>display</dt>
+<dd><p>A string indicating a method to display the colourbar. Can be
+one of the following:</p><ul><li><p><code>"raster"</code> to display as a bitmap image.</p></li>
+<li><p><code>"rectangles"</code> to display as a series of rectangles.</p></li>
+<li><p><code>"gradient"</code> to display as a linear gradient.</p></li>
+</ul><p>Note that not all devices are able to render rasters and gradients.</p></dd>
+
+
 <dt>raster</dt>
-<dd><p>A logical. If <code>TRUE</code> then the colourbar is rendered as a
-raster object. If <code>FALSE</code> then the colourbar is rendered as a set of
-rectangles. Note that not all graphics devices are capable of rendering
-raster image.</p></dd>
+<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#deprecated" class="external-link"><img src="figures/lifecycle-deprecated.svg" alt="[Deprecated]"></a>  A logical. If <code>TRUE</code> then
+the colourbar is rendered as a raster object. If <code>FALSE</code> then the colourbar
+is rendered as a set of rectangles. Note that not all graphics devices are
+capable of rendering raster image.</p></dd>
 
 
-<dt>frame.colour</dt>
-<dd><p>A string specifying the colour of the frame
-drawn around the bar. If <code>NULL</code> (the default), no frame is drawn.</p></dd>
-
-
-<dt>frame.linewidth</dt>
-<dd><p>A numeric specifying the width of the frame
-drawn around the bar in millimetres.</p></dd>
-
-
-<dt>frame.linetype</dt>
-<dd><p>A numeric specifying the linetype of the frame
-drawn around the bar.</p></dd>
-
-
-<dt>ticks</dt>
-<dd><p>A logical specifying if tick marks on the colourbar should be
-visible.</p></dd>
-
-
-<dt>ticks.colour</dt>
-<dd><p>A string specifying the colour of the tick marks.</p></dd>
-
-
-<dt>ticks.linewidth</dt>
-<dd><p>A numeric specifying the width of the tick marks in
-millimetres.</p></dd>
+<dt>alpha</dt>
+<dd><p>A numeric between 0 and 1 setting the colour transparency of
+the bar. Use <code>NA</code> to preserve the alpha encoded in the colour itself
+(default).</p></dd>
 
 
 <dt>draw.ulim</dt>
@@ -238,14 +139,14 @@ be visible.</p></dd>
 be visible.</p></dd>
 
 
+<dt>position</dt>
+<dd><p>A character string indicating where the legend should be
+placed relative to the plot panels.</p></dd>
+
+
 <dt>direction</dt>
 <dd><p>A character string indicating the direction of the guide.
 One of "horizontal" or "vertical."</p></dd>
-
-
-<dt>default.unit</dt>
-<dd><p>A character string indicating <code><a href="https://rdrr.io/r/grid/unit.html" class="external-link">grid::unit()</a></code>
-for <code>barwidth</code> and <code>barheight</code>.</p></dd>
 
 
 <dt>reverse</dt>
@@ -277,17 +178,16 @@ for which a colourbar can be drawn.</p></dd>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>Guides can be specified in each <code>scale_*</code> or in <code><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">ggplot2::guides()</a></code>.
+    <p>Guides can be specified in each <code>scale_*</code> or in <code><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides()</a></code>.
 <code>guide="legend"</code> in <code>scale_*</code> is syntactic sugar for
 <code>guide=guide_legend()</code> (e.g. <code>scale_colour_manual(guide = "legend")</code>).
 As for how to specify the guide for each scale in more detail,
-see <code><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">ggplot2::guides()</a></code>.</p>
+see <code><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides()</a></code>.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>X1 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, X2 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>X1 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, X2 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">X1</span> <span class="op">*</span> <span class="va">df</span><span class="op">$</span><span class="va">X2</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">X1</span>, <span class="va">X2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -304,23 +204,35 @@ see <code><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="e
 <span class="r-in"><span><span class="co"># Control styles</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># bar size</span></span></span>
-<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>barwidth <span class="op">=</span> <span class="fl">0.5</span>, barheight <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  legend.key.width  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="st">"lines"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  legend.key.height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"lines"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="guide_colourbar2-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># no label</span></span></span>
-<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>label <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  legend.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="guide_colourbar2-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># no tick marks</span></span></span>
-<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>ticks <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  legend.ticks <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="guide_colourbar2-6.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># label position</span></span></span>
-<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>label.position <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  legend.text.position <span class="op">=</span> <span class="st">"left"</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="guide_colourbar2-7.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># label theme</span></span></span>
-<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>label.theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"blue"</span>, angle <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">p1</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  legend.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"blue"</span>, angle <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="guide_colourbar2-8.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># small number of bins</span></span></span>
@@ -336,7 +248,7 @@ see <code><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="e
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_continuous.html" class="external-link">scale_fill_continuous</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">20</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>nbin <span class="op">=</span> <span class="fl">100</span>, draw.ulim <span class="op">=</span> <span class="cn">FALSE</span>, draw.llim <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span>   <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-plt img"><img src="guide_colourbar2-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># guides can be controlled independently</span></span></span>
@@ -348,8 +260,12 @@ see <code><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="e
 <span class="r-plt img"><img src="guide_colourbar2-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">p2</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_continuous.html" class="external-link">scale_fill_continuous</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>direction <span class="op">=</span> <span class="st">"horizontal"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend</a></span><span class="op">(</span>direction <span class="op">=</span> <span class="st">"vertical"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_continuous.html" class="external-link">scale_fill_continuous</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_colourbar.html" class="external-link">guide_colourbar</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    legend.direction <span class="op">=</span> <span class="st">"horizontal"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_size.html" class="external-link">scale_size</a></span><span class="op">(</span>guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend</a></span><span class="op">(</span>theme <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    legend.direction <span class="op">=</span> <span class="st">"vertical"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="guide_colourbar2-14.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
