@@ -27,7 +27,7 @@ test_that("guide_coloursteps2 works", {
         guide = guide_coloursteps2(hjust = -2)) +
       theme(legend.title = element_blank(),
             legend.margin = margin(l = -2))
-    print(p2)
+    # print(p2)
     # Ipaper::write_fig(p2, "a.pdf", 10, 5)
   })
 })

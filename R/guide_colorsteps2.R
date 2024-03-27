@@ -75,7 +75,6 @@ GuideColoursteps2 <- ggproto(
       )
     }
 
-    # browser()
     key.layout <- grid.layout(
       nrow = 3, ncol = 1, # respect = TRUE,
       heights = c(bh, (n - 2) * bh, bh), widths = 1, just = c(0, 0)
