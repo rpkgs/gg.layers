@@ -64,13 +64,7 @@ to the paired geom/stat.}
 aesthetics used for the box.
 
 In the unlikely event you specify both US and UK spellings of colour, the
-US spelling will take precedence.
-
-Sometimes it can be useful to hide the outliers, for example when overlaying
-the raw data points on top of the boxplot. Hiding the outliers can be achieved
-by setting \code{outlier.shape = NA}. Importantly, this does not remove the outliers,
-it only hides them, so the range calculated for the y-axis will be the
-same with outliers shown and outliers hidden.}
+US spelling will take precedence.}
 
 \item{show.errorbar}{whether to show errorbar (default TRUE)}
 
@@ -112,20 +106,20 @@ and two whiskers), and all "outlying" points individually.
 
 \code{geom_boxplot()} understands the following aesthetics (required aesthetics are in bold):
 \itemize{
-\item \strong{\code{x} \emph{or} \code{y}}
+\item \strong{\code{\link[=aes_position]{x}} \emph{or} \code{\link[=aes_position]{y}}}
 \item \strong{\code{lower} \emph{or} \code{xlower}}
 \item \strong{\code{upper} \emph{or} \code{xupper}}
 \item \strong{\code{middle} \emph{or} \code{xmiddle}}
-\item \strong{\code{ymin} \emph{or} \code{xmin}}
-\item \strong{\code{ymax} \emph{or} \code{xmax}}
-\item \code{alpha}
-\item \code{colour}
-\item \code{fill}
-\item \code{group}
-\item \code{linetype}
-\item \code{linewidth}
-\item \code{shape}
-\item \code{size}
+\item \strong{\code{\link[=aes_position]{ymin}} \emph{or} \code{\link[=aes_position]{xmin}}}
+\item \strong{\code{\link[=aes_position]{ymax}} \emph{or} \code{\link[=aes_position]{xmax}}}
+\item \code{\link[=aes_colour_fill_alpha]{alpha}}
+\item \code{\link[=aes_colour_fill_alpha]{colour}}
+\item \code{\link[=aes_colour_fill_alpha]{fill}}
+\item \code{\link[=aes_group_order]{group}}
+\item \code{\link[=aes_linetype_size_shape]{linetype}}
+\item \code{\link[=aes_linetype_size_shape]{linewidth}}
+\item \code{\link[=aes_linetype_size_shape]{shape}}
+\item \code{\link[=aes_linetype_size_shape]{size}}
 \item \code{weight}
 }
 Learn more about setting these aesthetics in \code{vignette("ggplot2-specs")}.

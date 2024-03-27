@@ -13,7 +13,7 @@ Imports:
     dplyr, magrittr, stringr, 
     rlang,
     grid,
-    ggplot2 (<= 3.4.4), 
+    ggplot2 (<= 3.5.0), 
     gtable,
     data.table,
     gggrid, gridtext, ggtext, ggpp,
