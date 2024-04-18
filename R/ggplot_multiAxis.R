@@ -5,12 +5,11 @@
 #' @param tck tick length of right axis
 #' 
 #' @example R/examples/ex-multiple_axis.R
-#' @importFrom purrr map_chr
 #' @importFrom grid addGrob
 #' @export
 ggplot_multiaxis <- function(..., linewidth = 1.4, tck = 0.2, x = -0.02) {
   grobs = list(...)
-  p <- purrr::reduce(grobs, \(p1, p2) .ggplot_multiaxis(p1, p2, linewidth = linewidth, tck = tck, x = x))
+  p <- Reduce(\(p1, p2) .ggplot_multiaxis(p1, p2, linewidth = linewidth, tck = tck, x = x), grobs)
   p
 }
 
