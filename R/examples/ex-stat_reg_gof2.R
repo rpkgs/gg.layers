@@ -7,6 +7,12 @@ dat$cyl <- as.factor(dat$cyl)
 # table(dat$cyl)
 
 ggplot(dat, aes(date, mpg, color = cyl)) +
-    stat_gof2(aes(obs = mpg, sim = wt), x = 0, y = 1) +
-    geom_point() +
+  stat_gof2(aes(obs = mpg, sim = wt), x = 0, y = 1) +
+  geom_point() +
   facet_wrap(~cyl)
+
+## Example 2
+dat = GPP_US_MMS
+ggplot(dat, aes(date, GPP)) +
+  geom_line() +
+  stat_gof2(aes(obs=GPP, sim=SM),x = 0, y = 1)
