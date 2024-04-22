@@ -67,7 +67,7 @@ stat_raster_filled <- function(mapping = NULL, data = NULL,
 #' @format NULL
 #' @usage NULL
 #' @export
-StatRasterFilled <- ggproto("StatRasterFilled", Stat,
+StatRasterFilled <- ggproto("StatRasterFilled", StatIdentity,
   required_aes = c("x", "y", "z"),
   default_aes = aes(fill = after_stat(level)), # order = after_stat(level),
   # z and weight get dropped during statistical transformation
@@ -85,4 +85,3 @@ StatRasterFilled <- ggproto("StatRasterFilled", Stat,
     data
   }
 )
-

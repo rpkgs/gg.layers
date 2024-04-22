@@ -6,7 +6,7 @@
 \alias{StatCut}
 \title{stat_cut}
 \format{
-An object of class \code{StatCut} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 6.
+An object of class \code{StatCut} (inherits from \code{StatIdentity}, \code{Stat}, \code{ggproto}, \code{gg}) of length 6.
 }
 \usage{
 stat_cut(

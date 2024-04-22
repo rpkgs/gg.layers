@@ -36,7 +36,7 @@ stat_cut <- function(mapping = NULL, data = NULL,
 
 #' @rdname stat_cut
 #' @export
-StatCut <- ggproto("StatCut", Stat,
+StatCut <- ggproto("StatCut", StatIdentity,
   required_aes = c("z"),
   # default_aes = aes(color = after_stat(level)), # order = after_stat(level),
   # z and weight get dropped during statistical transformation
