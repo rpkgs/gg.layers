@@ -73,6 +73,9 @@
     <loc>/reference/geom_mk.html</loc>
   </url>
   <url>
+    <loc>/reference/geom_movmean.html</loc>
+  </url>
+  <url>
     <loc>/reference/geom_prcpRunoff.html</loc>
   </url>
   <url>
@@ -83,6 +86,9 @@
   </url>
   <url>
     <loc>/reference/geom_richtext_npc.html</loc>
+  </url>
+  <url>
+    <loc>/reference/geom_spike.html</loc>
   </url>
   <url>
     <loc>/reference/geom_taylor.html</loc>
