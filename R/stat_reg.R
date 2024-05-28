@@ -14,8 +14,7 @@
 #' @details
 #' - `b`: the object returned by [broom::tidy()]
 #' - `s`: the object returned by [broom::glance()]
-#' 
-#'    + "*R*^2 = {str_num(s$r.squared, digits)}"
+#'    + `*R*^2 = {str_num(s$r.squared, digits)}`
 #' 
 #' - `slope`: 
 #' - `pvalue`: 

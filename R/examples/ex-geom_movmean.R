@@ -1,4 +1,5 @@
 library(data.table)
+library(ggplot2)
 data("GPP_US_MMS")
 dat = melt(GPP_US_MMS[, .(date, SM, GPP)], "date")
 

@@ -142,7 +142,7 @@ stat_gof
 \item \code{b}: the object returned by \code{\link[broom:reexports]{broom::tidy()}}
 \item \code{s}: the object returned by \code{\link[broom:reexports]{broom::glance()}}
 \itemize{
-\item "\emph{R}^2 = {str_num(s$r.squared, digits)}"
+\item \verb{*R*^2 = \{str_num(s$r.squared, digits)\}}
 }
 \item \code{slope}:
 \item \code{pvalue}:
