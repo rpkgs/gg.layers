@@ -67,7 +67,7 @@ inherits from \code{text})}
 \item{padding.left, padding.right}{padding in the left and right of the legend}
 
 \item{...}{additional element specifications not part of base ggplot2. In general,
-these should also be defined in the \verb{element tree} argument.}
+these should also be defined in the \verb{element tree} argument. \link[rlang:splice]{Splicing} a list is also supported.}
 
 \item{draw}{A logical value indicating whether graphics output
     should be produced.}
