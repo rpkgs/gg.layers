@@ -1,192 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/GOF.html</loc>
-  </url>
-  <url>
-    <loc>/reference/R2_sign.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_colorbar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/add_grob.html</loc>
-  </url>
-  <url>
-    <loc>/reference/aes2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/colourbar_triangle.html</loc>
-  </url>
-  <url>
-    <loc>/reference/compute_npcx.html</loc>
-  </url>
-  <url>
-    <loc>/reference/convertTri.html</loc>
-  </url>
-  <url>
-    <loc>/reference/cv_coef.html</loc>
-  </url>
-  <url>
-    <loc>/reference/draw.colorkey.html</loc>
-  </url>
-  <url>
-    <loc>/reference/draw_colorkey.html</loc>
-  </url>
-  <url>
-    <loc>/reference/draw_polygon.html</loc>
-  </url>
-  <url>
-    <loc>/reference/equispaced_colorkey.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_annotation.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_annotation_func.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_boxplot2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_interval.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_latFreq.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_mk.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_movmean.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_prcpRunoff.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_raster_filled.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_richtext2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_richtext_npc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_spike.html</loc>
-  </url>
-  <url>
-    <loc>/reference/geom_taylor.html</loc>
-  </url>
-  <url>
-    <loc>/reference/gg.layers-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ggplot2-ggproto.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ggplot_legend.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ggplot_multiaxis.html</loc>
-  </url>
-  <url>
-    <loc>/reference/grobs.html</loc>
-  </url>
-  <url>
-    <loc>/reference/guide_coloursteps2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/layer_PosNeg.html</loc>
-  </url>
-  <url>
-    <loc>/reference/layer_barchart.html</loc>
-  </url>
-  <url>
-    <loc>/reference/make_colorbar.html</loc>
-  </url>
-  <url>
-    <loc>/reference/make_latFreq.html</loc>
-  </url>
-  <url>
-    <loc>/reference/polygon.fullhatch.html</loc>
-  </url>
-  <url>
-    <loc>/reference/polygonRingHolesLines.html</loc>
-  </url>
-  <url>
-    <loc>/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>/reference/resample_points.html</loc>
-  </url>
-  <url>
-    <loc>/reference/richtextGrob.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rotate.html</loc>
-  </url>
-  <url>
-    <loc>/reference/scale_fill_gradientn2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/segmentsGrob2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/st_df2hatch.html</loc>
-  </url>
-  <url>
-    <loc>/reference/st_hatched_polygon.html</loc>
-  </url>
-  <url>
-    <loc>/reference/st_point2poly.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_cut.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_gof.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_gof2.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_prob_2d.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_signHatch.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_signPattern.html</loc>
-  </url>
-  <url>
-    <loc>/reference/stat_signPoint.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_mk.html</loc>
-  </url>
-  <url>
-    <loc>/reference/str_num.html</loc>
-  </url>
-  <url>
-    <loc>/reference/wrap.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/LICENSE.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/GOF.html</loc></url>
+<url><loc>/reference/R2_sign.html</loc></url>
+<url><loc>/reference/add_colorbar.html</loc></url>
+<url><loc>/reference/add_grob.html</loc></url>
+<url><loc>/reference/aes2.html</loc></url>
+<url><loc>/reference/colourbar_triangle.html</loc></url>
+<url><loc>/reference/compute_npcx.html</loc></url>
+<url><loc>/reference/convertTri.html</loc></url>
+<url><loc>/reference/cv_coef.html</loc></url>
+<url><loc>/reference/draw.colorkey.html</loc></url>
+<url><loc>/reference/draw_colorkey.html</loc></url>
+<url><loc>/reference/draw_polygon.html</loc></url>
+<url><loc>/reference/equispaced_colorkey.html</loc></url>
+<url><loc>/reference/geom_annotation.html</loc></url>
+<url><loc>/reference/geom_annotation_func.html</loc></url>
+<url><loc>/reference/geom_boxplot2.html</loc></url>
+<url><loc>/reference/geom_interval.html</loc></url>
+<url><loc>/reference/geom_latFreq.html</loc></url>
+<url><loc>/reference/geom_mk.html</loc></url>
+<url><loc>/reference/geom_movmean.html</loc></url>
+<url><loc>/reference/geom_prcpRunoff.html</loc></url>
+<url><loc>/reference/geom_raster_filled.html</loc></url>
+<url><loc>/reference/geom_richtext2.html</loc></url>
+<url><loc>/reference/geom_richtext_npc.html</loc></url>
+<url><loc>/reference/geom_spike.html</loc></url>
+<url><loc>/reference/geom_taylor.html</loc></url>
+<url><loc>/reference/gg.layers-package.html</loc></url>
+<url><loc>/reference/ggplot2-ggproto.html</loc></url>
+<url><loc>/reference/ggplot_legend.html</loc></url>
+<url><loc>/reference/ggplot_multiaxis.html</loc></url>
+<url><loc>/reference/grobs.html</loc></url>
+<url><loc>/reference/guide_coloursteps2.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/layer_PosNeg.html</loc></url>
+<url><loc>/reference/layer_barchart.html</loc></url>
+<url><loc>/reference/make_colorbar.html</loc></url>
+<url><loc>/reference/make_latFreq.html</loc></url>
+<url><loc>/reference/polygon.fullhatch.html</loc></url>
+<url><loc>/reference/polygonRingHolesLines.html</loc></url>
+<url><loc>/reference/reexports.html</loc></url>
+<url><loc>/reference/resample_points.html</loc></url>
+<url><loc>/reference/richtextGrob.html</loc></url>
+<url><loc>/reference/rotate.html</loc></url>
+<url><loc>/reference/scale_fill_gradientn2.html</loc></url>
+<url><loc>/reference/segmentsGrob2.html</loc></url>
+<url><loc>/reference/st_df2hatch.html</loc></url>
+<url><loc>/reference/st_hatched_polygon.html</loc></url>
+<url><loc>/reference/st_point2poly.html</loc></url>
+<url><loc>/reference/stat_cut.html</loc></url>
+<url><loc>/reference/stat_gof.html</loc></url>
+<url><loc>/reference/stat_gof2.html</loc></url>
+<url><loc>/reference/stat_prob_2d.html</loc></url>
+<url><loc>/reference/stat_signHatch.html</loc></url>
+<url><loc>/reference/stat_signPattern.html</loc></url>
+<url><loc>/reference/stat_signPoint.html</loc></url>
+<url><loc>/reference/str_mk.html</loc></url>
+<url><loc>/reference/str_num.html</loc></url>
+<url><loc>/reference/wrap.html</loc></url>
 </urlset>
+
