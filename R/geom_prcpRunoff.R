@@ -40,16 +40,15 @@ GeomPrcpRunoff <- ggproto(
   dropped_aes = c("prcp"),
   setup_params = function(data, params) {
     # print2("setup_params", params)
-    qmax <- max(data$y, na.rm = T)
-    params$prcp.qmax <- params$prcp.qmax %||% qmax
-
+    # qmax <- max(data$y, na.rm = T)
+    # params$qmax <- params$qmax %||% qmax
     if (length(params$params_prcp) > 0) {
       params$params_prcp %<>% check_ggplot2_varnames()
     }
     # params$prcp.ratio <- params$prcp.ratio %||% 0.5
     # prcp_max <- max(data$prcp, na.rm = T)
-    # prcp.qmax <- params$prcp.qmax
-    # prcp.coef <- prcp.qmax / prcp_max * params$prcp.ratio # A_prcp = prcp.coef * prcp
+    # qmax <- params$qmax
+    # prcp.coef <- qmax / prcp_max * params$prcp.ratio # A_prcp = prcp.coef * prcp
     # params$prcp.coef <- params$prcp.coef %||% prcp.coef
     ## 把参数放到数据中
     params
@@ -58,18 +57,21 @@ GeomPrcpRunoff <- ggproto(
     # print2("setup_data", params)
     data$width <- data$width %||% params$width %||% resolution(data$x, FALSE)
     # qmax <- max(data$y, na.rm = T)
-    trans <- function(x) with(params, prcp.qmax - (x * prcp.coef))
-    # trans_inv = function(x) with(params, (prcp.qmax - x) / prcp.coef)
-    transform(data,
-      xmin = x - width / 2, xmax = x + width / 2, width = NULL, prcp = NULL,
-      ymin = trans(prcp), ymax = params$prcp.qmax
-    )
+    data
   },
 
   # unused parameters also should be listed here
   draw_panel = function(data, panel_params, coord,
                         params_prcp = list(),
-                        prcp.ratio, prcp.qmax, prcp.coef) {
+                        prcp.ratio, qmax, prcp.coef) {
+    trans <- \(x) qmax - (x * prcp.coef)
+    trans_inv <- \(x) (qmax - x) / prcp.coef
+
+    data <- transform(data,
+      xmin = x - width / 2, xmax = x + width / 2, width = NULL, prcp = NULL,
+      ymin = trans(prcp), ymax = qmax
+    )
+
     # panel_params$y.sec$scale$secondary.axis$trans = env_trans$trans
     default_params_prcp <- list(
       fill = "blue", colour = "white",
@@ -92,29 +94,32 @@ GeomPrcpRunoff <- ggproto(
 #' Draw precipitation bar on the top of the panel
 #'
 #' @inheritParams ggplot2::geom_tile
-#' 
+#'
 #' @param params_prcp parameters for precipitation hist, default `list(fill =
 #' "blue", colour = "white", linetype = "solid", linewidth = 0.1)`. See
 #' [ggplot2::geom_tile()] for all supported parameters.
 #'
-#' @param prcp.coef coefficient of precipitation, `y_new = prcp.qmax
-#' - prcp * prcp.coef`
-#' @param prcp.color color of precipitation
-#' @param prcp.fill fill of precipitation
-#' @param prcp.qmax maximum of streamflow, used to calculate `prcp.coef`
-#' 
-#' @param sec.axis secondary axis for precipitation, returned by 
+#' @param prcp.ratio the ratio of precipitation to `ymax` (not used currently)
+#' @param prcp.coef coefficient of precipitation, `y_new = qmax - prcp * prcp.coef`
+#' prcp.coef = qmax / max(prcp)
+#'
+#' @param params_prcp
+#' - `color`: color of precipitation
+#' - `fill`: fill of precipitation
+#' @param qmax maximum of streamflow, used to calculate `prcp.coef`
+#'
+#' @param sec.axis secondary axis for precipitation, returned by
 #' [ggplot2::sec_axis()]
 #' @param sec.name name of secondary axis
-#' 
+#'
 #' @importFrom ggplot2 layer
 #' @importFrom rlang list2
-#' 
+#'
 #' @section Aesthetics:
 #' - `x`: date or continuous variable
 #' - `y`: runoff
 #' - `prcp`: precipitation
-#' 
+#'
 #' @example R/examples/ex-geom_prcpRunoff.R
 #'
 #' @author Xie YuXuan and Dongdong Kong
@@ -123,14 +128,13 @@ geom_prcpRunoff <- function(
     mapping = NULL, data = NULL, stat = "identity",
     position = "identity", ..., linejoin = "mitre",
     na.rm = FALSE, show.legend = NA, inherit.aes = TRUE,
-    prcp.color = "black", prcp.fill = "black",
-    # prcp.ratio = 0.5,
+    # prcp.color = "black", prcp.fill = "black",
+    prcp.ratio = 0.5,
     params_prcp = list(),
     prcp.coef = 1,
-    prcp.qmax = NULL,
-    sec.axis = NULL, 
+    qmax = NULL,
+    sec.axis = NULL,
     sec.name = "Precipitation (mm)") {
-  
   layer <- layer(
     geom = GeomPrcpRunoff,
     data = data,
@@ -143,7 +147,7 @@ geom_prcpRunoff <- function(
       na.rm = na.rm,
       params_prcp = params_prcp,
       # prcp.ratio = prcp.ratio,
-      prcp.qmax = prcp.qmax,
+      qmax = qmax,
       prcp.coef = prcp.coef,
       # env_trans = env_trans,
       ...
@@ -154,16 +158,17 @@ geom_prcpRunoff <- function(
   # env_trans <- list2env(list(trans = ~.))
   # get_trans <- function() { env_trans$trans }
   if (is.null(sec.axis)) {
-    if (!is.null(prcp.qmax)) {
-      trans_inv <- ~ (prcp.qmax - .) / prcp.coef
-      ylim <- c(0, prcp.qmax)
+    if (!is.null(qmax)) {
+      trans_inv <- ~ (qmax - .) / prcp.coef
+      ylim <- c(0, qmax)
     } else {
       trans_inv <- ~ (max(.) - .) / prcp.coef
       ylim <- NULL
     }
     sec.axis <- ggplot2::sec_axis(name = sec.name, trans = trans_inv, labels = \(x) x)
   }
+
   scale_y <- scale_y_continuous(sec.axis = sec.axis, expand = c(0, 0))
-  coord = coord_cartesian(ylim = ylim, clip = "on")
+  coord <- coord_cartesian(ylim = ylim, clip = "on")
   c(layer, scale_y, coord)
 }

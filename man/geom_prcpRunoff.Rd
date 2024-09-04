@@ -14,11 +14,10 @@ geom_prcpRunoff(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  prcp.color = "black",
-  prcp.fill = "black",
+  prcp.ratio = 0.5,
   params_prcp = list(),
   prcp.coef = 1,
-  prcp.qmax = NULL,
+  qmax = NULL,
   sec.axis = NULL,
   sec.name = "Precipitation (mm)"
 )
@@ -114,19 +113,17 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
-\item{prcp.color}{color of precipitation}
+\item{prcp.ratio}{the ratio of precipitation to \code{ymax} (not used currently)}
 
-\item{prcp.fill}{fill of precipitation}
-
-\item{params_prcp}{parameters for precipitation hist, default \code{list(fill = "blue", colour = "white", linetype = "solid", linewidth = 0.1)}. See
-\code{\link[ggplot2:geom_tile]{ggplot2::geom_tile()}} for all supported parameters.}
-
-\item{prcp.coef}{coefficient of precipitation, `y_new = prcp.qmax
-\itemize{
-\item prcp * prcp.coef`
+\item{params_prcp}{\itemize{
+\item \code{color}: color of precipitation
+\item \code{fill}: fill of precipitation
 }}
 
-\item{prcp.qmax}{maximum of streamflow, used to calculate \code{prcp.coef}}
+\item{prcp.coef}{coefficient of precipitation, \code{y_new = qmax - prcp * prcp.coef}
+prcp.coef = qmax / max(prcp)}
+
+\item{qmax}{maximum of streamflow, used to calculate \code{prcp.coef}}
 
 \item{sec.axis}{secondary axis for precipitation, returned by
 \code{\link[ggplot2:sec_axis]{ggplot2::sec_axis()}}}
@@ -154,7 +151,7 @@ col_runoff = "black"  # "darkorange"
 my_theme <-
   theme_dual_axis(col_runoff, col_prcp) +
   theme(
-    legend.position = c(0, 1),
+    legend.position.inside = c(0, 1),
     legend.justification = c(0, 1),
     legend.background = element_blank(),
     legend.key = element_blank(),
@@ -167,26 +164,25 @@ my_theme <-
 
 ## Visualization ---------------------------------------------------------------
 dat <- runoff_data
-prcp.qmax <- max(dat$Q) * 1.1
-prcp.coef <- guess_prcp_coef(prcp.qmax, dat$prcp, ratio = 0.5)
-# prcp.qmax <- NULL
+qmax <- max(dat$Q) * 1.1
+prcp.coef <- guess_prcp_coef(qmax, dat$prcp, ratio = 0.5)
+# prcp.coef = qmax / pmax * ratio
 
 ggplot(dat, aes(x = time, Q)) +
   # theme_test() +
+  geom_line() +
   geom_prcpRunoff(
     aes(prcp = prcp, color = flood_type),
     params_prcp = list(color = col_prcp, fill = col_prcp),
     prcp.coef = prcp.coef,
-    prcp.qmax = prcp.qmax,
+    qmax = qmax,
     color = col_runoff, linewidth = 0.5
   ) +
   facet_wrap(~flood_type, scales = "free") +
   # scale_y_precipitation(sec.name = "Precipitation (mm)", coef = set_coef) +
   scale_x_datetime(date_labels = "\%m/\%d") +
   my_theme +
-  labs(x = "Date", y = expression("Runoff (m"^"3" * "/s)")) -> p
-print(p)
-# write_fig(p, "d:/Rplot.pdf", 10, 5)
+  labs(x = "Date", y = expression("Streamflow (m"^"3" * "/s)"))
 }
 \author{
 Xie YuXuan and Dongdong Kong
