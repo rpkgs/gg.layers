@@ -8,7 +8,7 @@ Description: What the package does (one paragraph).
 License: GPL (>= 3)
 Encoding: UTF-8
 Depends: 
-    R (>= 3.6)
+    R (>= 4.1)
 Imports: 
     dplyr, magrittr, stringr, 
     rlang,

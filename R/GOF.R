@@ -39,6 +39,9 @@
 GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
     if (missing(w)) w <- rep(1, length(obs))
 
+    R      <- NA_real_
+    pvalue <- NA_real_
+        
     # remove NA_real_ and Inf values in sim, obs and w
     valid <- function(x) !is.na(x) & is.finite(x)
 
@@ -55,21 +58,18 @@ GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
         CV_sim <- cv_coef(sim, w)
     }
     if (is_empty(obs)){
-        out <- c(RMSE = NA_real_, 
-            KGE = NA_real_,
-            NSE = NA_real_, MAE = NA_real_, AI = NA_real_,
-            Bias = NA_real_, Bias_perc = NA_real_, n_sim = NA_real_)
+        out <- tibble(
+            R, pvalue, R2 = NA_real_, 
+            NSE = NA_real_, KGE = NA_real_, RMSE = NA_real_, MAE = NA_real_, 
+            Bias = NA_real_, Bias_perc = NA_real_, AI = NA_real_, n_sim = NA_integer_)
 
-        if (include.r) out <- c(out, R2 = NA_real_, R = NA_real_, pvalue = NA_real_)
-        if (include.cv) out <- c(out, obs = CV_obs, sim = CV_sim)
+        if (include.cv) out <- rbind(out, CV_obs, CV_sim)
         return(out)
     }
 
     # R2: the portion of regression explained variance, also known as
     # coefficient of determination
     KGE = KGE(sim, obs)
-    # https://en.wikipedia.org/wiki/Coefficient_of_determination
-    # https://en.wikipedia.org/wiki/Explained_sum_of_squares
     y_mean <- sum(obs * w) / sum(w)
 
     SSR    <- sum( (sim - y_mean)^2 * w)
@@ -89,9 +89,6 @@ GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
     # was meaningless.
     # In the current, I have no idea how to add weights `R`.
     if (include.r){
-        R      <- NA_real_
-        pvalue <- NA_real_
-        
         tryCatch({
             cor.obj <- cor.test(obs, sim, use = "complete.obs")
             R       <- cor.obj$estimate[[1]]
