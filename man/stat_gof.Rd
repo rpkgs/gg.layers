@@ -128,6 +128,8 @@ layer, as a string.}
     passed to \code{\link{format}(\link[stats]{coef}(x), .)} when
     \code{\link{print}()}ing.}
 
+\item{units}{A Vector with the length of subplots}
+
 \item{family}{Font family}
 }
 \value{

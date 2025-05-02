@@ -10,7 +10,7 @@
 
 #' @inheritParams stats::lm
 #' @param position "dodge" or "identity"
-#'
+#' @param units A Vector with the length of subplots
 #' @details
 #' - `b`: the object returned by [broom::tidy()]
 #' - `s`: the object returned by [broom::glance()]
