@@ -164,7 +164,7 @@ display.</p></dd>
 <dd><p>If <code>FALSE</code>, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
-the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/borders.html" class="external-link">borders()</a></code>.</p></dd>
+the default plot specification, e.g. <code><a href="https://ggplot2.tidyverse.org/reference/annotation_borders.html" class="external-link">borders()</a></code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -187,10 +187,6 @@ layer, as a string.</p></dd>
 <dd><p>Vertical justification (in \([0, 1]\))</p></dd>
 
 
-<dt id="arg-size">size<a class="anchor" aria-label="anchor" href="#arg-size"></a></dt>
-<dd><p>text size in pts.</p></dd>
-
-
 <dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
 <dd><p>an object of class <code>"<a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a>"</code> (or one that
     can be coerced to that class): a symbolic description of the
@@ -201,7 +197,7 @@ layer, as a string.</p></dd>
 <dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
 <dd><p>the number of <em>significant</em> digits to be
     passed to <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a>(<a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a>(x), .)</code> when
-    <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a>()</code>ing.</p></dd>
+    <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>ing.</p></dd>
 
 
 <dt id="arg-units">units<a class="anchor" aria-label="anchor" href="#arg-units"></a></dt>
@@ -209,7 +205,14 @@ layer, as a string.</p></dd>
 
 
 <dt id="arg-family">family<a class="anchor" aria-label="anchor" href="#arg-family"></a></dt>
-<dd><p>Font family</p></dd>
+<dd><p>The typeface to use. The validity of this value will depend on
+the graphics device being used for rendering the plot. See
+<a href="https://systemfonts.r-lib.org/articles/systemfonts.html" class="external-link">the systemfonts vignette</a>
+for guidance on the best way to access fonts installed on your computer.
+The values <code>"sans"</code>, <code>"serif"</code>, and <code>"mono"</code> should always be valid and
+will select the default typeface for the respective styles. However, what
+is considered default is dependant on the graphics device and the operating
+system.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -285,7 +288,7 @@ just like <code><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.htm
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
       </footer></div>
