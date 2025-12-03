@@ -47,7 +47,8 @@ make_colorbar(
 
 \item{hjust, vjust}{used in \code{\link[grid:grid.layout]{grid::grid.layout()}}}
 
-\item{legend.margin}{the margin around each legend (\code{\link[ggplot2:margin]{margin()}})}
+\item{legend.margin}{the margin around each legend (\code{\link[ggplot2:margin]{margin()}}); inherits
+from \code{margins}.}
 
 \item{title}{all title elements: plot, axes, legends (\code{\link[ggplot2:element_text]{element_text()}};
 inherits from \code{text})}

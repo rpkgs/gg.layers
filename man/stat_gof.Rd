@@ -117,8 +117,6 @@ layer, as a string.}
 
 \item{vjust}{Vertical justification (in \eqn{[0, 1]})}
 
-\item{size}{text size in pts.}
-
 \item{formula}{an object of class \code{"\link[stats]{formula}"} (or one that
     can be coerced to that class): a symbolic description of the
     model to be fitted.  The details of model specification are given
@@ -130,7 +128,14 @@ layer, as a string.}
 
 \item{units}{A Vector with the length of subplots}
 
-\item{family}{Font family}
+\item{family}{The typeface to use. The validity of this value will depend on
+the graphics device being used for rendering the plot. See
+\href{https://systemfonts.r-lib.org/articles/systemfonts.html}{the systemfonts vignette}
+for guidance on the best way to access fonts installed on your computer.
+The values \code{"sans"}, \code{"serif"}, and \code{"mono"} should always be valid and
+will select the default typeface for the respective styles. However, what
+is considered default is dependant on the graphics device and the operating
+system.}
 }
 \value{
 No return. This function is used to calculate data for gglot2 \verb{geom_*},

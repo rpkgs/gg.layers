@@ -25,7 +25,7 @@ below to see their documentation.
 \describe{
   \item{dplyr}{\code{\link[dplyr:reexports]{as_tibble}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr:reexports]{tibble}}}
 
-  \item{ggh4x}{\code{\link[ggh4x]{guide_axis_minor}}}
+  \item{ggh4x}{\code{\link[ggh4x:deprecated]{guide_axis_minor}}}
 
   \item{ggpattern}{\code{\link[ggpattern:geom-docs]{geom_sf_pattern}}, \code{\link[ggpattern:ggpattern-ggproto]{GeomSfPattern}}}
 

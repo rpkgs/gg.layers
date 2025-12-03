@@ -60,8 +60,7 @@ from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
 \item{y}{A numeric vector or unit object specifying y-location.}
 
-\item{width}{Bar width. By default, set to 90\% of the \code{\link[ggplot2:resolution]{resolution()}} of the
-data.}
+\item{width}{A numeric vector or unit object specifying width.}
 
 \item{height}{A numeric vector or unit object specifying height.}
 
