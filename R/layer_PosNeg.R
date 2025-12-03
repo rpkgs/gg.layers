@@ -14,7 +14,7 @@ layer_PosNeg <- function(
   grid_panel(fun, mapping, data)
 }
 
-#' @param ... other parameters to [element_grob_text()]
+#' @param ... other parameters to `element_grob_text`
 #' @rdname layer_PosNeg
 #' @export
 add_PosNeg <- function(z, 

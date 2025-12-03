@@ -1,18 +1,46 @@
 fmt_gof <- "*NSE* = {str_num(NSE,2)}, *R^2* = {str_num(R2, 2)} \n *RMSE* = {str_num(RMSE,2)}"
 
+# 1. 洪峰
+eval_Qmax <- function(Qobs, Qsim, ...) {
+  sim <- max(Qsim, na.rm = TRUE)
+  obs <- max(Qobs, na.rm = TRUE)
+  err <- sim - obs
+  bias <- err / obs
+
+  err_permit <- diff(range(Qobs, na.rm = TRUE)) * 0.2 # 实测变幅的20%
+  if (err_permit < 0.05 * obs) {
+    err_permit <- 0.05 * obs
+  }
+  # abs(err) <= err_permit
+  data.table(obs, sim, err, err_permit, bias, passed = abs(err) <= err_permit)
+}
+
+# symbol_right = "\u2713"
+symbol_right = "<span style='margin-left:-10cm'>\u2713</span>"
+# symbol_wrong = "<span style='margin-left:-10cm'>\u2717</span>" # "×"
+symbol_wrong = "×" # ""
+# symbol_right = "\u2714" # heavy check mark
+
 #' @import ggplot2
 #' @export
 StatGOF2 <- ggproto("StatGOF2", Stat,
   default_aes = aes(hjust = 0, yjust = 1),
   required_aes = c("obs", "sim"),
   dropped_aes = c("obs", "sim", "x", "y"),
-  compute_group = function(data, scales, x, y, label.format, show.bias) {
+  compute_group = function(data, scales, x, y, label.format, show.bias, eval.flood = FALSE) {
     # x0 <- mean(data$x, na.rm = TRUE)
     # y0 <- mean(data$y, na.rm = TRUE)
     g <- GOF(data$obs, data$sim)
     label <- with(g, glue(label.format))
 
     if (show.bias) label <- sprintf("%s \n Bias(%%) = %.2f%%", label, g$Bias_perc)
+
+    if (eval.flood) {
+      flood <- eval_Qmax(data$obs, data$sim)
+      passed <- if (flood$passed) symbol_right else symbol_wrong # flood test
+      label <- sprintf("%s, %s", label, passed)
+    }
+
     hjust <- data$hjust %||% 0
     vjust <- data$vjust %||% 1
 
@@ -33,7 +61,7 @@ StatGOF2 <- ggproto("StatGOF2", Stat,
 #'
 #' `label.format` will be evaluated by [glue::glue()]. Variables inside `{}`
 #' will be evaluated. All variables returned by [GOF()] are supported.
-#' 
+#'
 #' @return No return. This function is used to calculate data for gglot2
 #' `geom_*`, just like [ggplot2::stat_smooth()].
 #'
@@ -75,6 +103,7 @@ geom_gof2 <- function(mapping = NULL, data = NULL,
                       ...,
                       show.bias = TRUE,
                       label.format = fmt_gof,
+                      eval.flood = FALSE,
                       x = 0, y = 1,
                       hjust = 0, vjust = 1,
                       size = 5,
@@ -93,6 +122,7 @@ geom_gof2 <- function(mapping = NULL, data = NULL,
       x = x,
       y = y,
       show.bias = show.bias,
+      eval.flood = eval.flood,
       label.format = label.format,
       na.rm = na.rm,
       hjust = hjust, vjust = vjust,

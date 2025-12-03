@@ -15,7 +15,7 @@ layer_PosNeg_sign <- function(
 # `sign`    :  1
 # `not-sign`: -1
 
-#' @param ... other parameters to [element_grob_text()]
+#' @param ... other parameters to `element_grob_text`
 #' @rdname layer_PosNeg
 #' @export
 add_PosNeg_sign <- function(

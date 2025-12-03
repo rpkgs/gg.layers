@@ -41,7 +41,7 @@ add_PosNeg_sign(
 )
 }
 \arguments{
-\item{...}{other parameters to \code{\link[=element_grob_text]{element_grob_text()}}}
+\item{...}{other parameters to \code{element_grob_text}}
 }
 \description{
 layer_PosNeg
