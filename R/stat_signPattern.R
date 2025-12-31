@@ -16,8 +16,6 @@ StatSignPattern <- ggproto("StatSignPattern", StatSf,
 #' stat_signPattern
 #' 
 #' @inheritParams ggpattern::geom_sf_pattern
-#' @param geom Use to override the default connection between [geom_signPattern()] 
-#' and [stat_signPattern].
 #' @param ... other parameters to [ggpattern::geom_sf_pattern()]
 #' 
 #' @seealso [ggpattern::geom_sf_pattern()]

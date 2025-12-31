@@ -35,9 +35,6 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{geom}{Use to override the default connection between \code{\link[=geom_signPattern]{geom_signPattern()}}
-and \link{stat_signPattern}.}
-
 \item{position}{A position adjustment to use on the data for this layer. This
 can be used in various ways, including to prevent overplotting and
 improving the display. The \code{position} argument accepts the following:
