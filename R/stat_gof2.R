@@ -16,9 +16,9 @@ eval_Qmax <- function(Qobs, Qsim, ...) {
 }
 
 # symbol_right = "\u2713"
-symbol_right = "<span style='margin-left:-10cm'>\u2713</span>"
-# symbol_wrong = "<span style='margin-left:-10cm'>\u2717</span>" # "×"
-symbol_wrong = "×" # ""
+symbol_right = "<span>\u2713</span>"
+symbol_wrong = "<span>\u2717</span>" # "×"
+# symbol_wrong = "×" # ""
 # symbol_right = "\u2714" # heavy check mark
 
 #' @import ggplot2
