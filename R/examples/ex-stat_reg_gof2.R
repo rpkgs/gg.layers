@@ -26,13 +26,13 @@ dat = data.table(
 )
 
 showtext::showtext_auto()
-library(Ipaper)
-
 fmt_gof <- "*NSE* = {str_num(NSE,2)}, *R^2* = {str_num(R2, 2)}"
 
 p = ggplot(dat, aes(obs, sim)) +
   geom_point() +
-  stat_gof2(aes(obs = obs, sim = sim), x = 0, y = 1, eval.flood = TRUE, show.bias = FALSE, label.format = fmt_gof, size = 6) + 
-  stat_gof2(aes(obs = obs, sim = sim2), x = 0, y = 0.9, eval.flood = TRUE, show.bias = FALSE, label.format = fmt_gof, size = 6)
+  stat_gof2(aes(obs = obs, sim = sim), x = 0, y = 1, 
+    eval.flood = TRUE, show.bias = FALSE, label.format = fmt_gof, size = 6) + 
+  stat_gof2(aes(obs = obs, sim = sim2), x = 0, y = 0.9, 
+    eval.flood = TRUE, show.bias = FALSE, label.format = fmt_gof, size = 6)
 
-write_fig(p, "d:/Rplot.pdf", 10, 5)
+# write_fig(p, "d:/Rplot.pdf", 10, 5)

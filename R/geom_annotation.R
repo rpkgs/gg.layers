@@ -67,6 +67,5 @@ GeomAnnotation <- ggproto("GeomAnnotation", Geom,
     g
   },
   required_aes = c("grob"),
-  # default_aes = aes_(x = 0, y = 0, width = unit(0.5, "npc"), height = unit(0.5, "npc"))
-  default_aes = aes_(xmin = 0, xmax = 0.5, ymin = 0, ymax = 0.5)
+  default_aes = aes(xmin = 0, xmax = 0.5, ymin = 0, ymax = 0.5)
 )
