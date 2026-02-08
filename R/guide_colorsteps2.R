@@ -1,6 +1,16 @@
 #' guide_coloursteps2
-#'
-#' @example R/examples/ex-stat_cut.R
+#'#' @param title A title for the guide.
+#' @param theme A theme object for rendering the guide.
+#' @param alpha Alpha transparency level.
+#' @param even.steps Logical; should the steps be evenly spaced?
+#' @param show.limits Logical; should the limits be shown?
+#' @param direction Direction of the guide ("horizontal" or "vertical").
+#' @param reverse Logical; should the guide be reversed?
+#' @param order Order of the guide.
+#' @param available_aes Available aesthetics for this guide.
+#' @param barheight Height of the color bar. Deprecated in ggplot2 3.5.0.
+#' @param ... Additional arguments passed to the guide.
+#'#' @example R/examples/ex-stat_cut.R
 #' @export
 guide_coloursteps2 <- function(
   title = waiver(),

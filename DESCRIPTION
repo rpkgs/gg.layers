@@ -27,7 +27,6 @@ Suggests:
     testthat (>= 3.0.0),
     rcolors,
     scales, 
-    rlang,
     sf, stars, raster,
     mapview,
     lattice,

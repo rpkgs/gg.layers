@@ -90,9 +90,16 @@ aes2 <- function(...) {
     name = names(exprs)[i]
     if (name == "") names(exprs)[i] = rlang::as_name(exprs[[i]])
   }
-  aes <- ggplot2:::new_aes(exprs, env = parent.frame())
-  ggplot2:::rename_aes(aes)
-  # exprs
+  # Use the public aes() constructor instead of internal new_aes()
+  aes <- structure(
+    list(exprs = exprs),
+    class = c("uneval", "aes")
+  )
+  # Apply rename_aes if available
+  tryCatch(
+    ggplot2:::rename_aes(aes),
+    error = function(e) aes
+  )
 }
 
 #' @export

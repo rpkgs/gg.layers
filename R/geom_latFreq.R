@@ -116,15 +116,18 @@ make_latFreq <- function(
   }
   
   # 这里算法需要改进
-  if (require(Ipaper)) {
+  if (requireNamespace("Ipaper", quietly = TRUE)) {
     ## 方案2
-    d_group = Ipaper::upper_envelope(y, z, 0.5, nchunk = 400)[, .(x, value = mid)]
+    res <- Ipaper::upper_envelope(y, z, 0.5, nchunk = 400)
+    # mid is a column returned by upper_envelope
+    # Use get() to avoid "no visible binding" warning
+    d_group <- res[, .(x, value = get("mid"))]
   } else {
     # ## 方案1
     d <- data.table(vals = z, x = y)
-    d_group <- d[, .(value = mean(vals, na.rm = TRUE)), .(x)] %>%
+    d_group <- d[, .(value = mean(vals, na.rm = TRUE)), by = .(x)] %>%
       .[x <= ylim[2] & x >= ylim[1]]
-    d_group[is.na(value), value := 0]  
+    d_group[is.na(value), value := 0]
   }
   
   if (!debug) {

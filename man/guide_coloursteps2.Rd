@@ -3,7 +3,8 @@
 \name{guide_coloursteps2}
 \alias{guide_coloursteps2}
 \alias{guide_colorsteps2}
-\title{guide_coloursteps2}
+\title{guide_coloursteps2
+#' @param title A title for the guide.}
 \usage{
 guide_coloursteps2(
   title = waiver(),
@@ -33,59 +34,29 @@ guide_colorsteps2(
   ...
 )
 }
+\arguments{
+\item{theme}{A theme object for rendering the guide.}
+
+\item{alpha}{Alpha transparency level.}
+
+\item{even.steps}{Logical; should the steps be evenly spaced?}
+
+\item{show.limits}{Logical; should the limits be shown?}
+
+\item{direction}{Direction of the guide ("horizontal" or "vertical").}
+
+\item{reverse}{Logical; should the guide be reversed?}
+
+\item{order}{Order of the guide.}
+
+\item{available_aes}{Available aesthetics for this guide.}
+
+\item{barheight}{Height of the color bar. Deprecated in ggplot2 3.5.0.}
+
+\item{...}{Additional arguments passed to the guide.
+#' @example R/examples/ex-stat_cut.R}
+}
 \description{
 guide_coloursteps2
-}
-\examples{
-library(rcolors)
-library(ggplot2)
-library(magrittr)
-
-df = data.frame(x = 1:10, y = 1:10, z = 1:10)
-
-brks <- c(2, 4, 6, 8) \%>\% c(-Inf, ., Inf) # 这里要包含
-nbrk <- length(brks) - 1
-cols = get_color(rcolors$amwg256, nbrk)
-
-ggplot(df, aes(x, y, z = x)) +
-  stat_cut(aes(color = after_stat(level)), breaks = brks, geom = "point") +
-  scale_color_manual(
-    values = cols,
-    guide = guide_coloursteps2(title = "lgd", barheight = unit(0.8, "npc"))
-  )
-
-## another option: use `scale_color_stepsn`
-# example 2
-# ! unable to accurately control the used colors
-ggplot(df, aes(x, y, color = x)) +
-  geom_point() +
-  scale_color_stepsn(
-    colors = cols,
-    breaks = brks,
-    guide = guide_coloursteps2(title = "lgd")
-  ) +
-  theme(
-    legend.title = element_blank(),
-    legend.margin = margin(l = -2)
-  )
-
-# example 3 
-df <- expand.grid(X1 = 1:10, X2 = 1:10)
-df$value <- df$X1 * df$X2
-
-brks = c(10, 15, 25, 50)
-nbrk <- length(brks) + 1
-cols = get_color(rcolors$amwg256, nbrk)
-
-# This can be changed with the `even.steps` argument
-ggplot(df, aes(X1, X2)) +
-  geom_tile(aes(fill = value)) +
-  scale_fill_stepsn(
-    colors = cols, breaks = brks,
-    guide = guide_colorsteps2()
-  ) +
-  theme(
-    legend.title = element_blank(),
-    legend.margin = margin(l = -2)
-  )
+#' @param title A title for the guide.
 }

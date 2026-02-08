@@ -75,7 +75,7 @@ gtable_add.default <- function(object, plot, object_name) {
 }
 
 #' @export
-ggplot_add.colorbar <- function(object, plot, object_name) {
+ggplot_add.colorbar <- function(object, plot, ...) {
   # plot = plot + theme(legend.position = "none")
   add_colorbar(plot, object)
 }

@@ -258,8 +258,13 @@ key_tick <- function(key.gf, key, labscat, vp_label, ...)
 key_border <- function(key.gf, key, open.lower, open.upper){
     # alpha = alpha,
     # size renamed to linewidth in ggplot v3.4.0
-    gp.border <- with(key$legend.line,
-        gpar(col = colour, lty = linetype, lwd = linewidth, fill = "transparent"))
+    legend.line <- key$legend.line
+    gp.border <- gpar(
+        col = legend.line$colour %||% legend.line$col %||% "black",
+        lty = legend.line$linetype %||% legend.line$lty %||% 1,
+        lwd = legend.line$linewidth %||% legend.line$lwd %||% 0.5,
+        fill = "transparent"
+    )
 
     segment_bolder <- function(x0, y0, x1, y1, rot = 0, name) {
         segmentsGrob2(x0, y0, x1, y1, rot,
