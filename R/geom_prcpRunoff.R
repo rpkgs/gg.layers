@@ -38,6 +38,10 @@ GeomPrcpRunoff <- ggproto(
   ),
   required_aes = c("x", "y", "prcp"),
   dropped_aes = c("prcp"),
+  #【新增】覆盖默认的 NA 处理机制，保留包含 NA 的行, v20260428
+  handle_na = function(data, params) {
+    data
+  },
   setup_params = function(data, params) {
     # print2("setup_params", params)
     # qmax <- max(data$y, na.rm = T)
