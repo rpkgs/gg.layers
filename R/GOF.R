@@ -10,6 +10,7 @@
 #' @param include.r If true, r and R2 will be included.
 #' 
 #' @return
+#' * `ubRMSE` unbiased root mean square error
 #' * `RMSE` root mean square error
 #' * `NSE` NASH coefficient
 #' * `MAE` mean absolute error
@@ -60,8 +61,8 @@ GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
     if (is_empty(obs)){
         out <- tibble(
             R, pvalue, R2 = NA_real_, 
-            NSE = NA_real_, KGE = NA_real_, RMSE = NA_real_, MAE = NA_real_, 
-            Bias = NA_real_, Bias_perc = NA_real_, AI = NA_real_, n_sim = NA_integer_)
+            NSE = NA_real_, KGE = NA_real_, ubRMSE = NA_real_, RMSE = NA_real_, MAE = NA_real_,
+            Bias = NA_real_, Bias_perc = NA_real_, n_sim = NA_integer_)
 
         if (include.cv) out <- rbind(out, CV_obs, CV_sim)
         return(out)
@@ -81,6 +82,7 @@ GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
     Bias_perc <- Bias/y_mean                              # bias percentage
     MAE    <- sum ( w*abs(RE))/sum(w)                     # mean absolute error
     RMSE   <- sqrt( sum(w*(RE)^2)/sum(w) )                # root mean sqrt error
+    ubRMSE <- sqrt( sum(w*(RE - Bias)^2)/sum(w) )         # unbiased root mean sqrt error
 
     # https://en.wikipedia.org/wiki/Nash%E2%80%93Sutcliffe_model_efficiency_coefficient
     NSE  <- 1  - sum( (RE)^2 * w) / SST # NSE coefficient
@@ -101,18 +103,18 @@ GOF <- function(obs, sim, w, include.cv = FALSE, include.r = TRUE){
     # In Linear regression, R2 = R^2 (R is pearson cor)
     # R2     <- summary(lm(sim ~ obs))$r.squared # low efficient
 
-    # AI: Agreement Index (only good values(w==1) calculate AI)
-    AI <- NA_real_
-    I2 <- which(w == 1)
-    if (length(I2) >= 2) {
-        obs = obs[I2]
-        sim = sim[I2]
-        y_mean = mean(obs)
-        AI = 1 - sum( (sim - obs)^2 ) / sum( (abs(sim - y_mean) + abs(obs - y_mean))^2 )
-    }
+    # # AI: Agreement Index (only good values(w==1) calculate AI)
+    # AI <- NA_real_
+    # I2 <- which(w == 1)
+    # if (length(I2) >= 2) {
+    #     obs = obs[I2]
+    #     sim = sim[I2]
+    #     y_mean = mean(obs)
+    #     AI = 1 - sum( (sim - obs)^2 ) / sum( (abs(sim - y_mean) + abs(obs - y_mean))^2 )
+    # }
 
-    out <- tibble(R, pvalue, R2, NSE, KGE, RMSE, MAE, 
-             Bias, Bias_perc, AI = AI, n_sim = n_sim)
+    out <- tibble(R, pvalue, R2, NSE, KGE, ubRMSE, RMSE, MAE,
+             Bias, Bias_perc, n_sim = n_sim)
     if (include.cv) out <- cbind(out, CV_obs, CV_sim)
     return(out)
 }

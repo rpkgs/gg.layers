@@ -28,6 +28,7 @@ calculating mean, Bias, MAE, RMSE and NSE, w will be taken into considered.}
 }
 \value{
 \itemize{
+\item \code{ubRMSE} unbiased root mean square error
 \item \code{RMSE} root mean square error
 \item \code{NSE} NASH coefficient
 \item \code{MAE} mean absolute error
