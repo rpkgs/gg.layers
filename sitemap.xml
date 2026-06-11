@@ -1,5 +1,6 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>/404.html</loc></url>
+<url><loc>/CLAUDE.html</loc></url>
 <url><loc>/LICENSE.html</loc></url>
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
@@ -8,7 +9,9 @@
 <url><loc>/reference/R2_sign.html</loc></url>
 <url><loc>/reference/add_colorbar.html</loc></url>
 <url><loc>/reference/add_grob.html</loc></url>
+<url><loc>/reference/add_submap.html</loc></url>
 <url><loc>/reference/aes2.html</loc></url>
+<url><loc>/reference/bou_southsea.html</loc></url>
 <url><loc>/reference/colourbar_triangle.html</loc></url>
 <url><loc>/reference/compute_npcx.html</loc></url>
 <url><loc>/reference/convertTri.html</loc></url>
@@ -25,11 +28,13 @@
 <url><loc>/reference/geom_latFreq.html</loc></url>
 <url><loc>/reference/geom_mk.html</loc></url>
 <url><loc>/reference/geom_movmean.html</loc></url>
+<url><loc>/reference/geom_point_levels.html</loc></url>
 <url><loc>/reference/geom_prcpRunoff.html</loc></url>
 <url><loc>/reference/geom_raster_filled.html</loc></url>
 <url><loc>/reference/geom_richtext2.html</loc></url>
 <url><loc>/reference/geom_richtext_npc.html</loc></url>
 <url><loc>/reference/geom_spike.html</loc></url>
+<url><loc>/reference/geom_submap.html</loc></url>
 <url><loc>/reference/geom_taylor.html</loc></url>
 <url><loc>/reference/gg.layers-package.html</loc></url>
 <url><loc>/reference/ggplot2-ggproto.html</loc></url>

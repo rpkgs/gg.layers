@@ -49,6 +49,13 @@ ggplot2-ggproto"><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/
     </div>
 
 
+    <div id="details">
+    <h2>Details</h2>
+    <p><code>StatLevels</code> is the generic, geom-agnostic engine: it bins the continuous
+aesthetic <code>z</code> into a discrete <code>level</code> via <code>cut(z, breaks)</code>. <code>StatRasterLevels</code>
+and StatPointLevels inherit all of this binning logic and differ only in
+which aesthetic the computed <code>level</code> is mapped to (<code>fill</code> vs <code>colour</code>).</p>
+    </div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
