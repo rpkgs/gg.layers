@@ -117,7 +117,7 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 
-\item{fun_slope}{function to calculate slope, default \code{\link[rtrend:slope]{rtrend::slope_mk()}}}
+\item{fun_slope}{function to calculate slope, default \code{\link[rtrend:slope_mk]{rtrend::slope_mk()}}}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
@@ -137,10 +137,10 @@ the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{ann
 }
 \value{
 No return. This function is used to calculate data for gglot2 \verb{geom_*},
-just like \code{\link[ggplot2:geom_smooth]{ggplot2::stat_smooth()}}.
+just like \code{\link[ggplot2:stat_smooth]{ggplot2::stat_smooth()}}.
 
 No return. This function is used to calculate data for gglot2 \verb{geom_*},
-just like \code{\link[ggplot2:geom_smooth]{ggplot2::stat_smooth()}}.
+just like \code{\link[ggplot2:stat_smooth]{ggplot2::stat_smooth()}}.
 }
 \description{
 geom_mk

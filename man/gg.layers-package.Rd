@@ -11,5 +11,10 @@ What the package does (one paragraph).
 \author{
 \strong{Maintainer}: Dongdong Kong \email{kongdd.sysu@gmail.com} (\href{https://orcid.org/0000-0003-1836-8172}{ORCID})
 
+Authors:
+\itemize{
+  \item Dongdong Kong \email{kongdd.sysu@gmail.com} (\href{https://orcid.org/0000-0003-1836-8172}{ORCID})
+}
+
 }
 \keyword{internal}

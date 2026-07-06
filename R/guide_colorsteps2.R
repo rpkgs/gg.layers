@@ -10,7 +10,7 @@
 #' @param available_aes Available aesthetics for this guide.
 #' @param barheight Height of the color bar. Deprecated in ggplot2 3.5.0.
 #' @param ... Additional arguments passed to the guide.
-#'#' @example R/examples/ex-stat_cut.R
+#' @example R/examples/ex-stat_levels.R
 #' @export
 guide_coloursteps2 <- function(
   title = waiver(),

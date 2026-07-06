@@ -61,7 +61,7 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:annotation_borders]{annotation_borders()}}.}
 
-\item{...}{other parameters to \code{\link[ggpattern:geom-docs]{ggpattern::geom_sf_pattern()}}}
+\item{...}{other parameters to \code{\link[ggpattern:geom_sf_pattern]{ggpattern::geom_sf_pattern()}}}
 }
 \description{
 stat_signPattern
@@ -89,5 +89,5 @@ ggplot() +
 # Ipaper::write_fig(p, "temp.pdf")
 }
 \seealso{
-\code{\link[ggpattern:geom-docs]{ggpattern::geom_sf_pattern()}}
+\code{\link[ggpattern:geom_sf_pattern]{ggpattern::geom_sf_pattern()}}
 }

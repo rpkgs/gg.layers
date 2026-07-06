@@ -3,7 +3,6 @@
 %   R/guide_colorsteps2.R, R/position_nudge_npc.R, R/stat_levels.R,
 %   R/stat_prob_2d.R, R/stat_signHatch.R, R/stat_signPattern.R,
 %   R/stat_signPoint.R
-\docType{data}
 \name{GeomAnnotation}
 \alias{GeomAnnotation}
 \alias{GeomRichTextNpc}
@@ -29,5 +28,4 @@ aesthetic \code{z} into a discrete \code{level} via \code{cut(z, breaks)}. \code
 and \link{StatPointLevels} inherit all of this binning logic and differ only in
 which aesthetic the computed \code{level} is mapped to (\code{fill} vs \code{colour}).
 }
-\keyword{datasets}
 \keyword{internal}

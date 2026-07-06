@@ -9,20 +9,28 @@ nbrk <- length(brks) - 1
 cols = get_color(rcolors$amwg256, nbrk)
 
 ggplot(df, aes(x, y, z = x)) +
-  stat_cut(aes(color = after_stat(level)), breaks = brks, geom = "point") +
+  stat_levels(aes(color = after_stat(level)), breaks = brks, geom = "point") +
   scale_color_manual(
     values = cols,
     guide = guide_coloursteps2(title = "lgd", barheight = unit(0.8, "npc"))
-  )
+  ) +
+  guides(fill = "none")
 
 ## another option: use `scale_color_stepsn`
 # example 2
-# ! unable to accurately control the used colors
+# NOTE: `scale_*_stepsn` is a *continuous* binned scale, so `breaks` must be
+# finite. Passing -Inf/Inf makes the open-ended end bins rescale to a
+# non-finite value -> palette returns NA -> drawn as grey (na.value). Drop the
+# infinite breaks here; the open-ended triangles are still drawn by
+# `guide_coloursteps2()` (which always renders triangle ends), so no semantics
+# are lost. Note the bin colours are *interpolated* along the gradient and thus
+# only approximate `cols`; for exact per-level colours use the discrete `cut`
+# path above (stat_levels + scale_color_manual).
 ggplot(df, aes(x, y, color = x)) +
   geom_point() +
   scale_color_stepsn(
     colors = cols,
-    breaks = brks,
+    breaks = brks[is.finite(brks)],
     guide = guide_coloursteps2(title = "lgd")
   ) +
   theme(

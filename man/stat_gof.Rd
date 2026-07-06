@@ -139,15 +139,15 @@ system.}
 }
 \value{
 No return. This function is used to calculate data for gglot2 \verb{geom_*},
-just like \code{\link[ggplot2:geom_smooth]{ggplot2::stat_smooth()}}.
+just like \code{\link[ggplot2:stat_smooth]{ggplot2::stat_smooth()}}.
 }
 \description{
 stat_gof
 }
 \details{
 \itemize{
-\item \code{b}: the object returned by \code{\link[broom:reexports]{broom::tidy()}}
-\item \code{s}: the object returned by \code{\link[broom:reexports]{broom::glance()}}
+\item \code{b}: the object returned by \code{\link[broom:tidy]{broom::tidy()}}
+\item \code{s}: the object returned by \code{\link[broom:glance]{broom::glance()}}
 \itemize{
 \item \verb{*R*^2 = \{str_num(s$r.squared, digits)\}}
 }

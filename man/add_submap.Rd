@@ -21,14 +21,14 @@ bundled \link{bou_southsea} dataset (the "十段线" national boundary in the So
 China Sea) is used.}
 
 \item{colour, linewidth, fill}{colour, line width and fill passed to
-\code{\link[ggplot2:ggsf]{ggplot2::geom_sf()}} for the boundary line.}
+\code{\link[ggplot2:geom_sf]{ggplot2::geom_sf()}} for the boundary line.}
 
 \item{border.colour, border.linewidth}{colour and line width of the box drawn
 around the submap (\code{panel.border}).}
 
 \item{bgcolor}{background colour of the submap panel.}
 
-\item{...}{other parameters passed to \code{\link[ggplot2:ggsf]{ggplot2::geom_sf()}}.}
+\item{...}{other parameters passed to \code{\link[ggplot2:geom_sf]{ggplot2::geom_sf()}}.}
 }
 \value{
 A \code{ggplot} object.

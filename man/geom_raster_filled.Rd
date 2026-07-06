@@ -40,6 +40,7 @@ stat_levels(
   position = "identity",
   ...,
   breaks = NULL,
+  include.lowest = FALSE,
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE
@@ -120,16 +121,12 @@ lists which parameters it can accept.
 \link[ggplot2:draw_key]{key glyphs}, to change the display of the layer in the legend.
 }}
 
-\item{breaks}{One of:
-\itemize{
-\item Numeric vector to set the contour breaks
-\item A function that takes the range of the data and binwidth as input
-and returns breaks as output. A function can be created from a formula
-(e.g. ~ fullseq(.x, .y)).
-}
-
-Overrides \code{binwidth} and \code{bins}. By default, this is a vector of length
-ten with \code{\link[=pretty]{pretty()}} breaks.}
+\item{breaks}{Numeric vector of break points passed to \code{\link[base:cut]{base::cut()}} to bin
+\code{z} into discrete levels. When \code{NULL} (the default), \code{pretty(z, 7)} is used.
+To capture values below the smallest / above the largest break, include
+\code{-Inf} / \code{Inf} in \code{breaks} (e.g. \code{c(-Inf, 2, 4, 6, Inf)}); otherwise
+out-of-range values become \code{NA} and are dropped. This is the opposite of the
+continuous \verb{scale_*_stepsn()} path, which requires finite breaks.}
 
 \item{hjust, vjust}{horizontal and vertical justification of the grob.  Each
 justification value should be a number between 0 and 1.  Defaults to 0.5
@@ -166,7 +163,99 @@ give the geom as \code{"point"}.
 \item For more information and other ways to specify the geom, see the
 \link[ggplot2:layer_geoms]{layer geom} documentation.
 }}
+
+\item{include.lowest}{Logical, passed to \code{\link[base:cut]{base::cut()}}. If \code{TRUE}, a value
+equal to the lowest break is included in the first interval. This only
+rescues the boundary value itself; it does not capture values truly below
+the lowest break (use \code{-Inf} for that).}
 }
 \description{
-geom_raster_filled
+\code{stat_levels()} is the geom-agnostic engine of the level-binning family. It
+discretizes the continuous aesthetic \code{z} into a factor \code{level} via
+\code{\link[base:cut]{base::cut()}} and, by default, maps that \code{level} to \code{fill} so it can drive
+any geom (point, raster, tile, ...). \code{\link[=stat_raster_levels]{stat_raster_levels()}} and
+\code{\link[=stat_point_levels]{stat_point_levels()}} are thin subclasses that reuse this binning logic and
+only change which aesthetic \code{level} is mapped to.
+}
+\section{Computed variables}{
+
+\describe{
+\item{\code{level}}{the factor produced by \code{cut(z, breaks)}; map it to an
+aesthetic with \code{after_stat(level)}.}
+}
+}
+
+\section{Aesthetics}{
+
+\code{stat_levels()} requires the \code{z} aesthetic and, by default, maps the
+computed \code{level} to \code{fill}. To colour points instead, either map it
+explicitly with \code{aes(colour = after_stat(level))} and silence the unused
+default \code{fill} legend via \code{guides(fill = "none")}, or use the dedicated
+\code{\link[=geom_point_levels]{geom_point_levels()}} / \code{\link[=stat_point_levels]{stat_point_levels()}}, which map only \code{colour}.
+}
+
+\examples{
+library(rcolors)
+library(ggplot2)
+library(magrittr)
+
+df = data.frame(x = 1:10, y = 1:10, z = 1:10)
+
+brks <- c(2, 4, 6, 8) \%>\% c(-Inf, ., Inf) # 这里要包含
+nbrk <- length(brks) - 1
+cols = get_color(rcolors$amwg256, nbrk)
+
+ggplot(df, aes(x, y, z = x)) +
+  stat_levels(aes(color = after_stat(level)), breaks = brks, geom = "point") +
+  scale_color_manual(
+    values = cols,
+    guide = guide_coloursteps2(title = "lgd", barheight = unit(0.8, "npc"))
+  ) +
+  guides(fill = "none")
+
+## another option: use `scale_color_stepsn`
+# example 2
+# NOTE: `scale_*_stepsn` is a *continuous* binned scale, so `breaks` must be
+# finite. Passing -Inf/Inf makes the open-ended end bins rescale to a
+# non-finite value -> palette returns NA -> drawn as grey (na.value). Drop the
+# infinite breaks here; the open-ended triangles are still drawn by
+# `guide_coloursteps2()` (which always renders triangle ends), so no semantics
+# are lost. Note the bin colours are *interpolated* along the gradient and thus
+# only approximate `cols`; for exact per-level colours use the discrete `cut`
+# path above (stat_levels + scale_color_manual).
+ggplot(df, aes(x, y, color = x)) +
+  geom_point() +
+  scale_color_stepsn(
+    colors = cols,
+    breaks = brks[is.finite(brks)],
+    guide = guide_coloursteps2(title = "lgd")
+  ) +
+  theme(
+    legend.title = element_blank(),
+    legend.margin = margin(l = -2)
+  )
+
+# example 3 
+df <- expand.grid(X1 = 1:10, X2 = 1:10)
+df$value <- df$X1 * df$X2
+
+brks = c(10, 15, 25, 50)
+nbrk <- length(brks) + 1
+cols = get_color(rcolors$amwg256, nbrk)
+
+# This can be changed with the `even.steps` argument
+ggplot(df, aes(X1, X2)) +
+  geom_tile(aes(fill = value)) +
+  scale_fill_stepsn(
+    colors = cols, breaks = brks,
+    guide = guide_colorsteps2()
+  ) +
+  theme(
+    legend.title = element_blank(),
+    legend.margin = margin(l = -2)
+  )
+}
+\seealso{
+\code{\link[=geom_raster_filled]{geom_raster_filled()}}, \code{\link[=geom_point_levels]{geom_point_levels()}},
+\code{\link[=stat_raster_levels]{stat_raster_levels()}}, \code{\link[=stat_point_levels]{stat_point_levels()}}, \code{\link[base:cut]{base::cut()}}
 }

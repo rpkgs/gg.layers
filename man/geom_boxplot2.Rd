@@ -234,7 +234,7 @@ The American Statistician 32, 12-16.
 }
 }
 \seealso{
-\code{\link[ggplot2:geom_quantile]{ggplot2::geom_quantile()}} for continuous \code{x},
-\code{\link[ggplot2:geom_violin]{ggplot2::geom_violin()}} for a richer display of the distribution, and
-\code{\link[ggplot2:geom_jitter]{ggplot2::geom_jitter()}} for a useful technique for small data.
+\code{\link[ggplot2:geom_quantile]{geom_quantile()}} for continuous \code{x},
+\code{\link[ggplot2:geom_violin]{geom_violin()}} for a richer display of the distribution, and
+\code{\link[ggplot2:geom_jitter]{geom_jitter()}} for a useful technique for small data.
 }

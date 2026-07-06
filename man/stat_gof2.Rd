@@ -97,7 +97,7 @@ layer, as a string.}
 }
 \value{
 No return. This function is used to calculate data for gglot2
-\verb{geom_*}, just like \code{\link[ggplot2:geom_smooth]{ggplot2::stat_smooth()}}.
+\verb{geom_*}, just like \code{\link[ggplot2:stat_smooth]{ggplot2::stat_smooth()}}.
 }
 \description{
 stat_gof2

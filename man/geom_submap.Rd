@@ -41,7 +41,7 @@ China Sea) is used.}
     and 1 means right alignment.
   }
 
-\item{...}{other parameters passed to \code{\link[ggplot2:ggsf]{ggplot2::geom_sf()}}.}
+\item{...}{other parameters passed to \code{\link[ggplot2:geom_sf]{ggplot2::geom_sf()}}.}
 }
 \description{
 Add an inset submap (e.g. the South China Sea, 南海) to a ggplot, placed in a
@@ -53,18 +53,14 @@ By default the submap is placed at the bottom-right corner
 (\verb{x = 1, y = 0, just = c(1, 0)}).
 }
 \examples{
-\dontrun{
 library(gg.layers)
 library(ggplot2)
 
-shp = "Z:/ShapeFiles/ChinaBound2024/shp/bou1_4l_2024.shp"
-
+# shp = "Z:/ShapeFiles/ChinaBound2024/shp/bou1_4l_2024.shp"
 data("d_trendPerc")
 
 ggplot(d_trendPerc, aes(x, y)) +
   geom_raster(aes(fill = perc)) +
   geom_submap() + # South China Sea inset at the bottom-right corner
   coord_cartesian()
-
-}
 }

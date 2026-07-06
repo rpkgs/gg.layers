@@ -23,16 +23,16 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr:reexports]{as_tibble}}, \code{\link[dplyr]{mutate}}, \code{\link[dplyr:reexports]{tibble}}}
+  \item{dplyr}{\code{\link[dplyr:as_tibble]{as_tibble}}, \code{\link[dplyr:mutate]{mutate()}}, \code{\link[dplyr:tibble]{tibble}}}
 
-  \item{ggh4x}{\code{\link[ggh4x:deprecated]{guide_axis_minor}}}
+  \item{ggh4x}{\code{\link[ggh4x:guide_axis_minor]{guide_axis_minor()}}}
 
-  \item{ggpattern}{\code{\link[ggpattern:geom-docs]{geom_sf_pattern}}, \code{\link[ggpattern:ggpattern-ggproto]{GeomSfPattern}}}
+  \item{ggpattern}{\code{\link[ggpattern:geom_sf_pattern]{geom_sf_pattern()}}, \code{\link[ggpattern:GeomSfPattern]{GeomSfPattern}}}
 
-  \item{ggtext}{\code{\link[ggtext]{element_markdown}}, \code{\link[ggtext]{element_textbox}}, \code{\link[ggtext]{geom_richtext}}}
+  \item{ggtext}{\code{\link[ggtext:element_markdown]{element_markdown()}}, \code{\link[ggtext:element_textbox]{element_textbox()}}, \code{\link[ggtext:geom_richtext]{geom_richtext()}}}
 
-  \item{magrittr}{\code{\link[magrittr:compound]{\%<>\%}}, \code{\link[magrittr:pipe]{\%>\%}}}
+  \item{magrittr}{\code{\link[magrittr:\%<>\%]{\%<>\%}}, \code{\link[magrittr:\%>\%]{\%>\%}}}
 
-  \item{rtrend}{\code{\link[rtrend:slope]{slope_mk}}, \code{\link[rtrend:slope]{slope_p}}}
+  \item{rtrend}{\code{\link[rtrend:slope_mk]{slope_mk()}}, \code{\link[rtrend:slope_p]{slope_p()}}}
 }}
 
