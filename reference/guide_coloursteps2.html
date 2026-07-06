@@ -119,11 +119,76 @@
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments passed to the guide.
-#' @example R/examples/ex-stat_cut.R</p></dd>
+<dd><p>Additional arguments passed to the guide.</p></dd>
 
 </dl></div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rcolors</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, y <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">brks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">8</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="cn">Inf</span>, <span class="va">.</span>, <span class="cn">Inf</span><span class="op">)</span> <span class="co"># 这里要包含</span></span></span>
+<span class="r-in"><span><span class="va">nbrk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">brks</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span><span class="va">cols</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/rcolors/man/get_color.html" class="external-link">get_color</a></span><span class="op">(</span><span class="va">rcolors</span><span class="op">$</span><span class="va">amwg256</span>, <span class="va">nbrk</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, z <span class="op">=</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="geom_raster_filled.html">stat_levels</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">after_stat</a></span><span class="op">(</span><span class="va">level</span><span class="op">)</span><span class="op">)</span>, breaks <span class="op">=</span> <span class="va">brks</span>, geom <span class="op">=</span> <span class="st">"point"</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    values <span class="op">=</span> <span class="va">cols</span>,</span></span>
+<span class="r-in"><span>    guide <span class="op">=</span> <span class="fu">guide_coloursteps2</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"lgd"</span>, barheight <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="st">"npc"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="guide_coloursteps2-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## another option: use `scale_color_stepsn`</span></span></span>
+<span class="r-in"><span><span class="co"># example 2</span></span></span>
+<span class="r-in"><span><span class="co"># NOTE: `scale_*_stepsn` is a *continuous* binned scale, so `breaks` must be</span></span></span>
+<span class="r-in"><span><span class="co"># finite. Passing -Inf/Inf makes the open-ended end bins rescale to a</span></span></span>
+<span class="r-in"><span><span class="co"># non-finite value -&gt; palette returns NA -&gt; drawn as grey (na.value). Drop the</span></span></span>
+<span class="r-in"><span><span class="co"># infinite breaks here; the open-ended triangles are still drawn by</span></span></span>
+<span class="r-in"><span><span class="co"># `guide_coloursteps2()` (which always renders triangle ends), so no semantics</span></span></span>
+<span class="r-in"><span><span class="co"># are lost. Note the bin colours are *interpolated* along the gradient and thus</span></span></span>
+<span class="r-in"><span><span class="co"># only approximate `cols`; for exact per-level colours use the discrete `cut`</span></span></span>
+<span class="r-in"><span><span class="co"># path above (stat_levels + scale_color_manual).</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, color <span class="op">=</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_steps.html" class="external-link">scale_color_stepsn</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    colors <span class="op">=</span> <span class="va">cols</span>,</span></span>
+<span class="r-in"><span>    breaks <span class="op">=</span> <span class="va">brks</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">brks</span><span class="op">)</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>    guide <span class="op">=</span> <span class="fu">guide_coloursteps2</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"lgd"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    legend.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">margin</a></span><span class="op">(</span>l <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-plt img"><img src="guide_coloursteps2-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># example 3 </span></span></span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>X1 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, X2 <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="va">df</span><span class="op">$</span><span class="va">X1</span> <span class="op">*</span> <span class="va">df</span><span class="op">$</span><span class="va">X2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">brks</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">25</span>, <span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">nbrk</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">brks</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span></span></span>
+<span class="r-in"><span><span class="va">cols</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/rcolors/man/get_color.html" class="external-link">get_color</a></span><span class="op">(</span><span class="va">rcolors</span><span class="op">$</span><span class="va">amwg256</span>, <span class="va">nbrk</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># This can be changed with the `even.steps` argument</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">X1</span>, <span class="va">X2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_tile</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_steps.html" class="external-link">scale_fill_stepsn</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    colors <span class="op">=</span> <span class="va">cols</span>, breaks <span class="op">=</span> <span class="va">brks</span>,</span></span>
+<span class="r-in"><span>    guide <span class="op">=</span> <span class="fu">guide_colorsteps2</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    legend.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    legend.margin <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">margin</a></span><span class="op">(</span>l <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-plt img"><img src="guide_coloursteps2-3.png" alt="" width="700" height="433"></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
