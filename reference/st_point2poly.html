@@ -61,12 +61,12 @@
 
 
 <dl><dt id="arg-xyz">xyz<a class="anchor" aria-label="anchor" href="#arg-xyz"></a></dt>
-<dd><p>matrix or data.frame with at least three columns: x and y coordinates, and values (z). There may be several 'z' variables (columns)</p></dd>
+<dd><p>A matrix or data frame whose first two columns are x and y;
+the optional third column contains values.</p></dd>
 
 
 <dt id="arg-crs">crs<a class="anchor" aria-label="anchor" href="#arg-crs"></a></dt>
-<dd><p>one of (i) character: a string accepted by GDAL, (ii) integer, a
-valid EPSG value (numeric), or (iii) an object of class crs.</p></dd>
+<dd><p>A coordinate reference system accepted by <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::st_crs()</a></code>.</p></dd>
 
 </dl></div>
     <div id="references">
@@ -76,7 +76,7 @@ valid EPSG value (numeric), or (iii) an object of class crs.</p></dd>
 </ol></div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/raster/man/rasterFromXYZ.html" class="external-link">raster::rasterFromXYZ()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://rspatial.github.io/terra/reference/rast.html" class="external-link">terra::rast()</a></code>, <code><a href="https://rspatial.github.io/terra/reference/as.polygons.html" class="external-link">terra::as.polygons()</a></code></p></div>
     </div>
 
   </div>
@@ -91,7 +91,7 @@ valid EPSG value (numeric), or (iii) an object of class crs.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>
