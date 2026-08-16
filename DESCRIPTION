@@ -26,8 +26,8 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0),
     rcolors,
-    scales, 
-    sf, stars, raster,
+    scales,
+    sf, terra,
     mapview,
     lattice,
     cowplot,

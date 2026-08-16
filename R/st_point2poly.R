@@ -1,40 +1,40 @@
 #' st_point2poly
 #' 
-#' @inheritParams raster::rasterFromXYZ
-#' @param crs one of (i) character: a string accepted by GDAL, (ii) integer, a
-#' valid EPSG value (numeric), or (iii) an object of class crs.
-#' 
-#' @seealso [raster::rasterFromXYZ()]
+#' @param xyz A matrix or data frame whose first two columns are x and y;
+#'   the optional third column contains values.
+#' @param crs A coordinate reference system accepted by [sf::st_crs()].
+#'
+#' @seealso [terra::rast()], [terra::as.polygons()]
 #' 
 #' @references
 #' 1. https://gis.stackexchange.com/questions/192771/how-to-speed-up-raster-to-polygon-conversion-in-r
 #' @export
 st_point2poly <- function(xyz, crs = 4326) {
-    r = df2rast(xyz)
-    rast2poly(r, crs) #%>% st_dissolve(by = "z")
+    rast2poly(df2rast(xyz), crs)
 }
 
 #' @rdname st_point2poly
-#' @export 
+#' @export
 df2rast <- function(xyz) {
-    # first three columns
-    if (ncol(xyz) == 2) {
-        xyz %<>% cbind(z = 1L)
+    if (ncol(xyz) < 2) {
+        stop("`xyz` must have at least two columns.", call. = FALSE)
     }
-    colnames(xyz) = c("x", "y", "z")
-    raster::rasterFromXYZ(xyz)
+
+    xyz = as.data.frame(xyz)
+    xyz = xyz[, seq_len(min(ncol(xyz), 3)), drop = FALSE]
+    if (ncol(xyz) == 2) xyz$z = 1L
+    names(xyz) = c("x", "y", "z")
+    terra::rast(xyz, type = "xyz")
 }
 
 #' @rdname st_point2poly
-#' @export 
+#' @export
 rast2poly <- function(r, crs = 4326) {
-    sf_poly = suppressWarnings({
-        sf::st_as_sf(stars::st_as_stars(r),
-            as_points = FALSE, merge = TRUE
-        ) %>% sf::st_make_valid() # %>% sf::as_Spatial()
-    })
-    sf::st_crs(sf_poly) = crs
-    sf_poly
+    terra::crs(r) = sf::st_crs(crs)$wkt
+    r %>%
+        terra::as.polygons(round = FALSE, aggregate = TRUE, na.rm = TRUE) %>%
+        sf::st_as_sf() %>%
+        sf::st_make_valid()
 }
 
 #' @rdname st_point2poly

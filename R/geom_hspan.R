@@ -33,7 +33,7 @@ geom_hspan <- function(mapping = NULL, data = NULL,
 
 #' @import ggplot2
 StatHspan <- ggproto("StatHspan", Stat,
-  required_aes = c("xmin", "xmax"),
+  required_aes = c("xmin", "xmax"), 
   compute_group = function(data, scales, ymin = -Inf, ymax = Inf) {
     # x = data$x
     # n = nrow(data) # 需要是偶数

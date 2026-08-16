@@ -16,10 +16,10 @@ rast2poly(r, crs = 4326)
 st_dissolve(x, by = NULL, ...)
 }
 \arguments{
-\item{xyz}{matrix or data.frame with at least three columns: x and y coordinates, and values (z). There may be several 'z' variables (columns)}
+\item{xyz}{A matrix or data frame whose first two columns are x and y;
+the optional third column contains values.}
 
-\item{crs}{one of (i) character: a string accepted by GDAL, (ii) integer, a
-valid EPSG value (numeric), or (iii) an object of class crs.}
+\item{crs}{A coordinate reference system accepted by \code{\link[sf:st_crs]{sf::st_crs()}}.}
 }
 \description{
 st_point2poly
@@ -30,5 +30,5 @@ st_point2poly
 }
 }
 \seealso{
-\code{\link[raster:rasterFromXYZ]{raster::rasterFromXYZ()}}
+\code{\link[terra:rast]{terra::rast()}}, \code{\link[terra:as.polygons]{terra::as.polygons()}}
 }
